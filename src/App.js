@@ -4,12 +4,8 @@ import {
   FaEnvelope,
   FaExternalLinkAlt,
   FaGithub,
-  FaKey,
   FaMapMarkerAlt,
-  FaNetworkWired,
   FaPhoneAlt,
-  FaServer,
-  FaTools,
 } from "react-icons/fa";
 
 const contact = {
@@ -74,33 +70,6 @@ const outsideWork = [
   "AI / Cloud Labs",
   "Systems Diagrams",
   "Technical Writing",
-];
-
-const capabilityDomains = [
-  {
-    icon: <FaKey />,
-    title: "Identity",
-    tags: ["Entra", "AD", "MFA"],
-    accent: "identity",
-  },
-  {
-    icon: <FaNetworkWired />,
-    title: "Networking",
-    tags: ["DNS", "VPN", "VLANs"],
-    accent: "networking",
-  },
-  {
-    icon: <FaServer />,
-    title: "Virtualisation",
-    tags: ["VMware", "Windows", "Linux"],
-    accent: "vmware",
-  },
-  {
-    icon: <FaTools />,
-    title: "Automation",
-    tags: ["PowerShell", "Terraform", "Monitoring"],
-    accent: "automation",
-  },
 ];
 
 const projects = [
@@ -287,32 +256,51 @@ function App() {
             </div>
           </div>
 
-          <div className="hero-visual" aria-label="Operational stack">
+          <div className="hero-visual" aria-label="Systems blueprint">
             <div className="visual-topline">
-              <span>Operational stack</span>
-              <strong>Cloud-ready systems</strong>
+              <span>Systems blueprint</span>
+              <strong>Infrastructure &rarr; Cloud</strong>
             </div>
-            <div className="systems-stack">
-              {capabilityDomains.map((domain) => (
-                <article
-                  className={`capability-card ${domain.accent}`}
-                  key={domain.title}
-                >
-                  <div className="capability-icon" aria-hidden="true">
-                    {domain.icon}
-                  </div>
-                  <div>
-                    <h3>{domain.title}</h3>
-                    <div className="mini-tags" aria-label={`${domain.title} tools`}>
-                      {domain.tags.map((tag) => (
-                        <span key={tag}>{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              ))}
+            <div className="blueprint-map" aria-hidden="true">
+              <svg viewBox="0 0 520 300" role="img">
+                <g className="blueprint-lines">
+                  <path d="M102 78 H260 H418" />
+                  <path d="M102 78 L260 150" />
+                  <path d="M418 78 L260 150" />
+                  <path d="M260 150 V224" />
+                  <path d="M160 224 H360" />
+                  <path d="M160 224 L260 150" />
+                  <path d="M360 224 L260 150" />
+                </g>
+                <g className="blueprint-node">
+                  <rect x="54" y="52" width="96" height="52" rx="8" />
+                  <text x="102" y="83">Identity</text>
+                </g>
+                <g className="blueprint-node">
+                  <rect x="206" y="52" width="108" height="52" rx="8" />
+                  <text x="260" y="83">Network</text>
+                </g>
+                <g className="blueprint-node">
+                  <rect x="370" y="52" width="96" height="52" rx="8" />
+                  <text x="418" y="83">Compute</text>
+                </g>
+                <g className="blueprint-node core-node">
+                  <rect x="198" y="120" width="124" height="60" rx="10" />
+                  <text x="260" y="154">Operations</text>
+                </g>
+                <g className="blueprint-node">
+                  <rect x="104" y="198" width="112" height="52" rx="8" />
+                  <text x="160" y="229">Automation</text>
+                </g>
+                <g className="blueprint-node">
+                  <rect x="300" y="198" width="120" height="52" rx="8" />
+                  <text x="360" y="229">Monitoring</text>
+                </g>
+              </svg>
             </div>
-            <div className="stack-flow">Map &rarr; Fix &rarr; Document &rarr; Automate</div>
+            <p className="blueprint-caption">
+              Map dependencies. Isolate failures. Document fixes.
+            </p>
           </div>
         </section>
 
