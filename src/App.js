@@ -186,10 +186,19 @@ function HeroCircuitGraphic() {
       <svg viewBox="0 0 560 520" role="img">
         <defs>
           <linearGradient id="traceFade" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0" stopColor="#17181c" stopOpacity="0.18" />
-            <stop offset="1" stopColor="#0f8b6f" stopOpacity="0.34" />
+            <stop offset="0" stopColor="#17181c" stopOpacity="0.2" />
+            <stop offset="1" stopColor="#0f8b6f" stopOpacity="0.4" />
+          </linearGradient>
+          <linearGradient id="signalFade" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stopColor="#0f8b6f" stopOpacity="0" />
+            <stop offset="0.5" stopColor="#0f8b6f" stopOpacity="0.52" />
+            <stop offset="1" stopColor="#0f8b6f" stopOpacity="0" />
           </linearGradient>
         </defs>
+        <g className="board-planes">
+          <rect x="158" y="92" width="290" height="300" rx="24" />
+          <rect x="188" y="128" width="230" height="226" rx="18" />
+        </g>
         <rect className="chip-core" x="218" y="178" width="126" height="126" rx="14" />
         <rect className="chip-inner" x="242" y="202" width="78" height="78" rx="9" />
         <g className="chip-pins">
@@ -222,14 +231,18 @@ function HeroCircuitGraphic() {
           <path d="M470 220 H514 V304 H548" />
           <path d="M446 244 V342 H502" />
         </g>
+        <g className="signal-traces">
+          <path d="M260 104 H154 V70 H82" />
+          <path d="M308 384 V430 H424 V480" />
+        </g>
         <g className="circuit-nodes">
           <circle cx="82" cy="70" r="5" />
-          <circle cx="496" cy="58" r="5" />
+          <circle className="pulse-node" cx="496" cy="58" r="5" />
           <circle cx="66" cy="142" r="4" />
           <circle cx="28" cy="292" r="4" />
           <circle cx="178" cy="402" r="4" />
           <circle cx="122" cy="454" r="5" />
-          <circle cx="424" cy="480" r="5" />
+          <circle className="pulse-node" cx="424" cy="480" r="5" />
           <circle cx="512" cy="132" r="4" />
           <circle cx="548" cy="304" r="4" />
           <circle cx="502" cy="342" r="5" />

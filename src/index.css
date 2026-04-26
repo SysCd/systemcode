@@ -226,6 +226,8 @@ h3 {
 }
 
 .hero-circuit {
+  --circuit-opacity: 0.56;
+
   position: absolute;
   z-index: 0;
   top: 50%;
@@ -233,9 +235,9 @@ h3 {
   width: min(48vw, 560px);
   min-width: 420px;
   transform: translateY(-50%);
-  opacity: 0.48;
+  opacity: var(--circuit-opacity);
   pointer-events: none;
-  filter: blur(0.15px);
+  filter: blur(0.12px);
   mask-image: linear-gradient(
     90deg,
     transparent 0%,
@@ -243,6 +245,7 @@ h3 {
     rgba(0, 0, 0, 0.88) 52%,
     transparent 100%
   );
+  animation: circuit-breathe 12s ease-in-out infinite;
 }
 
 .hero-circuit svg {
@@ -253,18 +256,25 @@ h3 {
 
 .chip-core,
 .chip-inner {
-  fill: rgba(255, 255, 255, 0.34);
-  stroke: rgba(15, 139, 111, 0.3);
+  fill: rgba(255, 255, 255, 0.38);
+  stroke: rgba(15, 139, 111, 0.34);
   stroke-width: 1.2;
 }
 
 .chip-inner {
-  fill: rgba(15, 139, 111, 0.06);
-  stroke: rgba(23, 24, 28, 0.16);
+  fill: rgba(15, 139, 111, 0.075);
+  stroke: rgba(23, 24, 28, 0.18);
+}
+
+.board-planes rect {
+  fill: none;
+  stroke: rgba(23, 24, 28, 0.06);
+  stroke-width: 1;
 }
 
 .chip-pins path,
-.circuit-traces path {
+.circuit-traces path,
+.signal-traces path {
   fill: none;
   stroke: url("#traceFade");
   stroke-linecap: round;
@@ -279,10 +289,70 @@ h3 {
   stroke-width: 1.25;
 }
 
+.signal-traces path {
+  stroke: url("#signalFade");
+  stroke-dasharray: 42 240;
+  stroke-dashoffset: 0;
+  stroke-width: 1.7;
+  animation: signal-travel 9s linear infinite;
+}
+
+.signal-traces path:nth-child(2) {
+  animation-delay: -4s;
+}
+
 .circuit-nodes circle {
-  fill: rgba(15, 139, 111, 0.26);
+  fill: rgba(15, 139, 111, 0.32);
   stroke: rgba(23, 24, 28, 0.12);
   stroke-width: 1;
+}
+
+.pulse-node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: node-pulse 6s ease-in-out infinite;
+}
+
+.pulse-node:nth-of-type(7) {
+  animation-delay: -2.5s;
+}
+
+@keyframes circuit-breathe {
+  0%,
+  100% {
+    opacity: calc(var(--circuit-opacity) * 0.86);
+  }
+
+  50% {
+    opacity: calc(var(--circuit-opacity) * 1.08);
+  }
+}
+
+@keyframes signal-travel {
+  to {
+    stroke-dashoffset: -280;
+  }
+}
+
+@keyframes node-pulse {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-circuit,
+  .signal-traces path,
+  .pulse-node {
+    animation: none;
+  }
 }
 
 .project-card,
@@ -629,10 +699,11 @@ h3 {
   }
 
   .hero-circuit {
+    --circuit-opacity: 0.18;
+
     right: -300px;
     width: 460px;
     min-width: 0;
-    opacity: 0.18;
   }
 
   .project-grid,
