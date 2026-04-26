@@ -274,9 +274,9 @@ function App() {
             <h1 id="hero-title">Erik Gombar</h1>
             <p className="hero-lede">
               First-principles infrastructure engineer using systems thinking
-              to build, troubleshoot, and document reliable technical
-              environments across identity, networking, virtualisation,
-              automation, monitoring, and cloud infrastructure.
+              to build, troubleshoot, and document reliable environments across
+              identity, networking, virtualisation, automation, monitoring, and
+              cloud.
             </p>
             <div className="hero-actions" aria-label="Primary contact links">
               <a className="button primary" href={`mailto:${contact.email}`}>

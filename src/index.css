@@ -231,7 +231,7 @@ h3 {
   position: absolute;
   z-index: 0;
   top: 50%;
-  right: max(-96px, -7vw);
+  right: max(-140px, -10vw);
   width: min(48vw, 560px);
   min-width: 420px;
   transform: translateY(-50%);
@@ -245,7 +245,7 @@ h3 {
     rgba(0, 0, 0, 0.94) 52%,
     transparent 100%
   );
-  animation: circuit-breathe 12s ease-in-out infinite;
+  animation: circuit-breathe 14s ease-in-out infinite;
 }
 
 .hero-circuit svg {
@@ -294,11 +294,11 @@ h3 {
   stroke-dasharray: 42 240;
   stroke-dashoffset: 0;
   stroke-width: 1.7;
-  animation: signal-travel 9s linear infinite;
+  animation: signal-travel 12s linear infinite;
 }
 
 .signal-traces path:nth-child(2) {
-  animation-delay: -4s;
+  animation-delay: -5s;
 }
 
 .circuit-nodes circle {
@@ -310,11 +310,11 @@ h3 {
 .pulse-node {
   transform-box: fill-box;
   transform-origin: center;
-  animation: node-pulse 6s ease-in-out infinite;
+  animation: node-pulse 8s ease-in-out infinite;
 }
 
 .pulse-node:nth-of-type(7) {
-  animation-delay: -2.5s;
+  animation-delay: -3.5s;
 }
 
 @keyframes circuit-breathe {
@@ -701,7 +701,7 @@ h3 {
   .hero-circuit {
     --circuit-opacity: 0.22;
 
-    right: -290px;
+    right: -460px;
     width: 460px;
     min-width: 0;
   }
