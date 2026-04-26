@@ -16,21 +16,6 @@ const contact = {
   cv: `${process.env.PUBLIC_URL}/Erik-Gombar-CV.pdf`,
 };
 
-const highlights = [
-  {
-    value: "40%",
-    label: "Faster VM provisioning through VMware ESXi optimisation",
-  },
-  {
-    value: "250+",
-    label: "Windows and macOS endpoints supported across identity tooling",
-  },
-  {
-    value: "25%",
-    label: "Downtime reduction through proactive network troubleshooting",
-  },
-];
-
 const thinkingCards = [
   {
     title: "First Principles",
@@ -256,69 +241,6 @@ function App() {
             </div>
           </div>
 
-          <div
-            className="hero-visual"
-            aria-label="First-principles infrastructure thinking diagram"
-          >
-            <div className="visual-topline">
-              <span>First-principles approach</span>
-              <strong>Infrastructure thinking</strong>
-            </div>
-            <div className="principles-map" aria-hidden="true">
-              <svg viewBox="0 0 520 300" role="img">
-                <g className="principles-links">
-                  <path d="M260 150 L116 70" />
-                  <path d="M260 150 L260 58" />
-                  <path d="M260 150 L404 70" />
-                  <path d="M260 150 L116 230" />
-                  <path d="M260 150 L260 242" />
-                  <path d="M260 150 L404 230" />
-                </g>
-                <g className="principles-node">
-                  <rect x="66" y="44" width="100" height="52" rx="8" />
-                  <text x="116" y="75">Identity</text>
-                </g>
-                <g className="principles-node">
-                  <rect x="204" y="32" width="112" height="52" rx="8" />
-                  <text x="260" y="63">Networking</text>
-                </g>
-                <g className="principles-node">
-                  <rect x="354" y="44" width="100" height="52" rx="8" />
-                  <text x="404" y="75">Compute</text>
-                </g>
-                <g className="principles-core">
-                  <rect x="184" y="114" width="152" height="72" rx="12" />
-                  <text x="260" y="144">Core system</text>
-                  <text x="260" y="164">logic</text>
-                </g>
-                <g className="principles-node">
-                  <rect x="50" y="204" width="132" height="52" rx="8" />
-                  <text x="116" y="235">Automation</text>
-                </g>
-                <g className="principles-node">
-                  <rect x="194" y="216" width="132" height="52" rx="8" />
-                  <text x="260" y="247">Monitoring</text>
-                </g>
-                <g className="principles-node">
-                  <rect x="340" y="204" width="128" height="52" rx="8" />
-                  <text x="404" y="235">Documentation</text>
-                </g>
-              </svg>
-            </div>
-            <p className="principles-caption">
-              Map dependencies &rarr; Isolate failures &rarr; Validate fixes
-              &rarr; Document clearly
-            </p>
-          </div>
-        </section>
-
-        <section className="metrics-band" aria-label="Career highlights">
-          {highlights.map((item) => (
-            <article className="metric-card" key={item.value}>
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
-            </article>
-          ))}
         </section>
 
         <section className="section-block thinking-section" id="thinking">

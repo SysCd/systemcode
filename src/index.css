@@ -105,12 +105,8 @@ main {
 }
 
 .hero-section {
-  display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
-  gap: 48px;
-  align-items: center;
-  min-height: calc(100vh - 78px);
-  padding: 60px 0 56px;
+  min-height: auto;
+  padding: 72px 0;
 }
 
 .hero-copy {
@@ -224,112 +220,6 @@ h3 {
   text-decoration: none;
 }
 
-.hero-visual {
-  position: relative;
-  padding: 22px;
-  border: 1px solid rgba(23, 24, 28, 0.12);
-  border-radius: 8px;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.64)),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 23px,
-      rgba(23, 24, 28, 0.04) 24px
-    );
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-
-.visual-topline {
-  display: flex;
-  position: relative;
-  z-index: 1;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-bottom: 14px;
-  color: var(--muted);
-  font-size: 0.86rem;
-}
-
-.visual-topline strong {
-  color: var(--ink);
-}
-
-.principles-map {
-  position: relative;
-  z-index: 1;
-  margin: 8px 0 14px;
-  padding: 10px;
-  border: 1px solid rgba(23, 24, 28, 0.08);
-  border-radius: 8px;
-  background:
-    linear-gradient(rgba(23, 24, 28, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(23, 24, 28, 0.035) 1px, transparent 1px),
-    rgba(255, 255, 255, 0.54);
-  background-size: 28px 28px;
-}
-
-.principles-map svg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.principles-links path {
-  fill: none;
-  stroke: rgba(23, 24, 28, 0.18);
-  stroke-linecap: round;
-  stroke-width: 1.25;
-}
-
-.principles-links path:nth-child(1),
-.principles-links path:nth-child(4) {
-  stroke: rgba(15, 139, 111, 0.45);
-}
-
-.principles-node rect {
-  fill: rgba(255, 255, 255, 0.86);
-  stroke: rgba(23, 24, 28, 0.18);
-  stroke-width: 1;
-}
-
-.principles-node text,
-.principles-core text {
-  fill: var(--ink);
-  font-size: 14px;
-  font-weight: 800;
-  text-anchor: middle;
-  dominant-baseline: middle;
-}
-
-.principles-core rect {
-  fill: rgba(15, 139, 111, 0.11);
-  stroke: rgba(15, 139, 111, 0.55);
-  stroke-width: 1;
-}
-
-.principles-core text {
-  fill: #275249;
-}
-
-.principles-caption {
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 800;
-  text-align: center;
-}
-
-.metrics-band {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--grid-gap);
-  margin: 0 0 96px;
-}
-
-.metric-card,
 .project-card,
 .thinking-card,
 .working-card,
@@ -342,23 +232,6 @@ h3 {
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.76);
   box-shadow: 0 12px 32px rgba(23, 24, 28, 0.06);
-}
-
-.metric-card {
-  display: grid;
-  gap: 10px;
-  min-height: 150px;
-  padding: var(--card-padding);
-}
-
-.metric-card strong {
-  font-size: clamp(2.8rem, 6vw, 4.8rem);
-  line-height: 0.9;
-}
-
-.metric-card span {
-  color: var(--muted);
-  font-weight: 700;
 }
 
 .section-block {
@@ -680,7 +553,6 @@ h3 {
     max-width: calc(100vw - 92px);
   }
 
-  .hero-section,
   .split-section,
   .education-section,
   .contact-section {
@@ -688,11 +560,9 @@ h3 {
   }
 
   .hero-section {
-    min-height: auto;
     padding-top: 44px;
   }
 
-  .metrics-band,
   .project-grid,
   .thinking-grid,
   .working-grid,
@@ -733,34 +603,8 @@ h3 {
     font-size: clamp(4.1rem, 25vw, 6rem);
   }
 
-  .hero-visual {
-    padding: 14px;
-  }
-
   .skill-groups {
     grid-template-columns: 1fr;
-  }
-
-  .visual-topline {
-    gap: 8px;
-  }
-
-  .principles-map {
-    margin: 6px 0 12px;
-    padding: 6px;
-  }
-
-  .principles-node text,
-  .principles-core text {
-    font-size: 13px;
-  }
-
-  .principles-caption {
-    font-size: 0.8rem;
-  }
-
-  .metric-card {
-    min-height: 130px;
   }
 
   .section-block {
