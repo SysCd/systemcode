@@ -105,11 +105,16 @@ main {
 }
 
 .hero-section {
+  position: relative;
+  overflow: hidden;
   min-height: auto;
   padding: 72px 0;
+  isolation: isolate;
 }
 
 .hero-copy {
+  position: relative;
+  z-index: 1;
   max-width: 710px;
 }
 
@@ -218,6 +223,66 @@ h3 {
   align-items: center;
   gap: 8px;
   text-decoration: none;
+}
+
+.hero-circuit {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: max(-96px, -7vw);
+  width: min(48vw, 560px);
+  min-width: 420px;
+  transform: translateY(-50%);
+  opacity: 0.48;
+  pointer-events: none;
+  filter: blur(0.15px);
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.16) 18%,
+    rgba(0, 0, 0, 0.88) 52%,
+    transparent 100%
+  );
+}
+
+.hero-circuit svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.chip-core,
+.chip-inner {
+  fill: rgba(255, 255, 255, 0.34);
+  stroke: rgba(15, 139, 111, 0.3);
+  stroke-width: 1.2;
+}
+
+.chip-inner {
+  fill: rgba(15, 139, 111, 0.06);
+  stroke: rgba(23, 24, 28, 0.16);
+}
+
+.chip-pins path,
+.circuit-traces path {
+  fill: none;
+  stroke: url("#traceFade");
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chip-pins path {
+  stroke-width: 1.5;
+}
+
+.circuit-traces path {
+  stroke-width: 1.25;
+}
+
+.circuit-nodes circle {
+  fill: rgba(15, 139, 111, 0.26);
+  stroke: rgba(23, 24, 28, 0.12);
+  stroke-width: 1;
 }
 
 .project-card,
@@ -563,6 +628,13 @@ h3 {
     padding-top: 44px;
   }
 
+  .hero-circuit {
+    right: -300px;
+    width: 460px;
+    min-width: 0;
+    opacity: 0.18;
+  }
+
   .project-grid,
   .thinking-grid,
   .working-grid,
@@ -601,6 +673,10 @@ h3 {
 
   h1 {
     font-size: clamp(4.1rem, 25vw, 6rem);
+  }
+
+  .hero-circuit {
+    display: none;
   }
 
   .skill-groups {

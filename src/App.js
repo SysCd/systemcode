@@ -180,6 +180,65 @@ const skillGroups = [
   },
 ];
 
+function HeroCircuitGraphic() {
+  return (
+    <div className="hero-circuit" aria-hidden="true">
+      <svg viewBox="0 0 560 520" role="img">
+        <defs>
+          <linearGradient id="traceFade" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stopColor="#17181c" stopOpacity="0.18" />
+            <stop offset="1" stopColor="#0f8b6f" stopOpacity="0.34" />
+          </linearGradient>
+        </defs>
+        <rect className="chip-core" x="218" y="178" width="126" height="126" rx="14" />
+        <rect className="chip-inner" x="242" y="202" width="78" height="78" rx="9" />
+        <g className="chip-pins">
+          <path d="M236 160 v-34" />
+          <path d="M260 160 v-56" />
+          <path d="M284 160 v-42" />
+          <path d="M308 160 v-64" />
+          <path d="M236 322 v42" />
+          <path d="M260 322 v70" />
+          <path d="M284 322 v50" />
+          <path d="M308 322 v62" />
+          <path d="M200 196 h-58" />
+          <path d="M200 220 h-86" />
+          <path d="M200 244 h-66" />
+          <path d="M200 268 h-96" />
+          <path d="M362 196 h78" />
+          <path d="M362 220 h108" />
+          <path d="M362 244 h84" />
+          <path d="M362 268 h124" />
+        </g>
+        <g className="circuit-traces">
+          <path d="M260 104 H154 V70 H82" />
+          <path d="M308 96 H410 V58 H496" />
+          <path d="M142 196 V142 H66" />
+          <path d="M114 220 H70 V292 H28" />
+          <path d="M104 268 V348 H178 V402" />
+          <path d="M260 392 V454 H122" />
+          <path d="M308 384 V430 H424 V480" />
+          <path d="M440 196 V132 H512" />
+          <path d="M470 220 H514 V304 H548" />
+          <path d="M446 244 V342 H502" />
+        </g>
+        <g className="circuit-nodes">
+          <circle cx="82" cy="70" r="5" />
+          <circle cx="496" cy="58" r="5" />
+          <circle cx="66" cy="142" r="4" />
+          <circle cx="28" cy="292" r="4" />
+          <circle cx="178" cy="402" r="4" />
+          <circle cx="122" cy="454" r="5" />
+          <circle cx="424" cy="480" r="5" />
+          <circle cx="512" cy="132" r="4" />
+          <circle cx="548" cy="304" r="4" />
+          <circle cx="502" cy="342" r="5" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
 function App() {
   return (
     <div className="site-shell">
@@ -241,6 +300,7 @@ function App() {
             </div>
           </div>
 
+          <HeroCircuitGraphic />
         </section>
 
         <section className="section-block thinking-section" id="thinking">
