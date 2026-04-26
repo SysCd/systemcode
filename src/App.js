@@ -1,7 +1,5 @@
 import "./index.css";
 import {
-  FaChartLine,
-  FaCloud,
   FaDownload,
   FaEnvelope,
   FaExternalLinkAlt,
@@ -78,32 +76,30 @@ const outsideWork = [
   "Technical Writing",
 ];
 
-const infrastructureLayers = [
+const capabilityDomains = [
   {
     icon: <FaKey />,
-    title: "Identity & Access",
-    tools: "Entra ID · AD · Okta · MFA",
-    featured: true,
+    title: "Identity",
+    tags: ["Entra", "AD", "MFA"],
+    accent: "identity",
   },
   {
     icon: <FaNetworkWired />,
-    title: "Network & Connectivity",
-    tools: "DNS · DHCP · VPN · VLANs · Firewalls",
+    title: "Networking",
+    tags: ["DNS", "VPN", "VLANs"],
+    accent: "networking",
   },
   {
     icon: <FaServer />,
-    title: "Virtualisation & Compute",
-    tools: "VMware ESXi · Windows Server · Linux",
+    title: "Virtualisation",
+    tags: ["VMware", "Windows", "Linux"],
+    accent: "vmware",
   },
   {
     icon: <FaTools />,
-    title: "Automation & Tooling",
-    tools: "PowerShell · Bash · Terraform · GitHub Actions",
-  },
-  {
-    icon: <FaChartLine />,
-    title: "Monitoring & Reliability",
-    tools: "Prometheus · Grafana · Logs · Documentation",
+    title: "Automation",
+    tags: ["PowerShell", "Terraform", "Monitoring"],
+    accent: "automation",
   },
 ];
 
@@ -291,36 +287,32 @@ function App() {
             </div>
           </div>
 
-          <div className="hero-visual" aria-label="Infrastructure systems map">
+          <div className="hero-visual" aria-label="Operational stack">
             <div className="visual-topline">
-              <span>Infrastructure systems map</span>
-              <strong>
-                <FaCloud aria-hidden="true" />
-                Cloud-ready
-              </strong>
+              <span>Operational stack</span>
+              <strong>Cloud-ready systems</strong>
             </div>
-            <div className="visual-heading">
-              <p>Operational layers</p>
-              <span>Map &rarr; Troubleshoot &rarr; Document &rarr; Automate</span>
-            </div>
-            <div className="systems-map">
-              {infrastructureLayers.map((layer) => (
+            <div className="systems-stack">
+              {capabilityDomains.map((domain) => (
                 <article
-                  className={`system-layer ${
-                    layer.featured ? "active-layer" : ""
-                  }`}
-                  key={layer.title}
+                  className={`capability-card ${domain.accent}`}
+                  key={domain.title}
                 >
-                  <div className="layer-icon" aria-hidden="true">
-                    {layer.icon}
+                  <div className="capability-icon" aria-hidden="true">
+                    {domain.icon}
                   </div>
                   <div>
-                    <h3>{layer.title}</h3>
-                    <p>{layer.tools}</p>
+                    <h3>{domain.title}</h3>
+                    <div className="mini-tags" aria-label={`${domain.title} tools`}>
+                      {domain.tags.map((tag) => (
+                        <span key={tag}>{tag}</span>
+                      ))}
+                    </div>
                   </div>
                 </article>
               ))}
             </div>
+            <div className="stack-flow">Map &rarr; Fix &rarr; Document &rarr; Automate</div>
           </div>
         </section>
 

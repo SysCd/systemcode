@@ -254,91 +254,91 @@ h3 {
 }
 
 .visual-topline strong {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   color: var(--ink);
 }
 
-.visual-topline svg {
-  color: var(--green);
-}
-
-.visual-heading {
+.systems-stack {
   display: grid;
-  gap: 4px;
-  margin-bottom: 14px;
-  padding: 13px 14px;
-  border: 1px solid rgba(23, 24, 28, 0.1);
-  border-radius: 8px;
-  background: rgba(246, 244, 239, 0.72);
-}
-
-.visual-heading p {
-  margin-bottom: 0;
-  color: var(--ink);
-  font-weight: 800;
-}
-
-.visual-heading span {
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-.systems-map {
-  display: grid;
-  gap: 8px;
-}
-
-.system-layer {
-  display: grid;
-  grid-template-columns: 42px minmax(0, 1fr);
+  position: relative;
+  z-index: 1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-  align-items: center;
-  min-height: 58px;
-  padding: 10px 12px;
+}
+
+.capability-card {
+  display: grid;
+  gap: 14px;
+  min-height: 124px;
+  padding: 15px;
   border: 1px solid rgba(23, 24, 28, 0.1);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.78);
+  border-top: 3px solid var(--accent);
 }
 
-.system-layer h3 {
-  margin-bottom: 2px;
-  font-size: 0.98rem;
+.capability-card h3 {
+  margin-bottom: 9px;
+  font-size: 1rem;
 }
 
-.system-layer p {
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: 0.88rem;
-  font-weight: 700;
-  line-height: 1.35;
+.capability-card.identity {
+  --accent: var(--green);
 }
 
-.active-layer {
-  border-color: rgba(15, 139, 111, 0.28);
-  background: rgba(15, 139, 111, 0.08);
+.capability-card.networking {
+  --accent: var(--blue);
 }
 
-.layer-icon {
+.capability-card.vmware {
+  --accent: var(--amber);
+}
+
+.capability-card.automation {
+  --accent: var(--red);
+}
+
+.capability-icon {
   display: inline-grid;
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   place-items: center;
   border-radius: 8px;
-  background: rgba(23, 24, 28, 0.06);
-  color: var(--ink);
+  background: color-mix(in srgb, var(--accent) 12%, white);
+  color: var(--accent);
 }
 
-.active-layer .layer-icon {
-  background: var(--green);
-  color: #ffffff;
+.capability-icon svg {
+  width: 17px;
+  height: 17px;
 }
 
-.layer-icon svg {
-  width: 19px;
-  height: 19px;
+.mini-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mini-tags span {
+  padding: 4px 6px;
+  border: 1px solid rgba(23, 24, 28, 0.09);
+  border-radius: 6px;
+  background: rgba(246, 244, 239, 0.78);
+  color: #41474f;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stack-flow {
+  margin-top: 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(15, 139, 111, 0.16);
+  border-radius: 8px;
+  background: rgba(15, 139, 111, 0.07);
+  color: #275249;
+  font-size: 0.88rem;
+  font-weight: 900;
+  text-align: center;
 }
 
 .metrics-band {
@@ -760,31 +760,39 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .system-layer {
-    grid-template-columns: 36px minmax(0, 1fr);
-    gap: 10px;
-    min-height: 0;
-    padding: 8px 9px;
+  .visual-topline {
+    gap: 8px;
   }
 
-  .layer-icon {
-    width: 36px;
-    height: 36px;
-  }
-
-  .system-layer h3 {
-    font-size: 0.92rem;
-  }
-
-  .system-layer p,
-  .visual-heading span {
-    font-size: 0.8rem;
-  }
-
-  .visual-heading {
-    gap: 3px;
+  .capability-card {
+    gap: 9px;
+    min-height: 116px;
     padding: 10px;
-    margin-bottom: 10px;
+  }
+
+  .capability-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .capability-card h3 {
+    font-size: 0.92rem;
+    margin-bottom: 7px;
+  }
+
+  .mini-tags {
+    gap: 5px;
+  }
+
+  .mini-tags span {
+    font-size: 0.67rem;
+    padding: 4px 5px;
+  }
+
+  .stack-flow {
+    font-size: 0.8rem;
+    margin-top: 10px;
+    padding: 9px;
   }
 
   .metric-card {
