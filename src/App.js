@@ -186,12 +186,12 @@ function HeroCircuitGraphic() {
       <svg viewBox="0 0 560 520" role="img">
         <defs>
           <linearGradient id="traceFade" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0" stopColor="#17181c" stopOpacity="0.2" />
-            <stop offset="1" stopColor="#0f8b6f" stopOpacity="0.4" />
+            <stop offset="0" stopColor="#17181c" stopOpacity="0.24" />
+            <stop offset="1" stopColor="#0f8b6f" stopOpacity="0.48" />
           </linearGradient>
           <linearGradient id="signalFade" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0" stopColor="#0f8b6f" stopOpacity="0" />
-            <stop offset="0.5" stopColor="#0f8b6f" stopOpacity="0.52" />
+            <stop offset="0.5" stopColor="#0f8b6f" stopOpacity="0.62" />
             <stop offset="1" stopColor="#0f8b6f" stopOpacity="0" />
           </linearGradient>
         </defs>
