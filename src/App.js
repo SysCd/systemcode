@@ -59,14 +59,17 @@ const outsideWork = [
 
 const projects = [
   {
-    title: "Reasoning-Enhanced SLM 2.0",
-    subtitle: "AI infrastructure pipeline for local fine-tuning and RAG",
+    title: "CortexAI / Reasoning-Enhanced SLM 2.0",
+    subtitle: "Custom reasoning model + RAG research assistant",
     label: "AI Infrastructure Lab",
     link: "https://github.com/SysCd/Reasoning-Enhanced-SLM-2.0",
     readmeLink:
       "https://github.com/SysCd/Reasoning-Enhanced-SLM-2.0/blob/main/README.md",
+    diagramLink:
+      "https://github.com/SysCd/Reasoning-Enhanced-SLM-2.0/tree/main/Diagrams",
     featured: true,
     tags: [
+      "CortexAI",
       "Mistral-7B",
       "LoRA",
       "PEFT",
@@ -76,17 +79,25 @@ const projects = [
       "OpenAI Embeddings",
       "Apple Silicon MPS",
       "Python",
-      "Dataset Generation",
+      "JSONL Dataset",
+      "500k Examples",
+      "First-Principles Reasoning",
     ],
     summary:
-      "An AI systems project combining reasoning-blueprint dataset generation, LoRA adapter fine-tuning, local Apple Silicon training, and Qdrant-backed RAG retrieval.",
+      "Built a custom reasoning-enhanced LLM pipeline by generating a ~500k-example supervised fine-tuning dataset from first-principles reasoning blueprints, fine-tuning Mistral-7B-Instruct with LoRA, and then adding a Qdrant-backed RAG layer to turn it into CortexAI, a research-paper chat assistant.",
     shortText:
-      "Built a local model-improvement pipeline for Mistral-7B-Instruct using PEFT, TRL, Apple Silicon MPS, OpenAI embeddings, and Qdrant.",
+      "The project separates reasoning behaviour from factual knowledge: LoRA adapters shape the model's terse, systems-oriented reasoning style, while RAG supplies updatable context from external documents and research papers.",
+    architecture:
+      "Blueprint dataset -> LoRA fine-tune -> RAG retrieval -> CortexAI chat",
     details: [
-      "Designed a reasoning-blueprint system for reusable prompt and dataset-generation patterns.",
-      "Fine-tuned Mistral-7B-Instruct with LoRA adapters using PEFT and TRL.",
-      "Added a RAG layer using arXiv documents, chunking, OpenAI text-embedding-3-small, and Qdrant.",
-      "Documented the architecture with diagrams covering reasoning, data generation, local training, and retrieval.",
+      "Designed a Reasoning Blueprint System for first-principles decomposition, systems cognition, and compressed logic patterns.",
+      "Generated a custom ~500k-example JSONL instruction dataset for supervised fine-tuning.",
+      "Fine-tuned Mistral-7B-Instruct with LoRA adapters using PEFT and TRL on Apple Silicon MPS.",
+      "Added a RAG layer using document ingestion, chunking, OpenAI text-embedding-3-small, and Qdrant vector search.",
+    ],
+    extraDetails: [
+      "Built CortexAI as a research-paper chat interface combining the tuned reasoning style with retrieved external knowledge.",
+      "Documented the architecture with diagrams covering reasoning blueprints, dataset generation, local training, and retrieval.",
     ],
   },
   {
@@ -408,12 +419,25 @@ function App() {
                   )}
                   <p>{project.summary}</p>
                   {project.shortText && <p>{project.shortText}</p>}
+                  {project.architecture && (
+                    <p className="architecture-line">{project.architecture}</p>
+                  )}
                   {project.details && (
                     <ul className="project-details">
                       {project.details.map((detail) => (
                         <li key={detail}>{detail}</li>
                       ))}
                     </ul>
+                  )}
+                  {project.extraDetails && (
+                    <details className="project-more">
+                      <summary>More architecture notes</summary>
+                      <ul>
+                        {project.extraDetails.map((detail) => (
+                          <li key={detail}>{detail}</li>
+                        ))}
+                      </ul>
+                    </details>
                   )}
                 </div>
                 <div className="tag-row">
@@ -431,14 +455,14 @@ function App() {
                     View repository
                     <FaExternalLinkAlt aria-hidden="true" />
                   </a>
-                  {project.diagramLink && (
+                  {project.demoLink && (
                     <a
                       className="text-link"
-                      href={project.diagramLink}
+                      href={project.demoLink}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      View diagram
+                      View CortexAI demo
                       <FaExternalLinkAlt aria-hidden="true" />
                     </a>
                   )}
@@ -461,6 +485,17 @@ function App() {
                       rel="noopener noreferrer"
                     >
                       Read README
+                      <FaExternalLinkAlt aria-hidden="true" />
+                    </a>
+                  )}
+                  {project.diagramLink && (
+                    <a
+                      className="text-link"
+                      href={project.diagramLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View diagrams
                       <FaExternalLinkAlt aria-hidden="true" />
                     </a>
                   )}
