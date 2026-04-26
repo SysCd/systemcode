@@ -1,6 +1,6 @@
 import "./index.css";
 import {
-  FaCloud,
+  FaDownload,
   FaEnvelope,
   FaExternalLinkAlt,
   FaGithub,
@@ -9,7 +9,6 @@ import {
   FaPhoneAlt,
   FaServer,
   FaShieldAlt,
-  FaTerminal,
   FaTools,
 } from "react-icons/fa";
 
@@ -18,6 +17,7 @@ const contact = {
   phone: "+44 7547 970 689",
   location: "London, UK",
   github: "https://github.com/SysCd",
+  cv: `${process.env.PUBLIC_URL}/Erik-Gombar-CV.pdf`,
 };
 
 const highlights = [
@@ -69,22 +69,11 @@ const workingStyleCards = [
   },
 ];
 
-const specialties = [
-  {
-    icon: <FaServer />,
-    title: "Systems Administration",
-    body: "Windows Server 2019/2022, Active Directory, Intune, Okta, Entra ID, Microsoft 365, patching, access policies, MFA, and Conditional Access.",
-  },
-  {
-    icon: <FaCloud />,
-    title: "Cloud & Infrastructure",
-    body: "AWS EC2, VPC, IAM, CloudWatch, EKS, Azure VMs, virtual networking, NSGs, Terraform, Docker, and Kubernetes fundamentals.",
-  },
-  {
-    icon: <FaTerminal />,
-    title: "Automation & Operations",
-    body: "PowerShell, Microsoft Graph PowerShell, Bash, Ansible, GitHub Actions, Prometheus, Grafana, Loki, documentation, and support workflow optimisation.",
-  },
+const outsideWork = [
+  "Strength Training",
+  "AI / Cloud Labs",
+  "Systems Diagrams",
+  "Technical Writing",
 ];
 
 const projects = [
@@ -107,20 +96,16 @@ const projects = [
       "Apple Silicon MPS",
       "Python",
       "Dataset Generation",
-      "First-Principles Reasoning",
     ],
     summary:
-      "An AI infrastructure project combining reasoning-blueprint data generation, LoRA adapter fine-tuning, local Apple Silicon training, and RAG retrieval with Qdrant.",
+      "An AI systems project combining reasoning-blueprint dataset generation, LoRA adapter fine-tuning, local Apple Silicon training, and Qdrant-backed RAG retrieval.",
     shortText:
-      "Built a local model-improvement pipeline for Mistral-7B-Instruct with LoRA on Apple Silicon MPS, then added a Qdrant-backed RAG layer using OpenAI embeddings for grounded knowledge retrieval.",
+      "Built a local model-improvement pipeline for Mistral-7B-Instruct using PEFT, TRL, Apple Silicon MPS, OpenAI embeddings, and Qdrant.",
     details: [
-      "Created a structured Reasoning Blueprint System to turn domain knowledge into reusable prompt and data-generation patterns.",
-      "Generated supervised fine-tuning data in OpenAI-style message format JSONL.",
-      "Configured LoRA adapter fine-tuning for Mistral-7B-Instruct using PEFT and TRL.",
-      "Ran the local training workflow on Apple Silicon MPS with fp16.",
-      "Built a RAG layer using arXiv documents, chunking, OpenAI text-embedding-3-small, and Qdrant.",
-      "Separated model behaviour from factual knowledge: adapters shape response patterns, while RAG supplies updateable retrieval context.",
-      "Included diagrams covering first-principles reasoning, data-generation architecture, local training flow, and RAG architecture.",
+      "Designed a reasoning-blueprint system for reusable prompt and dataset-generation patterns.",
+      "Fine-tuned Mistral-7B-Instruct with LoRA adapters using PEFT and TRL.",
+      "Added a RAG layer using arXiv documents, chunking, OpenAI text-embedding-3-small, and Qdrant.",
+      "Documented the architecture with diagrams covering reasoning, data generation, local training, and retrieval.",
     ],
   },
   {
@@ -148,12 +133,12 @@ const projects = [
 
 const experience = [
   {
-    role: "Career Development Break",
-    company: "Infrastructure, cloud, AI, and automation study",
+    role: "Focused Infrastructure & Cloud Development",
+    company: "Infrastructure, cloud, AI systems, and automation study",
     date: "Dec 2024 - Present",
     bullets: [
-      "Refocused on infrastructure and cloud engineering through hands-on Azure, AWS, Terraform, Linux, automation, monitoring, backup, and CI/CD projects.",
-      "Used AI tooling for technical research, documentation support, prompt engineering, and workflow optimisation.",
+      "Built hands-on Azure, AWS, Terraform, Linux, automation, monitoring, backup, and CI/CD labs with documentation and portfolio evidence.",
+      "Used AI tooling for technical research, documentation support, workflow optimisation, and AI systems experimentation.",
     ],
   },
   {
@@ -180,7 +165,7 @@ const experience = [
 
 const skillGroups = [
   {
-    title: "Microsoft & Identity",
+    title: "Professional Experience",
     skills: [
       "Windows Server",
       "Active Directory",
@@ -188,46 +173,28 @@ const skillGroups = [
       "Okta",
       "Entra ID",
       "Microsoft 365",
-      "MFA",
-    ],
-  },
-  {
-    title: "Virtualisation & Networking",
-    skills: [
       "VMware ESXi",
-      "Hyper-V fundamentals",
-      "TCP/IP",
-      "VLANs",
-      "VPN",
-      "DNS",
-      "DHCP",
-      "Aruba switching",
+      "Endpoint support",
+      "Networking",
+      "Troubleshooting",
+      "Documentation",
     ],
   },
   {
-    title: "Linux, Cloud & Containers",
+    title: "Hands-on Labs",
     skills: [
-      "RHEL",
-      "Ubuntu",
       "AWS",
       "Azure",
       "Terraform",
       "Docker",
       "Kubernetes",
       "EKS",
-    ],
-  },
-  {
-    title: "Automation & Tooling",
-    skills: [
-      "PowerShell",
-      "Microsoft Graph",
-      "Bash",
-      "Ansible",
       "GitHub Actions",
       "Prometheus",
       "Grafana",
       "Loki",
+      "Ansible",
+      "Microsoft Graph PowerShell",
     ],
   },
 ];
@@ -253,9 +220,10 @@ function App() {
             <p className="eyebrow">Infrastructure Engineer</p>
             <h1 id="hero-title">Erik Gombar</h1>
             <p className="hero-lede">
-              I build and support reliable technical environments across
-              Windows, Linux, VMware, networking, cloud automation, identity,
-              endpoint management, and monitoring.
+              First-principles infrastructure engineer using systems thinking
+              to build, troubleshoot, and document reliable technical
+              environments across identity, networking, virtualisation,
+              automation, monitoring, and cloud infrastructure.
             </p>
             <div className="hero-actions" aria-label="Primary contact links">
               <a className="button primary" href={`mailto:${contact.email}`}>
@@ -270,6 +238,14 @@ function App() {
               >
                 <FaGithub aria-hidden="true" />
                 GitHub
+              </a>
+              <a
+                className="button secondary"
+                href={contact.cv}
+                download="Erik-Gombar-CV.pdf"
+              >
+                <FaDownload aria-hidden="true" />
+                Download CV
               </a>
             </div>
             <div className="contact-strip" aria-label="Location and phone">
@@ -433,6 +409,28 @@ function App() {
                     View repository
                     <FaExternalLinkAlt aria-hidden="true" />
                   </a>
+                  {project.diagramLink && (
+                    <a
+                      className="text-link"
+                      href={project.diagramLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View diagram
+                      <FaExternalLinkAlt aria-hidden="true" />
+                    </a>
+                  )}
+                  {project.writeupLink && (
+                    <a
+                      className="text-link"
+                      href={project.writeupLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Read write-up
+                      <FaExternalLinkAlt aria-hidden="true" />
+                    </a>
+                  )}
                   {project.readmeLink && (
                     <a
                       className="text-link"
@@ -480,15 +478,10 @@ function App() {
           <div className="section-heading">
             <p className="eyebrow">Tooling range</p>
             <h2>Technical Skills</h2>
-          </div>
-          <div className="specialty-grid">
-            {specialties.map((specialty) => (
-              <article className="specialty-card" key={specialty.title}>
-                <div className="icon-box">{specialty.icon}</div>
-                <h3>{specialty.title}</h3>
-                <p>{specialty.body}</p>
-              </article>
-            ))}
+            <p>
+              Split by where the evidence comes from: professional infrastructure
+              roles versus hands-on lab and portfolio work.
+            </p>
           </div>
           <div className="skill-groups">
             {skillGroups.map((group) => (
@@ -530,6 +523,11 @@ function App() {
               systems diagrams, and technical writing &mdash; especially turning
               complex ideas into clear, practical explanations.
             </p>
+            <div className="outside-tags" aria-label="Outside work interests">
+              {outsideWork.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
           </article>
         </section>
 

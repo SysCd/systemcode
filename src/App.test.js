@@ -7,8 +7,14 @@ test("renders the infrastructure portfolio", () => {
   expect(
     screen.getByRole("heading", { name: /erik gombar/i })
   ).toBeInTheDocument();
-  expect(screen.getByText(/infrastructure engineer/i)).toBeInTheDocument();
+  expect(screen.getByText(/^infrastructure engineer$/i)).toBeInTheDocument();
+  expect(
+    screen.getByRole("link", { name: /download cv/i })
+  ).toBeInTheDocument();
   expect(
     screen.getByRole("heading", { name: /technical projects/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("heading", { name: /reasoning-enhanced slm 2\.0/i })
   ).toBeInTheDocument();
 });
