@@ -257,7 +257,7 @@ h3 {
   color: var(--ink);
 }
 
-.blueprint-map {
+.principles-map {
   position: relative;
   z-index: 1;
   margin: 8px 0 14px;
@@ -271,30 +271,32 @@ h3 {
   background-size: 28px 28px;
 }
 
-.blueprint-map svg {
+.principles-map svg {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.blueprint-lines path {
+.principles-links path {
   fill: none;
-  stroke: rgba(23, 24, 28, 0.22);
+  stroke: rgba(23, 24, 28, 0.18);
   stroke-linecap: round;
-  stroke-width: 1.4;
+  stroke-width: 1.25;
 }
 
-.blueprint-lines path:nth-child(4) {
-  stroke: rgba(15, 139, 111, 0.55);
+.principles-links path:nth-child(1),
+.principles-links path:nth-child(4) {
+  stroke: rgba(15, 139, 111, 0.45);
 }
 
-.blueprint-node rect {
+.principles-node rect {
   fill: rgba(255, 255, 255, 0.86);
-  stroke: rgba(23, 24, 28, 0.2);
+  stroke: rgba(23, 24, 28, 0.18);
   stroke-width: 1;
 }
 
-.blueprint-node text {
+.principles-node text,
+.principles-core text {
   fill: var(--ink);
   font-size: 14px;
   font-weight: 800;
@@ -302,16 +304,17 @@ h3 {
   dominant-baseline: middle;
 }
 
-.core-node rect {
-  fill: rgba(15, 139, 111, 0.1);
+.principles-core rect {
+  fill: rgba(15, 139, 111, 0.11);
   stroke: rgba(15, 139, 111, 0.55);
+  stroke-width: 1;
 }
 
-.core-node text {
+.principles-core text {
   fill: #275249;
 }
 
-.blueprint-caption {
+.principles-caption {
   margin-bottom: 0;
   color: var(--muted);
   font-size: 0.9rem;
@@ -742,16 +745,17 @@ h3 {
     gap: 8px;
   }
 
-  .blueprint-map {
+  .principles-map {
     margin: 6px 0 12px;
     padding: 6px;
   }
 
-  .blueprint-node text {
+  .principles-node text,
+  .principles-core text {
     font-size: 13px;
   }
 
-  .blueprint-caption {
+  .principles-caption {
     font-size: 0.8rem;
   }
 

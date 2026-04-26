@@ -256,50 +256,58 @@ function App() {
             </div>
           </div>
 
-          <div className="hero-visual" aria-label="Systems blueprint">
+          <div
+            className="hero-visual"
+            aria-label="First-principles infrastructure thinking diagram"
+          >
             <div className="visual-topline">
-              <span>Systems blueprint</span>
-              <strong>Infrastructure &rarr; Cloud</strong>
+              <span>First-principles approach</span>
+              <strong>Infrastructure thinking</strong>
             </div>
-            <div className="blueprint-map" aria-hidden="true">
+            <div className="principles-map" aria-hidden="true">
               <svg viewBox="0 0 520 300" role="img">
-                <g className="blueprint-lines">
-                  <path d="M102 78 H260 H418" />
-                  <path d="M102 78 L260 150" />
-                  <path d="M418 78 L260 150" />
-                  <path d="M260 150 V224" />
-                  <path d="M160 224 H360" />
-                  <path d="M160 224 L260 150" />
-                  <path d="M360 224 L260 150" />
+                <g className="principles-links">
+                  <path d="M260 150 L116 70" />
+                  <path d="M260 150 L260 58" />
+                  <path d="M260 150 L404 70" />
+                  <path d="M260 150 L116 230" />
+                  <path d="M260 150 L260 242" />
+                  <path d="M260 150 L404 230" />
                 </g>
-                <g className="blueprint-node">
-                  <rect x="54" y="52" width="96" height="52" rx="8" />
-                  <text x="102" y="83">Identity</text>
+                <g className="principles-node">
+                  <rect x="66" y="44" width="100" height="52" rx="8" />
+                  <text x="116" y="75">Identity</text>
                 </g>
-                <g className="blueprint-node">
-                  <rect x="206" y="52" width="108" height="52" rx="8" />
-                  <text x="260" y="83">Network</text>
+                <g className="principles-node">
+                  <rect x="204" y="32" width="112" height="52" rx="8" />
+                  <text x="260" y="63">Networking</text>
                 </g>
-                <g className="blueprint-node">
-                  <rect x="370" y="52" width="96" height="52" rx="8" />
-                  <text x="418" y="83">Compute</text>
+                <g className="principles-node">
+                  <rect x="354" y="44" width="100" height="52" rx="8" />
+                  <text x="404" y="75">Compute</text>
                 </g>
-                <g className="blueprint-node core-node">
-                  <rect x="198" y="120" width="124" height="60" rx="10" />
-                  <text x="260" y="154">Operations</text>
+                <g className="principles-core">
+                  <rect x="184" y="114" width="152" height="72" rx="12" />
+                  <text x="260" y="144">Core system</text>
+                  <text x="260" y="164">logic</text>
                 </g>
-                <g className="blueprint-node">
-                  <rect x="104" y="198" width="112" height="52" rx="8" />
-                  <text x="160" y="229">Automation</text>
+                <g className="principles-node">
+                  <rect x="50" y="204" width="132" height="52" rx="8" />
+                  <text x="116" y="235">Automation</text>
                 </g>
-                <g className="blueprint-node">
-                  <rect x="300" y="198" width="120" height="52" rx="8" />
-                  <text x="360" y="229">Monitoring</text>
+                <g className="principles-node">
+                  <rect x="194" y="216" width="132" height="52" rx="8" />
+                  <text x="260" y="247">Monitoring</text>
+                </g>
+                <g className="principles-node">
+                  <rect x="340" y="204" width="128" height="52" rx="8" />
+                  <text x="404" y="235">Documentation</text>
                 </g>
               </svg>
             </div>
-            <p className="blueprint-caption">
-              Map dependencies. Isolate failures. Document fixes.
+            <p className="principles-caption">
+              Map dependencies &rarr; Isolate failures &rarr; Validate fixes
+              &rarr; Document clearly
             </p>
           </div>
         </section>
