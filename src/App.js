@@ -1,14 +1,16 @@
 import "./index.css";
 import {
+  FaChartLine,
+  FaCloud,
   FaDownload,
   FaEnvelope,
   FaExternalLinkAlt,
   FaGithub,
+  FaKey,
   FaMapMarkerAlt,
   FaNetworkWired,
   FaPhoneAlt,
   FaServer,
-  FaShieldAlt,
   FaTools,
 } from "react-icons/fa";
 
@@ -74,6 +76,35 @@ const outsideWork = [
   "AI / Cloud Labs",
   "Systems Diagrams",
   "Technical Writing",
+];
+
+const infrastructureLayers = [
+  {
+    icon: <FaKey />,
+    title: "Identity & Access",
+    tools: "Entra ID · AD · Okta · MFA",
+    featured: true,
+  },
+  {
+    icon: <FaNetworkWired />,
+    title: "Network & Connectivity",
+    tools: "DNS · DHCP · VPN · VLANs · Firewalls",
+  },
+  {
+    icon: <FaServer />,
+    title: "Virtualisation & Compute",
+    tools: "VMware ESXi · Windows Server · Linux",
+  },
+  {
+    icon: <FaTools />,
+    title: "Automation & Tooling",
+    tools: "PowerShell · Bash · Terraform · GitHub Actions",
+  },
+  {
+    icon: <FaChartLine />,
+    title: "Monitoring & Reliability",
+    tools: "Prometheus · Grafana · Logs · Documentation",
+  },
 ];
 
 const projects = [
@@ -260,35 +291,35 @@ function App() {
             </div>
           </div>
 
-          <div className="hero-visual" aria-label="Infrastructure capability map">
+          <div className="hero-visual" aria-label="Infrastructure systems map">
             <div className="visual-topline">
-              <span>Operational focus</span>
-              <strong>Cloud-ready systems</strong>
+              <span>Infrastructure systems map</span>
+              <strong>
+                <FaCloud aria-hidden="true" />
+                Cloud-ready
+              </strong>
             </div>
-            <div className="visual-grid">
-              <div className="visual-node accent-green">
-                <FaShieldAlt aria-hidden="true" />
-                <span>Identity</span>
-              </div>
-              <div className="visual-node accent-blue">
-                <FaNetworkWired aria-hidden="true" />
-                <span>Networking</span>
-              </div>
-              <div className="visual-node accent-amber">
-                <FaServer aria-hidden="true" />
-                <span>VMware</span>
-              </div>
-              <div className="visual-node accent-red">
-                <FaTools aria-hidden="true" />
-                <span>Automation</span>
-              </div>
+            <div className="visual-heading">
+              <p>Operational layers</p>
+              <span>Map &rarr; Troubleshoot &rarr; Document &rarr; Automate</span>
             </div>
-            <div className="signal-row" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
+            <div className="systems-map">
+              {infrastructureLayers.map((layer) => (
+                <article
+                  className={`system-layer ${
+                    layer.featured ? "active-layer" : ""
+                  }`}
+                  key={layer.title}
+                >
+                  <div className="layer-icon" aria-hidden="true">
+                    {layer.icon}
+                  </div>
+                  <div>
+                    <h3>{layer.title}</h3>
+                    <p>{layer.tools}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
