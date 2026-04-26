@@ -253,6 +253,14 @@ function HeroCircuitGraphic() {
 }
 
 function App() {
+  const handleBackToTop = (event) => {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="site-shell">
       <header className="site-header" id="top">
@@ -569,7 +577,9 @@ function App() {
 
       <footer className="site-footer">
         <span>Erik Gombar</span>
-        <a href="#top">Back to top</a>
+        <a href="#top" onClick={handleBackToTop}>
+          Back to top
+        </a>
       </footer>
     </div>
   );
