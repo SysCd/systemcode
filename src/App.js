@@ -101,6 +101,16 @@ const projects = [
     ],
   },
   {
+    title: "Windows Server Active Directory Lab",
+    link: "https://github.com/SysCd/windows-server-ad-lab",
+    readmeLink: "https://github.com/SysCd/windows-server-ad-lab/blob/main/README.md",
+    tags: ["Windows Server 2022", "Active Directory", "DNS", "Group Policy", "SMB"],
+    summary:
+      "Built a local Microsoft infrastructure lab with a Windows Server 2022 domain controller, Active Directory, DNS, Group Policy, SMB file shares, and a domain-joined client.",
+    shortText:
+      "Validated group-based access control end to end by creating department security groups, NTFS permissions, DNS records, domain login flows, and share access tests.",
+  },
+  {
     title: "Microsoft Identity & Endpoint Lab",
     link: "https://github.com/SysCd/Microsoft-Identity-Endpoint-Lab",
     tags: ["Entra ID", "Intune", "Microsoft 365", "PowerShell"],
