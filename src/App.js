@@ -348,7 +348,7 @@ function App() {
         <section className="section-block thinking-section" id="thinking">
           <div className="section-heading">
             <p className="eyebrow">Approach</p>
-            <h2>How I Think</h2>
+            <h2>First-Principles Approach</h2>
             <p>
               I approach infrastructure from first principles: what components
               exist, how they connect, what assumptions they depend on, and
