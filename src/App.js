@@ -94,13 +94,6 @@ const projects = [
       "Administered Azure infrastructure with Linux virtual machines, secure remote access, virtual networking, baseline validation, user provisioning, and initial security hardening.",
   },
   {
-    title: "AWS DevOps Lab",
-    link: "https://github.com/SysCd/aws-devops-ci-cd",
-    tags: ["AWS EKS", "Terraform", "CI/CD", "Monitoring"],
-    summary:
-      "Provisioned cloud infrastructure with Terraform, deployed a containerized application to AWS EKS, and connected GitHub Actions with Prometheus and Grafana monitoring.",
-  },
-  {
     title: "CortexAI / Reasoning-Enhanced SLM 2.0",
     subtitle: "Custom reasoning model + RAG research assistant",
     label: "Advanced AI Systems Lab",
@@ -150,7 +143,7 @@ const experience = [
     company: "Infrastructure, cloud, AI systems, and automation study",
     date: "Dec 2024 - Present",
     bullets: [
-      "Built hands-on Azure, AWS, Terraform, Linux, automation, monitoring, backup, and CI/CD labs with documentation and portfolio evidence.",
+      "Built hands-on Azure, Terraform, Linux, automation, monitoring, backup, and CI/CD labs with documentation and portfolio evidence.",
       "Used AI tooling for technical research, documentation support, workflow optimisation, and AI systems experimentation.",
     ],
   },
@@ -219,7 +212,6 @@ const skillGroups = [
       "Prometheus",
       "Grafana",
       "Loki",
-      "AWS EC2 / VPC / IAM",
       "Qdrant / RAG / CortexAI",
     ],
   },
