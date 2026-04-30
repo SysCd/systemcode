@@ -23,7 +23,7 @@ const thinkingCards = [
   },
   {
     title: "Systems Thinking",
-    body: "Map how identity, networks, endpoints, cloud, automation, and operations interact.",
+    body: "Map how identity, endpoints, servers, networks, policies, automation, and operations interact.",
   },
   {
     title: "Operational Clarity",
@@ -57,11 +57,53 @@ const outsideWork = [
   "Technical Writing",
 ];
 
+const heroTags = [
+  "Azure",
+  "Intune",
+  "Entra ID",
+  "Windows Server",
+  "PowerShell",
+  "Microsoft 365",
+  "Endpoint Management",
+  "Identity & Access",
+];
+
 const projects = [
+  {
+    title: "Microsoft Identity & Endpoint Lab",
+    link: "https://github.com/SysCd/Microsoft-Identity-Endpoint-Lab",
+    tags: ["Entra ID", "Intune", "Microsoft 365", "PowerShell"],
+    summary:
+      "Built a dedicated Microsoft cloud administration lab covering users, groups, roles, Conditional Access, MFA, endpoint configuration, scripted exports, validation evidence, and operational documentation.",
+  },
+  {
+    title: "Windows Server Active Directory Lab",
+    link: "https://github.com/SysCd/windows-server-ad-lab",
+    readmeLink: "https://github.com/SysCd/windows-server-ad-lab/blob/main/README.md",
+    tags: ["Windows Server 2022", "Active Directory", "DNS", "Group Policy", "SMB"],
+    summary:
+      "Built a local Microsoft infrastructure lab with a Windows Server 2022 domain controller, Active Directory, DNS, Group Policy, SMB file shares, and a domain-joined client.",
+    shortText:
+      "Validated group-based access control end to end by creating department security groups, NTFS permissions, DNS records, domain login flows, and share access tests.",
+  },
+  {
+    title: "Azure Infrastructure Admin Lab",
+    link: "https://github.com/SysCd/Azure-Infrastructure-Admin-Lab",
+    tags: ["Azure VMs", "Virtual Network", "NSGs", "Linux"],
+    summary:
+      "Administered Azure infrastructure with Linux virtual machines, secure remote access, virtual networking, baseline validation, user provisioning, and initial security hardening.",
+  },
+  {
+    title: "AWS DevOps Lab",
+    link: "https://github.com/SysCd/aws-devops-ci-cd",
+    tags: ["AWS EKS", "Terraform", "CI/CD", "Monitoring"],
+    summary:
+      "Provisioned cloud infrastructure with Terraform, deployed a containerized application to AWS EKS, and connected GitHub Actions with Prometheus and Grafana monitoring.",
+  },
   {
     title: "CortexAI / Reasoning-Enhanced SLM 2.0",
     subtitle: "Custom reasoning model + RAG research assistant",
-    label: "AI Infrastructure Lab",
+    label: "Advanced AI Systems Lab",
     link: "https://github.com/SysCd/Reasoning-Enhanced-SLM-2.0",
     readmeLink:
       "https://github.com/SysCd/Reasoning-Enhanced-SLM-2.0/blob/main/README.md",
@@ -99,37 +141,6 @@ const projects = [
       "Built CortexAI as a research-paper chat interface combining the tuned reasoning style with retrieved external knowledge.",
       "Documented the architecture with diagrams covering reasoning blueprints, dataset generation, local training, and retrieval.",
     ],
-  },
-  {
-    title: "Windows Server Active Directory Lab",
-    link: "https://github.com/SysCd/windows-server-ad-lab",
-    readmeLink: "https://github.com/SysCd/windows-server-ad-lab/blob/main/README.md",
-    tags: ["Windows Server 2022", "Active Directory", "DNS", "Group Policy", "SMB"],
-    summary:
-      "Built a local Microsoft infrastructure lab with a Windows Server 2022 domain controller, Active Directory, DNS, Group Policy, SMB file shares, and a domain-joined client.",
-    shortText:
-      "Validated group-based access control end to end by creating department security groups, NTFS permissions, DNS records, domain login flows, and share access tests.",
-  },
-  {
-    title: "Microsoft Identity & Endpoint Lab",
-    link: "https://github.com/SysCd/Microsoft-Identity-Endpoint-Lab",
-    tags: ["Entra ID", "Intune", "Microsoft 365", "PowerShell"],
-    summary:
-      "Built a dedicated Microsoft cloud administration lab covering users, groups, roles, Conditional Access, MFA, endpoint configuration, scripted exports, validation evidence, and operational documentation.",
-  },
-  {
-    title: "Azure Infrastructure Admin Lab",
-    link: "https://github.com/SysCd/Azure-Infrastructure-Admin-Lab",
-    tags: ["Azure VMs", "Virtual Network", "NSGs", "Linux"],
-    summary:
-      "Administered Azure infrastructure with Linux virtual machines, secure remote access, virtual networking, baseline validation, user provisioning, and initial security hardening.",
-  },
-  {
-    title: "AWS DevOps Lab",
-    link: "https://github.com/SysCd/aws-devops-ci-cd",
-    tags: ["AWS EKS", "Terraform", "CI/CD", "Monitoring"],
-    summary:
-      "Provisioned cloud infrastructure with Terraform, deployed a containerized application to AWS EKS, and connected GitHub Actions with Prometheus and Grafana monitoring.",
   },
 ];
 
@@ -183,20 +194,33 @@ const skillGroups = [
     ],
   },
   {
-    title: "Hands-on Labs",
+    title: "Microsoft Infrastructure Labs",
     skills: [
-      "AWS",
-      "Azure",
+      "Azure Virtual Machines",
+      "Azure Virtual Network",
+      "Network Security Groups",
+      "Entra ID",
+      "Conditional Access",
+      "MFA",
+      "Intune compliance/configuration policies",
+      "Microsoft Graph PowerShell",
+      "PowerShell automation",
+      "Windows Server AD DS",
+      "DNS / DHCP / GPO",
+    ],
+  },
+  {
+    title: "Supporting / Broader Labs",
+    skills: [
       "Terraform",
       "Docker",
       "Kubernetes",
-      "EKS",
       "GitHub Actions",
       "Prometheus",
       "Grafana",
       "Loki",
-      "Ansible",
-      "Microsoft Graph PowerShell",
+      "AWS EC2 / VPC / IAM",
+      "Qdrant / RAG / CortexAI",
     ],
   },
 ];
@@ -299,14 +323,19 @@ function App() {
       <main>
         <section className="hero-section" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="eyebrow">Infrastructure Engineer</p>
+            <p className="eyebrow">Microsoft Infrastructure Engineer</p>
             <h1 id="hero-title">Erik Gombar</h1>
             <p className="hero-lede">
-              First-principles infrastructure engineer using systems thinking
-              to build, troubleshoot, and document reliable environments across
-              identity, networking, virtualisation, automation, monitoring, and
-              cloud.
+              First-principles Microsoft infrastructure engineer using systems
+              thinking to build, troubleshoot, and document reliable
+              environments across Azure, Intune, Entra ID, Windows Server,
+              identity, endpoints, automation, and monitoring.
             </p>
+            <div className="hero-tags" aria-label="Microsoft infrastructure focus">
+              {heroTags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
             <div className="hero-actions" aria-label="Primary contact links">
               <a className="button primary" href={`mailto:${contact.email}`}>
                 <FaEnvelope aria-hidden="true" />
@@ -355,9 +384,10 @@ function App() {
               where they can fail.
             </p>
             <p>
-              My systems-thinking approach helps me map identity, networking,
-              endpoints, virtualisation, automation, monitoring, and operational
-              processes into clear diagrams, fixes, and repeatable workflows.
+              My systems-thinking approach helps me map identity, endpoints,
+              servers, networking, policies, automation, monitoring, access
+              paths, and failure points into clear diagrams, fixes, and
+              repeatable workflows.
             </p>
           </div>
           <div className="thinking-grid">
@@ -378,6 +408,11 @@ function App() {
               I&apos;m a calm, independent and systems-focused engineer who
               works best with clear problems, practical evidence and
               well-documented technical environments.
+            </p>
+            <p>
+              I work best in technical environments where identity, endpoint,
+              server, network, and cloud components need to be understood
+              clearly, documented properly, and improved systematically.
             </p>
             <p>
               I prefer to understand the underlying structure of a system before
@@ -405,10 +440,11 @@ function App() {
             <p className="eyebrow">Selected labs</p>
             <h2>Technical Projects</h2>
             <p>
-              Infrastructure and cloud remain the core focus, with one advanced
-              AI infrastructure lab showing how I apply the same systems
-              thinking to model pipelines, local training workflows, and
-              retrieval architecture.
+              Microsoft infrastructure is the core focus: identity, endpoints,
+              Windows Server, Azure, automation, monitoring, and operational
+              documentation. Additional cloud and AI systems projects
+              demonstrate broader systems-thinking, automation, and architecture
+              skills.
             </p>
           </div>
           <div className="project-grid">
@@ -520,9 +556,10 @@ function App() {
             <p className="eyebrow">Professional record</p>
             <h2>Experience</h2>
             <p>
-              Hands-on engineering and support experience across enterprise
-              infrastructure, endpoint management, networking, operational
-              continuity, and documentation.
+              Microsoft-focused infrastructure and support experience across
+              Windows Server, Active Directory, Intune, Okta, Microsoft 365,
+              VMware ESXi, endpoint support, networking, documentation, and
+              troubleshooting.
             </p>
           </div>
           <div className="timeline-list">
@@ -546,8 +583,9 @@ function App() {
             <p className="eyebrow">Tooling range</p>
             <h2>Technical Skills</h2>
             <p>
-              Split by where the evidence comes from: professional infrastructure
-              roles versus hands-on lab and portfolio work.
+              Split by where the evidence comes from: professional Microsoft
+              infrastructure experience, Microsoft-focused labs, and supporting
+              broader cloud and systems projects.
             </p>
           </div>
           <div className="skill-groups">
