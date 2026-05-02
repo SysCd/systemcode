@@ -70,6 +70,23 @@ const heroTags = [
 
 const projects = [
   {
+    title: "Intune / Autopilot / Endpoint Compliance Lab",
+    link: "https://github.com/SysCd/intune-autopilot-endpoint-lab",
+    readmeLink:
+      "https://github.com/SysCd/intune-autopilot-endpoint-lab/blob/main/README.md",
+    tags: [
+      "Microsoft Intune",
+      "Entra ID",
+      "Windows 11",
+      "Conditional Access",
+      "Defender",
+    ],
+    summary:
+      "Built a Microsoft endpoint management lab with a Windows 11 Pro device enrolled into Entra ID and managed through Intune.",
+    shortText:
+      "Configured compliance policies, Settings Catalog profiles, Company Portal deployment, Defender baseline settings, and compliant-device Conditional Access testing with evidence-based documentation.",
+  },
+  {
     title: "Microsoft Identity & Endpoint Lab",
     link: "https://github.com/SysCd/Microsoft-Identity-Endpoint-Lab",
     tags: ["Entra ID", "Intune", "Microsoft 365", "PowerShell"],
