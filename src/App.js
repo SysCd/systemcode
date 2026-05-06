@@ -111,6 +111,25 @@ const projects = [
       "Administered Azure infrastructure with Linux virtual machines, secure remote access, virtual networking, baseline validation, user provisioning, and initial security hardening.",
   },
   {
+    title: "Azure DevOps Platform Lab",
+    label: "Azure Platform Lab (In Progress)",
+    link: "https://github.com/SysCd/azure-devops-platform-lab",
+    tags: [
+      "Azure",
+      "Terraform",
+      "GitHub Actions",
+      "Azure DevOps",
+      "Containers",
+      "Monitoring",
+    ],
+    summary:
+      "Building an end-to-end Microsoft Azure DevOps platform lab covering Terraform landing zones, CI/CD, Azure App Service, containers, monitoring, observability, and platform operations.",
+    shortText:
+      "Planned lab modules cover reusable Terraform infrastructure, GitHub Actions deployment, Azure DevOps YAML pipelines, Azure Container Apps, Azure Monitor, Log Analytics, Application Insights, and KQL-based troubleshooting.",
+    architecture:
+      "Terraform landing zone -> CI/CD pipelines -> containers -> monitoring",
+  },
+  {
     title: "CortexAI / Reasoning-Enhanced SLM 2.0",
     subtitle: "Custom reasoning model + RAG research assistant",
     label: "Advanced AI Systems Lab",
