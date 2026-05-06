@@ -13,7 +13,7 @@ const contact = {
   phone: "+44 7547 970 689",
   location: "London, UK",
   github: "https://github.com/SysCd",
-  cv: `${process.env.PUBLIC_URL}/Erik-Gombar-CV.pdf`,
+  cv: `${process.env.PUBLIC_URL}/Erik-Gombar-CV-2026.pdf`,
 };
 
 const logoSrc = `${process.env.PUBLIC_URL}/logo.png`;
@@ -383,7 +383,7 @@ function App() {
               <a
                 className="button secondary"
                 href={contact.cv}
-                download="Erik-Gombar-CV.pdf"
+                download="Erik-Gombar-CV-2026.pdf"
               >
                 <FaDownload aria-hidden="true" />
                 Download CV
