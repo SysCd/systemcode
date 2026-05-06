@@ -16,6 +16,8 @@ const contact = {
   cv: `${process.env.PUBLIC_URL}/Erik-Gombar-CV.pdf`,
 };
 
+const logoSrc = `${process.env.PUBLIC_URL}/logo.png`;
+
 const thinkingCards = [
   {
     title: "First Principles",
@@ -337,8 +339,8 @@ function App() {
   return (
     <div className="site-shell">
       <header className="site-header" id="top">
-        <a className="brand" href="#top" aria-label="Erik Gombar home">
-          EG
+        <a className="brand" href="#top" aria-label="SysCd home">
+          <img src={logoSrc} alt="SysCd logo" />
         </a>
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#projects">Projects</a>
