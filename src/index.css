@@ -132,6 +132,13 @@ main {
   text-transform: uppercase;
 }
 
+.section-heading .eyebrow,
+.education-section .eyebrow,
+.outside-work-section .eyebrow,
+.contact-section .eyebrow {
+  color: var(--accent);
+}
+
 h1,
 h2,
 h3,
@@ -163,7 +170,7 @@ h3 {
 .hero-lede {
   max-width: 670px;
   margin-bottom: 18px;
-  color: var(--ink);
+  color: var(--muted);
   font-size: clamp(1.1rem, 2.3vw, 1.45rem);
   line-height: 1.45;
 }
@@ -536,15 +543,15 @@ h3 {
   gap: 14px;
 }
 
-.project-card p,
-.software-card p,
-.thinking-card p,
-.working-card p,
-.specialty-card p,
+.project-card p:not(.eyebrow),
+.software-card p:not(.eyebrow),
+.thinking-card p:not(.eyebrow),
+.working-card p:not(.eyebrow),
+.specialty-card p:not(.eyebrow),
 .timeline-entry li,
-.education-section p,
-.outside-work-section p,
-.contact-section p,
+.education-section p:not(.eyebrow),
+.outside-work-section p:not(.eyebrow),
+.contact-section p:not(.eyebrow),
 .project-details li,
 .project-more li {
   color: var(--muted);
