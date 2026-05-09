@@ -12,7 +12,7 @@ const contact = {
   github: "https://github.com/SysCd",
 };
 
-const logoSrc = "/logo.svg";
+const logoSrc = "/logo-wordmark.png";
 
 const thinkingCards = [
   {

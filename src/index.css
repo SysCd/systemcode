@@ -58,8 +58,8 @@ a {
 
 .brand {
   display: inline-flex;
-  width: 42px;
-  height: 42px;
+  width: clamp(108px, 14vw, 148px);
+  height: 36px;
   align-items: center;
   justify-content: center;
   text-decoration: none;
