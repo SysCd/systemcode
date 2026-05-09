@@ -699,7 +699,13 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <img className="footer-logo" src={logoSrc} alt="SysCd Software logo" />
+        <div className="footer-brand">
+          <img className="footer-logo" src={logoSrc} alt="SysCd Software logo" />
+          <p>
+            SysCd &mdash; System Code. Practical software and infrastructure,
+            built from first principles.
+          </p>
+        </div>
         <a href="#top" onClick={handleBackToTop}>
           Back to top
         </a>
