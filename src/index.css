@@ -402,6 +402,10 @@ h3 {
   font-size: 1.05rem;
 }
 
+.brand-note {
+  margin-top: 12px;
+}
+
 .project-grid,
 .thinking-grid,
 .working-grid,
@@ -744,6 +748,11 @@ h3 {
   font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.45;
+}
+
+.footer-brand .footer-name {
+  color: var(--ink);
+  font-weight: 900;
 }
 
 .site-footer a {

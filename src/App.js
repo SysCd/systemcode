@@ -610,6 +610,10 @@ function App() {
               Independent apps and tools built around systems, infrastructure,
               and AI.
             </p>
+            <p className="brand-note">
+              SysCd Software™ is my personal software brand for independent
+              apps, tools, and infrastructure-focused projects.
+            </p>
           </div>
           <div className="software-grid">
             {softwareProducts.map((product) => (
@@ -730,10 +734,12 @@ function App() {
       <footer className="site-footer">
         <div className="footer-brand">
           <img className="footer-logo" src={logoSrc} alt="SysCd Software logo" />
+          <p className="footer-name">SysCd Software™</p>
           <p>
             SysCd &mdash; System Code. Practical software and infrastructure,
             built from first principles.
           </p>
+          <p>© 2026 Erik Gombar. All rights reserved.</p>
         </div>
         <a href="#top" onClick={handleBackToTop}>
           Back to top
