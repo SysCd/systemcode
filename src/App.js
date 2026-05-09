@@ -365,13 +365,11 @@ function App() {
       <main>
         <section className="hero-section" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="eyebrow">Microsoft Infrastructure Engineer</p>
+            <p className="eyebrow">Azure &amp; Microsoft Infrastructure Engineer</p>
             <h1 id="hero-title">Erik Gombar</h1>
             <p className="hero-lede">
-              First-principles Microsoft infrastructure engineer using systems
-              thinking to build, troubleshoot, and document reliable
-              environments across Azure, Intune, Entra ID, Windows Server,
-              identity, endpoints, automation, and monitoring.
+              Building reliable systems across identity, endpoints, automation,
+              cloud infrastructure, and deployment workflows.
             </p>
             <div className="hero-tags" aria-label="Microsoft infrastructure focus">
               {heroTags.map((tag) => (
