@@ -706,6 +706,7 @@ h3 {
 
 .site-footer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 18px;
   width: min(1160px, calc(100% - 32px));
@@ -714,6 +715,12 @@ h3 {
   border-top: 1px solid rgba(23, 24, 28, 0.12);
   color: var(--muted);
   font-weight: 800;
+}
+
+.footer-logo {
+  display: block;
+  width: 142px;
+  height: auto;
 }
 
 .site-footer a {
@@ -827,6 +834,11 @@ h3 {
   }
 
   .site-footer {
+    align-items: flex-start;
     flex-direction: column;
+  }
+
+  .footer-logo {
+    width: 126px;
   }
 }

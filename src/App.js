@@ -711,7 +711,7 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <span>SysCd Software</span>
+        <img className="footer-logo" src={logoSrc} alt="SysCd Software logo" />
         <a href="#top" onClick={handleBackToTop}>
           Back to top
         </a>
