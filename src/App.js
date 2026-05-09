@@ -3,12 +3,10 @@ import {
   FaEnvelope,
   FaExternalLinkAlt,
   FaGithub,
-  FaMapMarkerAlt,
 } from "react-icons/fa";
 
 const contact = {
   email: "support@syscdsoftware.com",
-  location: "London, UK",
   github: "https://github.com/SysCd",
 };
 
@@ -393,16 +391,6 @@ function App() {
               >
                 <FaGithub aria-hidden="true" />
                 GitHub
-              </a>
-            </div>
-            <div className="contact-strip" aria-label="Location and email">
-              <span>
-                <FaMapMarkerAlt aria-hidden="true" />
-                {contact.location}
-              </span>
-              <a href={`mailto:${contact.email}`}>
-                <FaEnvelope aria-hidden="true" />
-                {contact.email}
               </a>
             </div>
           </div>

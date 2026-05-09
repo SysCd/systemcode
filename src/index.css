@@ -228,23 +228,6 @@ h3 {
   color: var(--ink);
 }
 
-.contact-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  margin-top: 24px;
-  color: var(--muted);
-  font-weight: 700;
-}
-
-.contact-strip span,
-.contact-strip a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-}
-
 .hero-circuit {
   --circuit-opacity: 0.66;
 
