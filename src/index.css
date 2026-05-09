@@ -134,7 +134,6 @@ main {
 
 .section-heading .eyebrow,
 .education-section .eyebrow,
-.independent-work-section .eyebrow,
 .contact-section .eyebrow {
   color: var(--accent);
 }
@@ -381,8 +380,7 @@ h3 {
 .specialty-card,
 .skill-group,
 .timeline-entry,
-.language-card,
-.independent-work-card {
+.education-card {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
@@ -550,7 +548,6 @@ h3 {
 .specialty-card p:not(.eyebrow),
 .timeline-entry li,
 .education-section p:not(.eyebrow),
-.independent-work-section p:not(.eyebrow),
 .contact-section p:not(.eyebrow),
 .project-details li,
 .project-more li {
@@ -568,35 +565,21 @@ h3 {
   padding: var(--card-padding);
 }
 
-.independent-work-section .section-heading {
-  margin-bottom: 18px;
-}
-
-.independent-work-card {
+.education-card {
   display: grid;
-  gap: 14px;
-  max-width: 760px;
+  gap: 8px;
+  max-width: 680px;
   padding: var(--card-padding);
 }
 
-.independent-work-card p {
+.education-card h2 {
+  margin-bottom: 4px;
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
+  line-height: 1.05;
+}
+
+.education-card p {
   margin-bottom: 0;
-}
-
-.independent-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.independent-tags span {
-  padding: 6px 9px;
-  border: 1px solid var(--accent-border);
-  border-radius: 6px;
-  background: var(--accent-soft);
-  color: var(--accent-text);
-  font-size: 0.82rem;
-  font-weight: 800;
 }
 
 .tag-row {
@@ -703,7 +686,6 @@ h3 {
   padding: var(--card-padding);
 }
 
-.education-section,
 .contact-section {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -711,20 +693,8 @@ h3 {
   align-items: center;
 }
 
-.language-card {
-  display: grid;
-  gap: 8px;
-  min-width: 240px;
-  padding: var(--card-padding);
-}
-
-.language-card span {
-  color: var(--muted);
-  font-weight: 800;
-}
-
-.language-card strong {
-  font-size: 1.22rem;
+.education-section {
+  padding: 56px 0;
 }
 
 .contact-section {
@@ -804,7 +774,6 @@ h3 {
   }
 
   .split-section,
-  .education-section,
   .contact-section {
     grid-template-columns: 1fr;
   }

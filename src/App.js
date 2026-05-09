@@ -46,13 +46,6 @@ const workingStyleCards = [
   },
 ];
 
-const independentWork = [
-  "SysCd Software",
-  "iOS App Development",
-  "Portfolio Labs",
-  "AI Tools",
-];
-
 const heroTags = [
   "Azure",
   "Intune",
@@ -697,36 +690,11 @@ function App() {
         </section>
 
         <section className="section-block education-section">
-          <div>
+          <article className="education-card">
             <p className="eyebrow">Education</p>
             <h2>BSc (Hons) Computer Science</h2>
-            <p>
-              Brunel University London, September 2018 - April 2022. Academic
-              Excellence CEDPS Scholarship Recipient.
-            </p>
-          </div>
-          <div className="language-card">
-            <span>Languages</span>
-            <strong>English, Slovak</strong>
-          </div>
-        </section>
-
-        <section className="section-block independent-work-section">
-          <div className="section-heading">
-            <p className="eyebrow">Independent Work</p>
-            <h2>Independent Work</h2>
-          </div>
-          <article className="independent-work-card">
-            <p>
-              Independent SysCd work includes software products, portfolio labs,
-              app development, and focused side projects that turn systems ideas
-              into practical tools and documented evidence.
-            </p>
-            <div className="independent-tags" aria-label="Independent work areas">
-              {independentWork.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </div>
+            <p>Brunel University London · 2018–2022</p>
+            <p>Academic Excellence CEDPS Scholarship Recipient</p>
           </article>
         </section>
 
