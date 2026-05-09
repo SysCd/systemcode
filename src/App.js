@@ -83,7 +83,7 @@ const softwareProducts = [
     title: "AI Context Bridge",
     type: "AI Tool / In Development",
     description:
-      "Experimental SysCd tool focused on AI workflow continuity, portability, and user-controlled context.",
+      "Experimental SysCd tool exploring privacy-focused AI workflows and user-controlled software infrastructure.",
     status: "Private MVP",
   },
 ];
