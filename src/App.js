@@ -10,7 +10,6 @@ const contact = {
   email: "support@syscdsoftware.com",
   location: "London, UK",
   github: "https://github.com/SysCd",
-  portfolio: "https://syscdsoftware.com",
 };
 
 const logoSrc = "/logo.svg";
@@ -706,15 +705,6 @@ function App() {
             >
               <FaGithub aria-hidden="true" />
               GitHub
-            </a>
-            <a
-              className="button secondary"
-              href={contact.portfolio}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaExternalLinkAlt aria-hidden="true" />
-              Portfolio
             </a>
           </div>
         </section>
