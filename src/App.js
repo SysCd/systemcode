@@ -690,8 +690,10 @@ function App() {
         </section>
 
         <section className="section-block education-section">
-          <article className="education-card">
+          <div className="section-heading education-heading">
             <p className="eyebrow">Education</p>
+          </div>
+          <article className="education-card">
             <h2>BSc (Hons) Computer Science</h2>
             <p>Brunel University London · 2018–2022</p>
             <p>Academic Excellence CEDPS Scholarship Recipient</p>

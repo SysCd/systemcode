@@ -572,6 +572,10 @@ h3 {
   padding: var(--card-padding);
 }
 
+.education-heading {
+  margin-bottom: 18px;
+}
+
 .education-card h2 {
   margin-bottom: 4px;
   font-size: clamp(1.45rem, 3vw, 2.2rem);
