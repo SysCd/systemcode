@@ -46,11 +46,11 @@ const workingStyleCards = [
   },
 ];
 
-const outsideWork = [
-  "Strength Training",
-  "AI / Cloud Labs",
-  "Systems Diagrams",
-  "Technical Writing",
+const independentWork = [
+  "SysCd Software",
+  "iOS App Development",
+  "Portfolio Labs",
+  "AI Tools",
 ];
 
 const heroTags = [
@@ -711,19 +711,19 @@ function App() {
           </div>
         </section>
 
-        <section className="section-block outside-work-section">
+        <section className="section-block independent-work-section">
           <div className="section-heading">
-            <p className="eyebrow">Outside Work</p>
-            <h2>Outside Work</h2>
+            <p className="eyebrow">Independent Work</p>
+            <h2>Independent Work</h2>
           </div>
-          <article className="outside-work-card">
+          <article className="independent-work-card">
             <p>
-              Outside work, I&apos;m into strength training, AI/cloud labs,
-              systems diagrams, and technical writing &mdash; especially turning
-              complex ideas into clear, practical explanations.
+              Independent SysCd work includes software products, portfolio labs,
+              app development, and focused side projects that turn systems ideas
+              into practical tools and documented evidence.
             </p>
-            <div className="outside-tags" aria-label="Outside work interests">
-              {outsideWork.map((item) => (
+            <div className="independent-tags" aria-label="Independent work areas">
+              {independentWork.map((item) => (
                 <span key={item}>{item}</span>
               ))}
             </div>

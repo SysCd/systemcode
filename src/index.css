@@ -134,7 +134,7 @@ main {
 
 .section-heading .eyebrow,
 .education-section .eyebrow,
-.outside-work-section .eyebrow,
+.independent-work-section .eyebrow,
 .contact-section .eyebrow {
   color: var(--accent);
 }
@@ -382,7 +382,7 @@ h3 {
 .skill-group,
 .timeline-entry,
 .language-card,
-.outside-work-card {
+.independent-work-card {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
@@ -550,7 +550,7 @@ h3 {
 .specialty-card p:not(.eyebrow),
 .timeline-entry li,
 .education-section p:not(.eyebrow),
-.outside-work-section p:not(.eyebrow),
+.independent-work-section p:not(.eyebrow),
 .contact-section p:not(.eyebrow),
 .project-details li,
 .project-more li {
@@ -568,28 +568,28 @@ h3 {
   padding: var(--card-padding);
 }
 
-.outside-work-section .section-heading {
+.independent-work-section .section-heading {
   margin-bottom: 18px;
 }
 
-.outside-work-card {
+.independent-work-card {
   display: grid;
   gap: 14px;
   max-width: 760px;
   padding: var(--card-padding);
 }
 
-.outside-work-card p {
+.independent-work-card p {
   margin-bottom: 0;
 }
 
-.outside-tags {
+.independent-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.outside-tags span {
+.independent-tags span {
   padding: 6px 9px;
   border: 1px solid var(--accent-border);
   border-radius: 6px;
