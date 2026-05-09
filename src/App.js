@@ -13,10 +13,10 @@ const contact = {
   phone: "+44 7547 970 689",
   location: "London, UK",
   github: "https://github.com/SysCd",
-  cv: `${process.env.PUBLIC_URL}/Erik-Gombar-CV-2026.pdf`,
+  cv: "/Erik-Gombar-CV-2026.pdf",
 };
 
-const logoSrc = `${process.env.PUBLIC_URL}/logo.png`;
+const logoSrc = "/logo.png";
 
 const thinkingCards = [
   {
