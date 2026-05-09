@@ -11,8 +11,8 @@ test("renders the infrastructure portfolio", () => {
     screen.getByText(/^microsoft infrastructure engineer$/i)
   ).toBeInTheDocument();
   expect(
-    screen.getByRole("link", { name: /download cv/i })
-  ).toBeInTheDocument();
+    screen.getAllByRole("link", { name: /support@syscdsoftware\.com/i }).length
+  ).toBeGreaterThan(0);
   expect(
     screen.getByRole("heading", { name: /technical projects/i })
   ).toBeInTheDocument();

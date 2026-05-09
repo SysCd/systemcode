@@ -1,22 +1,19 @@
 import "./index.css";
 import {
-  FaDownload,
   FaEnvelope,
   FaExternalLinkAlt,
   FaGithub,
   FaMapMarkerAlt,
-  FaPhoneAlt,
 } from "react-icons/fa";
 
 const contact = {
-  email: "catcheg5@outlook.com",
-  phone: "+44 7547 970 689",
+  email: "support@syscdsoftware.com",
   location: "London, UK",
   github: "https://github.com/SysCd",
-  cv: "/Erik-Gombar-CV-2026.pdf",
+  portfolio: "https://syscdsoftware.com",
 };
 
-const logoSrc = "/logo.png";
+const logoSrc = "/logo.svg";
 
 const thinkingCards = [
   {
@@ -130,6 +127,24 @@ const projects = [
       "Planned lab modules cover reusable Terraform infrastructure, GitHub Actions deployment, Azure DevOps YAML pipelines, Azure Container Apps, Azure Monitor, Log Analytics, Application Insights, and KQL-based troubleshooting.",
     architecture:
       "Terraform landing zone -> CI/CD pipelines -> containers -> monitoring",
+  },
+  {
+    title: "Principles of Nature iOS App Deployment",
+    label: "iOS App Release",
+    link: "https://syscdsoftware.com/#principles-of-nature",
+    linkLabel: "View app section",
+    tags: [
+      "iOS App Deployment",
+      "App Store Connect",
+      "TestFlight",
+      "Public Release",
+      "Support Email",
+      "Documentation",
+    ],
+    summary:
+      "Public release work for the Principles of Nature iOS app, covering app presentation, support contact setup, release documentation, and production-facing website readiness.",
+    shortText:
+      "Positioned as a lightweight deployment and operations project alongside the Microsoft infrastructure portfolio, showing release hygiene, support routing, and public-domain readiness.",
   },
   {
     title: "CortexAI / Reasoning-Enhanced SLM 2.0",
@@ -380,23 +395,15 @@ function App() {
                 <FaGithub aria-hidden="true" />
                 GitHub
               </a>
-              <a
-                className="button secondary"
-                href={contact.cv}
-                download="Erik-Gombar-CV-2026.pdf"
-              >
-                <FaDownload aria-hidden="true" />
-                Download CV
-              </a>
             </div>
-            <div className="contact-strip" aria-label="Location and phone">
+            <div className="contact-strip" aria-label="Location and email">
               <span>
                 <FaMapMarkerAlt aria-hidden="true" />
                 {contact.location}
               </span>
-              <a href="tel:+447547970689">
-                <FaPhoneAlt aria-hidden="true" />
-                {contact.phone}
+              <a href={`mailto:${contact.email}`}>
+                <FaEnvelope aria-hidden="true" />
+                {contact.email}
               </a>
             </div>
           </div>
@@ -483,6 +490,11 @@ function App() {
                 className={`project-card ${
                   project.featured ? "featured-project" : ""
                 }`}
+                id={
+                  project.title === "Principles of Nature iOS App Deployment"
+                    ? "principles-of-nature"
+                    : undefined
+                }
                 key={project.title}
               >
                 <div>
@@ -525,10 +537,16 @@ function App() {
                   <a
                     className="text-link"
                     href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={
+                      project.link.startsWith("http") ? "_blank" : undefined
+                    }
+                    rel={
+                      project.link.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                   >
-                    View repository
+                    {project.linkLabel || "View repository"}
                     <FaExternalLinkAlt aria-hidden="true" />
                   </a>
                   {project.demoLink && (
@@ -671,8 +689,8 @@ function App() {
             <p className="eyebrow">Get in touch</p>
             <h2>Available for infrastructure and cloud engineering roles.</h2>
             <p>
-              I am based in London and open to roles where dependable systems,
-              clear documentation, and strong troubleshooting matter.
+              For roles, collaborations, or technical enquiries, contact me at
+              support@syscdsoftware.com.
             </p>
           </div>
           <div className="contact-actions">
@@ -680,9 +698,23 @@ function App() {
               <FaEnvelope aria-hidden="true" />
               {contact.email}
             </a>
-            <a className="button secondary" href="tel:+447547970689">
-              <FaPhoneAlt aria-hidden="true" />
-              {contact.phone}
+            <a
+              className="button secondary"
+              href={contact.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub aria-hidden="true" />
+              GitHub
+            </a>
+            <a
+              className="button secondary"
+              href={contact.portfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaExternalLinkAlt aria-hidden="true" />
+              Portfolio
             </a>
           </div>
         </section>

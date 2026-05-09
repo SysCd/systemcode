@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">SysCd logo</title>
+  <desc id="desc">Dark rounded SysCd software logo with code brackets.</desc>
+  <rect width="512" height="512" rx="96" fill="#17181c"/>
+  <text x="256" y="246" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="116" font-weight="800" letter-spacing="-6" text-anchor="middle">SysCd</text>
+  <text x="256" y="338" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="800" text-anchor="middle">&lt; &gt;</text>
+</svg>
