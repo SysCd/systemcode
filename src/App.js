@@ -64,6 +64,30 @@ const heroTags = [
   "Identity & Access",
 ];
 
+const softwareProducts = [
+  {
+    title: "Principles of Nature",
+    type: "iOS App",
+    description:
+      "Original iOS app for daily principles, reflection, reminders, widgets, and focused reading.",
+    status: "Submitted to App Store Review",
+    links: [
+      {
+        label: "Support contact",
+        href: `mailto:${contact.email}`,
+      },
+    ],
+    note: "App Store link pending review.",
+  },
+  {
+    title: "AI Context Bridge",
+    type: "AI Tool / In Development",
+    description:
+      "Experimental SysCd tool focused on AI workflow continuity, portability, and user-controlled context.",
+    status: "Private MVP",
+  },
+];
+
 const projects = [
   {
     title: "Intune / Autopilot / Endpoint Compliance Lab",
@@ -356,6 +380,7 @@ function App() {
         </a>
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#projects">Projects</a>
+          <a href="#software">Software</a>
           <a href="#experience">Experience</a>
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
@@ -579,6 +604,42 @@ function App() {
                     </a>
                   )}
                 </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-block software-section" id="software">
+          <div className="section-heading">
+            <p className="eyebrow">Software</p>
+            <h2>Software by SysCd</h2>
+            <p>
+              Independent apps and tools built around systems, infrastructure,
+              and AI.
+            </p>
+          </div>
+          <div className="software-grid">
+            {softwareProducts.map((product) => (
+              <article className="software-card" key={product.title}>
+                <div>
+                  <span className="project-label">{product.type}</span>
+                  <h3>{product.title}</h3>
+                  <p>{product.description}</p>
+                </div>
+                <div className="software-meta">
+                  <span className="status-pill">{product.status}</span>
+                  {product.note && <span>{product.note}</span>}
+                </div>
+                {product.links && (
+                  <div className="project-actions">
+                    {product.links.map((link) => (
+                      <a className="text-link" href={link.href} key={link.label}>
+                        {link.label}
+                        <FaExternalLinkAlt aria-hidden="true" />
+                      </a>
+                    ))}
+                  </div>
+                )}
               </article>
             ))}
           </div>

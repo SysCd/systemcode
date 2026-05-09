@@ -8,7 +8,10 @@ test("renders the infrastructure portfolio", () => {
     screen.getByRole("heading", { name: /erik gombar/i })
   ).toBeInTheDocument();
   expect(
-    screen.getByText(/^microsoft infrastructure engineer$/i)
+    screen.getByText(/^azure & microsoft infrastructure engineer$/i)
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("heading", { name: /software by syscd/i })
   ).toBeInTheDocument();
   expect(
     screen.getAllByRole("link", { name: /support@syscdsoftware\.com/i }).length

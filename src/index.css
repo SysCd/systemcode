@@ -359,6 +359,7 @@ h3 {
 }
 
 .project-card,
+.software-card,
 .thinking-card,
 .working-card,
 .specialty-card,
@@ -389,23 +390,35 @@ h3 {
 
 .project-grid,
 .thinking-grid,
-.working-grid {
+.working-grid,
+.software-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--grid-gap);
+}
+
+.software-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .working-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.project-card {
+.project-card,
+.software-card {
   display: flex;
   min-height: 360px;
   flex-direction: column;
   justify-content: space-between;
   gap: 22px;
   padding: var(--card-padding);
+}
+
+.software-card {
+  min-height: 270px;
+  border-color: rgba(201, 151, 0, 0.2);
+  background: rgba(255, 255, 255, 0.76);
 }
 
 .featured-project {
@@ -486,6 +499,28 @@ h3 {
   padding-left: 18px;
 }
 
+.software-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.status-pill {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 9px;
+  border: 1px solid rgba(23, 24, 28, 0.12);
+  border-radius: 6px;
+  background: rgba(246, 244, 239, 0.84);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
 .project-actions {
   display: flex;
   flex-wrap: wrap;
@@ -493,6 +528,7 @@ h3 {
 }
 
 .project-card p,
+.software-card p,
 .thinking-card p,
 .working-card p,
 .specialty-card p,
@@ -770,6 +806,7 @@ h3 {
   }
 
   .project-grid,
+  .software-grid,
   .thinking-grid,
   .working-grid,
   .specialty-grid {
