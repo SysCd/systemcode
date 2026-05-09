@@ -276,12 +276,12 @@ function HeroCircuitGraphic() {
         <defs>
           <linearGradient id="traceFade" x1="0" x2="1" y1="0" y2="1">
             <stop offset="0" stopColor="#17181c" stopOpacity="0.24" />
-            <stop offset="1" stopColor="#0f8b6f" stopOpacity="0.48" />
+            <stop offset="1" stopColor="#C99700" stopOpacity="0.48" />
           </linearGradient>
           <linearGradient id="signalFade" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stopColor="#0f8b6f" stopOpacity="0" />
-            <stop offset="0.5" stopColor="#0f8b6f" stopOpacity="0.62" />
-            <stop offset="1" stopColor="#0f8b6f" stopOpacity="0" />
+            <stop offset="0" stopColor="#C99700" stopOpacity="0" />
+            <stop offset="0.5" stopColor="#C99700" stopOpacity="0.62" />
+            <stop offset="1" stopColor="#C99700" stopOpacity="0" />
           </linearGradient>
         </defs>
         <g className="board-planes">
@@ -353,8 +353,8 @@ function App() {
   return (
     <div className="site-shell">
       <header className="site-header" id="top">
-        <a className="brand" href="#top" aria-label="SysCd home">
-          <img src={logoSrc} alt="SysCd logo" />
+        <a className="brand" href="#top" aria-label="SysCd Software home">
+          <img src={logoSrc} alt="SysCd Software logo" />
         </a>
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#projects">Projects</a>
@@ -711,7 +711,7 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <span>Erik Gombar</span>
+        <span>SysCd Software</span>
         <a href="#top" onClick={handleBackToTop}>
           Back to top
         </a>

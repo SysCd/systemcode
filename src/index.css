@@ -4,10 +4,10 @@
   --paper: #f6f4ef;
   --panel: #ffffff;
   --line: #ddd8ce;
-  --green: #0f8b6f;
-  --blue: #2563a9;
-  --amber: #d8871e;
-  --red: #c84c3f;
+  --accent: #C99700;
+  --blue: #315f8f;
+  --amber: #C99700;
+  --red: #8f514c;
   --card-padding: 24px;
   --grid-gap: 16px;
   --shadow: 0 22px 60px rgba(23, 24, 28, 0.1);
@@ -24,8 +24,8 @@ html {
 body {
   margin: 0;
   background:
-    linear-gradient(135deg, rgba(15, 139, 111, 0.12), transparent 26rem),
-    linear-gradient(315deg, rgba(200, 76, 63, 0.1), transparent 30rem),
+    linear-gradient(135deg, rgba(201, 151, 0, 0.12), transparent 26rem),
+    linear-gradient(315deg, rgba(98, 104, 115, 0.1), transparent 30rem),
     var(--paper);
   color: var(--ink);
   font-family:
@@ -58,8 +58,8 @@ a {
 
 .brand {
   display: inline-flex;
-  width: clamp(108px, 14vw, 148px);
-  height: 36px;
+  width: clamp(128px, 16vw, 176px);
+  height: 44px;
   align-items: center;
   justify-content: center;
   text-decoration: none;
@@ -122,7 +122,7 @@ main {
 
 .eyebrow {
   margin: 0 0 12px;
-  color: var(--green);
+  color: var(--accent);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -175,10 +175,10 @@ h3 {
 
 .hero-tags span {
   padding: 6px 9px;
-  border: 1px solid rgba(15, 139, 111, 0.18);
+  border: 1px solid rgba(201, 151, 0, 0.18);
   border-radius: 6px;
-  background: rgba(15, 139, 111, 0.08);
-  color: #275249;
+  background: rgba(201, 151, 0, 0.08);
+  color: #7a5c00;
   font-size: 0.8rem;
   font-weight: 900;
 }
@@ -277,12 +277,12 @@ h3 {
 .chip-core,
 .chip-inner {
   fill: rgba(255, 255, 255, 0.42);
-  stroke: rgba(15, 139, 111, 0.44);
+  stroke: rgba(201, 151, 0, 0.44);
   stroke-width: 1.35;
 }
 
 .chip-inner {
-  fill: rgba(15, 139, 111, 0.09);
+  fill: rgba(201, 151, 0, 0.09);
   stroke: rgba(23, 24, 28, 0.22);
 }
 
@@ -322,7 +322,7 @@ h3 {
 }
 
 .circuit-nodes circle {
-  fill: rgba(15, 139, 111, 0.42);
+  fill: rgba(201, 151, 0, 0.42);
   stroke: rgba(23, 24, 28, 0.16);
   stroke-width: 1;
 }
@@ -428,9 +428,9 @@ h3 {
 .featured-project {
   grid-column: 1 / -1;
   min-height: 0;
-  border-color: rgba(15, 139, 111, 0.32);
+  border-color: rgba(201, 151, 0, 0.32);
   background:
-    linear-gradient(135deg, rgba(15, 139, 111, 0.08), transparent 52%),
+    linear-gradient(135deg, rgba(201, 151, 0, 0.08), transparent 52%),
     rgba(255, 255, 255, 0.84);
 }
 
@@ -440,8 +440,8 @@ h3 {
   margin-bottom: 18px;
   padding: 6px 9px;
   border-radius: 6px;
-  background: rgba(15, 139, 111, 0.12);
-  color: var(--green);
+  background: rgba(201, 151, 0, 0.12);
+  color: var(--accent);
   font-size: 0.82rem;
   font-weight: 900;
 }
@@ -456,10 +456,10 @@ h3 {
   display: inline-flex;
   margin: 6px 0 0;
   padding: 8px 10px;
-  border: 1px solid rgba(15, 139, 111, 0.18);
+  border: 1px solid rgba(201, 151, 0, 0.18);
   border-radius: 6px;
-  background: rgba(15, 139, 111, 0.08);
-  color: #275249;
+  background: rgba(201, 151, 0, 0.08);
+  color: #7a5c00;
   font-size: 0.9rem;
   font-weight: 900;
 }
@@ -475,7 +475,7 @@ h3 {
 .project-details li::marker,
 .project-more li::marker,
 .timeline-entry li::marker {
-  color: var(--green);
+  color: var(--accent);
 }
 
 .project-more {
@@ -492,7 +492,7 @@ h3 {
 
 .project-more summary:hover,
 .project-more summary:focus-visible {
-  color: var(--green);
+  color: var(--accent);
   outline: none;
 }
 
@@ -556,10 +556,10 @@ h3 {
 
 .outside-tags span {
   padding: 6px 9px;
-  border: 1px solid rgba(15, 139, 111, 0.18);
+  border: 1px solid rgba(201, 151, 0, 0.18);
   border-radius: 6px;
-  background: rgba(15, 139, 111, 0.08);
-  color: #275249;
+  background: rgba(201, 151, 0, 0.08);
+  color: #7a5c00;
   font-size: 0.82rem;
   font-weight: 800;
 }
@@ -581,9 +581,9 @@ h3 {
 }
 
 .featured-project .tag-row span {
-  border-color: rgba(15, 139, 111, 0.2);
-  background: rgba(15, 139, 111, 0.1);
-  color: #275249;
+  border-color: rgba(201, 151, 0, 0.2);
+  background: rgba(201, 151, 0, 0.1);
+  color: #7a5c00;
 }
 
 .text-link {
@@ -598,7 +598,7 @@ h3 {
 
 .text-link:hover,
 .text-link:focus-visible {
-  color: var(--green);
+  color: var(--accent);
   outline: none;
 }
 
@@ -789,6 +789,11 @@ h3 {
   .site-header {
     position: static;
     flex-direction: column;
+  }
+
+  .brand {
+    width: 120px;
+    height: 34px;
   }
 
   .nav-links {
