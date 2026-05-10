@@ -63,8 +63,8 @@ a {
 
 .brand {
   display: inline-flex;
-  width: clamp(92px, 10vw, 132px);
-  height: clamp(64px, 7vw, 90px);
+  width: clamp(42px, 5vw, 58px);
+  height: clamp(42px, 5vw, 58px);
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
@@ -187,14 +187,6 @@ h1 {
   margin: -4px 0 24px;
   object-fit: contain;
   mix-blend-mode: multiply;
-}
-
-.hero-emblem {
-  display: block;
-  width: clamp(58px, 8vw, 96px);
-  height: auto;
-  margin: 0 0 28px;
-  object-fit: contain;
 }
 
 .system-code-mark-small {
@@ -733,11 +725,6 @@ h3 {
   line-height: 1.45;
 }
 
-.footer-brand .footer-name {
-  color: var(--ink);
-  font-weight: 900;
-}
-
 .site-footer a {
   text-decoration: none;
 }
@@ -830,8 +817,8 @@ h3 {
   }
 
   .brand {
-    width: min(140px, 46vw);
-    height: 98px;
+    width: 52px;
+    height: 52px;
   }
 
   .nav-links {

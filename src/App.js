@@ -306,7 +306,7 @@ function Header({ page }) {
   return (
     <header className="site-header" id="top">
       <a className="brand" href="/" aria-label="System Code home">
-        <img src={logoSrc} alt="System Code logo" />
+        <img src={emblemSrc} alt="System Code logo" />
       </a>
       <nav className="nav-links" aria-label="Main navigation">
         {navLinks.map((link) => (
@@ -324,7 +324,6 @@ function Footer({ onBackToTop }) {
     <footer className="site-footer">
       <div className="footer-brand">
         <img className="footer-logo" src={logoSrc} alt="System Code logo" />
-        <p className="footer-name">System Code</p>
         <p>
           Practical software and infrastructure, built from first principles.
         </p>
@@ -378,7 +377,6 @@ function HomePage() {
     <main>
       <section className="hero-section home-hero" aria-labelledby="home-title">
         <div className="hero-copy">
-          <img className="hero-emblem" src={emblemSrc} alt="" aria-hidden="true" />
           <h1 className="brand-hero-title" id="home-title">
             System Code
           </h1>
