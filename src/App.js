@@ -6,7 +6,7 @@ import {
 } from "react-icons/fa";
 
 const contact = {
-  email: "support@systemcode.net",
+  email: "support@syscdsoftware.com",
 };
 
 const logoSrc = "/system-code-lockup.png";
@@ -471,7 +471,7 @@ function HomePage() {
           <h2>Software, support, and technical enquiries.</h2>
           <p>
             For product support, collaborations, or technical enquiries, contact
-            System Code at support@systemcode.net.
+            System Code at support@syscdsoftware.com.
           </p>
         </div>
         <div className="contact-actions">
@@ -763,7 +763,7 @@ function PortfolioPage() {
           <h2>Available for infrastructure and cloud engineering roles.</h2>
           <p>
             For roles, collaborations, or technical enquiries, contact me at
-            support@systemcode.net.
+            support@syscdsoftware.com.
           </p>
         </div>
         <div className="contact-actions">
