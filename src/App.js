@@ -486,8 +486,6 @@ function HomePage() {
             </a>
           </div>
         </div>
-
-        <HeroCircuitGraphic />
       </section>
 
       <SoftwareSection />
