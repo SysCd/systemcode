@@ -12,6 +12,7 @@ const contact = {
 };
 
 const logoSrc = "/logo-wordmark.png";
+const systemCodeLogoSrc = "/system-code-logo.png";
 
 const thinkingCards = [
   {
@@ -397,6 +398,11 @@ function HomePage() {
           <h1 className="brand-hero-title" id="home-title">
             SysCd Software
           </h1>
+          <img
+            className="system-code-mark"
+            src={systemCodeLogoSrc}
+            alt="System Code logo"
+          />
           <p className="hero-lede">
             SysCd &mdash; System Code. Practical software and infrastructure,
             built from first principles.
@@ -460,6 +466,11 @@ function HomePage() {
         </div>
         <div className="timeline-list">
           <article className="timeline-entry">
+            <img
+              className="system-code-mark system-code-mark-small"
+              src={systemCodeLogoSrc}
+              alt="System Code logo"
+            />
             <p>
               SysCd Software™ is Erik Gombar&apos;s personal software brand for
               independent apps, tools, and infrastructure-focused projects.
