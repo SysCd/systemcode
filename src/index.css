@@ -134,9 +134,10 @@ main {
   overflow: hidden;
   min-height: auto;
   padding: 72px 0;
+  background-color: #ffffff;
   background-image:
-    linear-gradient(rgba(17, 17, 17, 0.026) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17, 17, 17, 0.026) 1px, transparent 1px);
+    linear-gradient(rgba(17, 17, 17, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 17, 17, 0.018) 1px, transparent 1px);
   background-position: -1px -1px;
   background-size: 44px 44px;
   isolation: isolate;
