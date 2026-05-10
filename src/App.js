@@ -394,22 +394,16 @@ function HomePage() {
     <main>
       <section className="hero-section home-hero" aria-labelledby="home-title">
         <div className="hero-copy">
-          <p className="eyebrow">SysCd Software™</p>
+          <p className="eyebrow">SYSTEM CODE</p>
           <h1 className="brand-hero-title" id="home-title">
-            SysCd Software
+            SysCd
           </h1>
-          <img
-            className="system-code-mark"
-            src={systemCodeLogoSrc}
-            alt="System Code logo"
-          />
           <p className="hero-lede">
-            SysCd &mdash; System Code. Practical software and infrastructure,
-            built from first principles.
+            Practical software and infrastructure, built from first principles.
           </p>
           <p className="home-summary">
             Independent software, infrastructure tools, and AI-focused products
-            built by Erik Gombar.
+            by Erik Gombar.
           </p>
           <div className="hero-actions" aria-label="Homepage actions">
             <a className="button primary" href="#software">
