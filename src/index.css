@@ -63,8 +63,8 @@ a {
 
 .brand {
   display: inline-flex;
-  width: clamp(156px, 18vw, 220px);
-  height: 34px;
+  width: clamp(92px, 10vw, 132px);
+  height: clamp(64px, 7vw, 90px);
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
@@ -198,7 +198,7 @@ h1 {
 }
 
 .system-code-mark-small {
-  width: min(340px, 100%);
+  width: min(360px, 100%);
   margin: 0 0 20px;
 }
 
@@ -715,7 +715,7 @@ h3 {
 
 .footer-logo {
   display: block;
-  width: 132px;
+  width: 168px;
   height: auto;
 }
 
@@ -830,8 +830,8 @@ h3 {
   }
 
   .brand {
-    width: min(210px, 68vw);
-    height: 32px;
+    width: min(140px, 46vw);
+    height: 98px;
   }
 
   .nav-links {

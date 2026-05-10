@@ -11,8 +11,8 @@ const contact = {
   github: "https://github.com/SysCd",
 };
 
-const logoSrc = "/system-code-logo.png";
-const emblemSrc = "/brand-icon.png";
+const logoSrc = "/system-code-lockup.png";
+const emblemSrc = "/system-code-emblem.png";
 
 const thinkingCards = [
   {
