@@ -128,6 +128,25 @@ a {
   transform: scaleX(1);
 }
 
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+  border-color: rgba(17, 17, 17, 0.28);
+  outline: none;
+}
+
 main {
   width: min(1160px, calc(100% - 32px));
   margin: 0 auto;
@@ -317,6 +336,8 @@ h3 {
 
   .button:hover,
   .button:focus-visible,
+  .contact-path-card:hover,
+  .contact-path-card:focus-visible,
   .project-card:hover,
   .software-card:hover,
   .thinking-card:hover,
@@ -419,6 +440,33 @@ h3 {
   color: var(--ink);
   font-size: 0.92rem;
   font-weight: 900;
+}
+
+.software-meta-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 18px;
+}
+
+.software-meta-list div {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.software-meta-list dt {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.software-meta-list dd {
+  margin: 2px 0 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .software-features {
@@ -713,6 +761,46 @@ h3 {
   justify-content: flex-end;
 }
 
+.contact-path-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.contact-path-card {
+  min-height: 132px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.contact-path-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.contact-path-card p {
+  margin-bottom: 0;
+  font-size: 0.92rem;
+}
+
+.contact-path-card:hover,
+.contact-path-card:focus-visible {
+  border-color: rgba(17, 17, 17, 0.28);
+  box-shadow: 0 12px 28px rgba(17, 17, 17, 0.06);
+  outline: none;
+  transform: translateY(-1px);
+}
+
 .site-footer {
   display: flex;
   align-items: center;
@@ -744,6 +832,11 @@ h3 {
   font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.45;
+}
+
+.footer-brand .deploy-note {
+  color: #7b7f84;
+  font-size: 0.82rem;
 }
 
 .site-footer a {
@@ -792,13 +885,27 @@ h3 {
 
 @media (max-width: 920px) {
   .site-header {
-    align-items: flex-start;
+    align-items: center;
     gap: 14px;
   }
 
   .nav-links {
-    overflow-x: auto;
-    max-width: calc(100vw - 92px);
+    position: absolute;
+    top: calc(100% - 6px);
+    right: 0;
+    display: none;
+    width: min(320px, calc(100vw - 32px));
+    max-width: none;
+    overflow: visible;
+    box-shadow: 0 18px 38px rgba(17, 17, 17, 0.08);
+  }
+
+  .nav-links.is-open {
+    display: grid;
+  }
+
+  .nav-toggle {
+    display: inline-grid;
   }
 
   .split-section,
@@ -829,12 +936,16 @@ h3 {
   .contact-actions {
     justify-content: flex-start;
   }
+
+  .contact-path-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 620px) {
   .site-header {
-    position: static;
-    flex-direction: column;
+    position: sticky;
+    flex-direction: row;
   }
 
   .brand {
@@ -843,11 +954,7 @@ h3 {
   }
 
   .nav-links {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: 100%;
-    max-width: none;
-    overflow: visible;
+    grid-template-columns: 1fr;
   }
 
   .nav-links a {
@@ -876,6 +983,10 @@ h3 {
     width: 100%;
   }
 
+  .software-meta-list {
+    grid-template-columns: 1fr;
+  }
+
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
@@ -898,6 +1009,8 @@ h3 {
 
   .button:hover,
   .button:focus-visible,
+  .contact-path-card:hover,
+  .contact-path-card:focus-visible,
   .project-card:hover,
   .software-card:hover,
   .thinking-card:hover,

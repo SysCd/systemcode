@@ -1,13 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./index.css";
 import {
+  FaBars,
   FaEnvelope,
   FaExternalLinkAlt,
+  FaTimes,
 } from "react-icons/fa";
+import buildInfo from "./build-info.json";
 
 const contact = {
   email: "support@syscdsoftware.com",
 };
+
+const siteUrl = "https://systemcode.net";
 
 const logoSrc = "/system-code-lockup.png";
 const emblemSrc = "/system-code-emblem.png";
@@ -62,6 +67,10 @@ const softwareProducts = [
     title: "Principles of Nature",
     type: "iOS App",
     status: "Submitted for App Store Review",
+    platform: "iPhone",
+    purpose: "Principle-based learning",
+    audience: "Individual learners",
+    support: "Email support ready",
     description:
       "An iOS app exploring human nature, social dynamics, influence, and behavioural patterns through practical principles.",
     features: [
@@ -75,8 +84,63 @@ const softwareProducts = [
     title: "Context Bridge",
     type: "AI Tool",
     status: "Planned / In development",
+    platform: "Local desktop workflow",
+    purpose: "Context preparation",
+    audience: "AI-assisted work",
+    support: "Private planning stage",
     description:
       "A local-first AI workflow utility for organizing and preparing context across tools.",
+  },
+];
+
+const pageMeta = {
+  home: {
+    title: "System Code | Software and Infrastructure",
+    description:
+      "Practical software and infrastructure built from first principles.",
+    canonical: `${siteUrl}/`,
+  },
+  software: {
+    title: "Software | System Code",
+    description:
+      "Focused System Code software for iOS, AI workflows, infrastructure, and practical systems.",
+    canonical: `${siteUrl}/software`,
+  },
+  about: {
+    title: "About | System Code",
+    description:
+      "System Code is an independent software and infrastructure brand for practical tools and systems.",
+    canonical: `${siteUrl}/about`,
+  },
+  contact: {
+    title: "Contact | System Code",
+    description:
+      "Contact System Code for product support, collaborations, and technical enquiries.",
+    canonical: `${siteUrl}/contact`,
+  },
+  portfolio: {
+    title: "Erik Gombar | Azure & Microsoft Infrastructure Engineer",
+    description:
+      "Portfolio for Microsoft infrastructure, Azure, endpoint management, automation, and systems projects.",
+    canonical: `${siteUrl}/portfolio`,
+  },
+};
+
+const contactPaths = [
+  {
+    title: "Product Support",
+    body: "Help with System Code software, app support, and product questions.",
+    subject: "System Code product support",
+  },
+  {
+    title: "Software Enquiries",
+    body: "Collaborations, product feedback, and practical software ideas.",
+    subject: "System Code software enquiry",
+  },
+  {
+    title: "Technical Work",
+    body: "Infrastructure, automation, cloud, and portfolio-related enquiries.",
+    subject: "System Code technical enquiry",
   },
 ];
 
@@ -282,6 +346,7 @@ const skillGroups = [
 ];
 
 function Header({ page }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isPortfolio = page === "portfolio";
   const navLinks = isPortfolio
     ? [
@@ -297,21 +362,54 @@ function Header({ page }) {
         { href: "/portfolio", label: "Portfolio" },
         { href: "#contact", label: "Contact" },
       ];
+  const navId = "site-navigation";
+
+  const handleNavClick = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="site-header" id="top">
       <a className="brand" href="/" aria-label="System Code home">
         <img src={emblemSrc} alt="System Code logo" />
       </a>
-      <nav className="nav-links" aria-label="Main navigation">
+      <button
+        className="nav-toggle"
+        type="button"
+        aria-controls={navId}
+        aria-expanded={isMenuOpen}
+        aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+        onClick={() => setIsMenuOpen((open) => !open)}
+      >
+        {isMenuOpen ? <FaTimes aria-hidden="true" /> : <FaBars aria-hidden="true" />}
+      </button>
+      <nav
+        className={`nav-links ${isMenuOpen ? "is-open" : ""}`}
+        id={navId}
+        aria-label="Main navigation"
+      >
         {navLinks.map((link) => (
-          <a href={link.href} key={link.label}>
+          <a href={link.href} key={link.label} onClick={handleNavClick}>
             {link.label}
           </a>
         ))}
       </nav>
     </header>
   );
+}
+
+function formatBuildDate(value) {
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "Local build";
+  }
+
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(date);
 }
 
 function Footer({ onBackToTop }) {
@@ -324,6 +422,9 @@ function Footer({ onBackToTop }) {
         </p>
         <p>© 2026 System Code Software. All rights reserved.</p>
         <p>System Code™ is a brand name of System Code Software.</p>
+        <p className="deploy-note">
+          Site version {buildInfo.commit} · Updated {formatBuildDate(buildInfo.builtAt)}
+        </p>
       </div>
       <div className="footer-links">
         <a href="/portfolio">Portfolio</a>
@@ -360,6 +461,24 @@ function SoftwareSection() {
               <span className="project-label">{product.type}</span>
               <h3>{product.title}</h3>
               <p className="software-status">{product.status}</p>
+              <dl className="software-meta-list">
+                <div>
+                  <dt>Platform</dt>
+                  <dd>{product.platform}</dd>
+                </div>
+                <div>
+                  <dt>Purpose</dt>
+                  <dd>{product.purpose}</dd>
+                </div>
+                <div>
+                  <dt>Audience</dt>
+                  <dd>{product.audience}</dd>
+                </div>
+                <div>
+                  <dt>Support</dt>
+                  <dd>{product.support}</dd>
+                </div>
+              </dl>
               <p>{product.description}</p>
               {product.features ? (
                 <ul className="software-features">
@@ -374,6 +493,96 @@ function SoftwareSection() {
       </div>
     </section>
   );
+}
+
+function mailtoWithSubject(subject) {
+  return `mailto:${contact.email}?subject=${encodeURIComponent(subject)}`;
+}
+
+function ContactPathCards() {
+  return (
+    <div className="contact-path-grid" aria-label="Contact options">
+      {contactPaths.map((path) => (
+        <a
+          className="contact-path-card"
+          href={mailtoWithSubject(path.subject)}
+          key={path.title}
+        >
+          <span>{path.title}</span>
+          <p>{path.body}</p>
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function getPageFromPath(pathname) {
+  const normalizedPath = pathname.replace(/\/$/, "") || "/";
+
+  if (normalizedPath === "/portfolio") {
+    return "portfolio";
+  }
+
+  if (normalizedPath === "/software") {
+    return "software";
+  }
+
+  if (normalizedPath === "/about") {
+    return "about";
+  }
+
+  if (normalizedPath === "/contact") {
+    return "contact";
+  }
+
+  return "home";
+}
+
+function syncMeta(name, content, attribute = "name") {
+  let element = document.head.querySelector(`meta[${attribute}="${name}"]`);
+
+  if (!element) {
+    element = document.createElement("meta");
+    element.setAttribute(attribute, name);
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute("content", content);
+}
+
+function syncCanonical(href) {
+  let element = document.head.querySelector('link[rel="canonical"]');
+
+  if (!element) {
+    element = document.createElement("link");
+    element.setAttribute("rel", "canonical");
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute("href", href);
+}
+
+function syncStructuredData(meta) {
+  let element = document.head.querySelector(
+    'script[data-schema="system-code"]'
+  );
+
+  if (!element) {
+    element = document.createElement("script");
+    element.setAttribute("type", "application/ld+json");
+    element.setAttribute("data-schema", "system-code");
+    document.head.appendChild(element);
+  }
+
+  element.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "System Code",
+    legalName: "System Code Software",
+    url: siteUrl,
+    email: contact.email,
+    description: meta.description,
+  });
 }
 
 function HomePage() {
@@ -473,9 +682,13 @@ function HomePage() {
             For product support, collaborations, or technical enquiries, contact
             System Code at support@syscdsoftware.com.
           </p>
+          <ContactPathCards />
         </div>
         <div className="contact-actions">
-          <a className="button primary" href={`mailto:${contact.email}`}>
+          <a
+            className="button primary"
+            href={mailtoWithSubject("System Code enquiry")}
+          >
             <FaEnvelope aria-hidden="true" />
             {contact.email}
           </a>
@@ -502,7 +715,10 @@ function PortfolioPage() {
             ))}
           </div>
           <div className="hero-actions" aria-label="Primary contact links">
-            <a className="button primary" href={`mailto:${contact.email}`}>
+            <a
+              className="button primary"
+              href={mailtoWithSubject("Infrastructure and cloud enquiry")}
+            >
               <FaEnvelope aria-hidden="true" />
               Email
             </a>
@@ -765,9 +981,13 @@ function PortfolioPage() {
             For roles, collaborations, or technical enquiries, contact me at
             support@syscdsoftware.com.
           </p>
+          <ContactPathCards />
         </div>
         <div className="contact-actions">
-          <a className="button primary" href={`mailto:${contact.email}`}>
+          <a
+            className="button primary"
+            href={mailtoWithSubject("Infrastructure and cloud enquiry")}
+          >
             <FaEnvelope aria-hidden="true" />
             {contact.email}
           </a>
@@ -778,14 +998,40 @@ function PortfolioPage() {
 }
 
 function App() {
-  const normalizedPath = window.location.pathname.replace(/\/$/, "") || "/";
-  const page = normalizedPath === "/portfolio" ? "portfolio" : "home";
+  const page = getPageFromPath(window.location.pathname);
+  const isPortfolio = page === "portfolio";
 
   useEffect(() => {
-    document.title =
-      page === "portfolio"
-        ? "Erik Gombar | Azure & Microsoft Infrastructure Engineer"
-        : "System Code";
+    const meta = pageMeta[page] || pageMeta.home;
+
+    document.title = meta.title;
+    syncMeta("description", meta.description);
+    syncMeta("og:title", meta.title, "property");
+    syncMeta("og:description", meta.description, "property");
+    syncMeta("og:url", meta.canonical, "property");
+    syncMeta("twitter:title", meta.title);
+    syncMeta("twitter:description", meta.description);
+    syncMeta("deployment-commit", buildInfo.commit);
+    syncMeta("deployment-built-at", buildInfo.builtAt);
+    syncCanonical(meta.canonical);
+    syncStructuredData(meta);
+  }, [page]);
+
+  useEffect(() => {
+    const sectionMap = {
+      software: "software",
+      about: "about",
+      contact: "contact",
+    };
+    const sectionId = sectionMap[page];
+
+    if (!sectionId || window.location.hash) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ block: "start" });
+    });
   }, [page]);
 
   useEffect(() => {
@@ -845,7 +1091,7 @@ function App() {
   return (
     <div className="site-shell">
       <Header page={page} />
-      {page === "portfolio" ? <PortfolioPage /> : <HomePage />}
+      {isPortfolio ? <PortfolioPage /> : <HomePage />}
       <Footer onBackToTop={handleBackToTop} />
     </div>
   );
