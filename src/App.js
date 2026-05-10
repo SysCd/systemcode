@@ -150,8 +150,8 @@ const projects = [
   {
     title: "Intune / Autopilot / Endpoint Compliance Lab",
     id: "intune-autopilot-endpoint-compliance",
-    link: "#intune-autopilot-endpoint-compliance",
-    linkLabel: "View project",
+    link: githubUrl,
+    linkLabel: "View GitHub profile",
     tags: [
       "Microsoft Intune",
       "Entra ID",
@@ -167,7 +167,7 @@ const projects = [
   {
     title: "Microsoft Identity & Endpoint Lab",
     id: "microsoft-identity-endpoint",
-    link: "#microsoft-identity-endpoint",
+    link: "https://github.com/SysCd/Microsoft-Identity-Endpoint-Lab",
     linkLabel: "View project",
     tags: ["Entra ID", "Intune", "Microsoft 365", "PowerShell"],
     summary:
@@ -176,7 +176,7 @@ const projects = [
   {
     title: "Windows Server Active Directory Lab",
     id: "windows-server-active-directory",
-    link: "#windows-server-active-directory",
+    link: "https://github.com/SysCd/windows-server-ad-lab",
     linkLabel: "View project",
     tags: ["Windows Server 2022", "Active Directory", "DNS", "Group Policy", "SMB"],
     summary:
@@ -187,7 +187,7 @@ const projects = [
   {
     title: "Azure Infrastructure Admin Lab",
     id: "azure-infrastructure-admin",
-    link: "#azure-infrastructure-admin",
+    link: "https://github.com/SysCd/Azure-Infrastructure-Admin-Lab",
     linkLabel: "View project",
     tags: ["Azure VMs", "Virtual Network", "NSGs", "Linux"],
     summary:
@@ -197,7 +197,7 @@ const projects = [
     title: "Azure DevOps Platform Lab",
     label: "Azure Platform Lab (In Progress)",
     id: "azure-devops-platform",
-    link: "#azure-devops-platform",
+    link: "https://github.com/SysCd/azure-devops-platform-lab",
     linkLabel: "View project",
     tags: [
       "Azure",
@@ -218,8 +218,8 @@ const projects = [
     title: "Principles of Nature iOS App Deployment",
     label: "iOS App Submission",
     id: "principles-of-nature-deployment",
-    link: "/#principles-of-nature",
-    linkLabel: "View app section",
+    link: "https://github.com/SysCd/principles-of-nature",
+    linkLabel: "View repository",
     tags: [
       "iOS App Submission",
       "App Store Review",
@@ -237,7 +237,7 @@ const projects = [
     subtitle: "Custom reasoning model + RAG research assistant",
     label: "Advanced AI Systems Lab",
     id: "cortexai-reasoning-enhanced-slm",
-    link: "#cortexai-reasoning-enhanced-slm",
+    link: "https://github.com/SysCd/Reasoning-Enhanced-SLM-2.0",
     linkLabel: "View project",
     featured: true,
     tags: [

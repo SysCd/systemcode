@@ -52,14 +52,23 @@ test("renders Erik's portfolio page", () => {
   expect(
     projectLinks.some(
       (link) =>
-        link.getAttribute("href") === "#intune-autopilot-endpoint-compliance"
+        link.getAttribute("href") ===
+        "https://github.com/SysCd/Microsoft-Identity-Endpoint-Lab"
     )
   ).toBe(true);
   expect(
     projectLinks.some(
-      (link) => link.getAttribute("href") === "#cortexai-reasoning-enhanced-slm"
+      (link) =>
+        link.getAttribute("href") ===
+        "https://github.com/SysCd/Reasoning-Enhanced-SLM-2.0"
     )
   ).toBe(true);
+  expect(
+    screen.getByRole("link", { name: /view repository/i })
+  ).toHaveAttribute("href", "https://github.com/SysCd/principles-of-nature");
+  expect(
+    projectLinks.some((link) => link.getAttribute("href")?.startsWith("#"))
+  ).toBe(false);
   expect(
     projectLinks.some((link) => link.getAttribute("href") === "/portfolio#projects")
   ).toBe(false);
