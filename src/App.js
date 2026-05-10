@@ -327,7 +327,8 @@ function Footer({ onBackToTop }) {
         <p>
           Practical software and infrastructure, built from first principles.
         </p>
-        <p>© 2026 System Code. All rights reserved.</p>
+        <p>© 2026 System Code Software. All rights reserved.</p>
+        <p>System Code™ and AskBetter™ are brand names of System Code Software.</p>
       </div>
       <div className="footer-links">
         <a href="/portfolio">Portfolio</a>
