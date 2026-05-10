@@ -63,7 +63,13 @@ const softwareProducts = [
     type: "iOS App",
     status: "Submitted for App Store Review",
     description:
-      "An iOS app focused on structured, first-principles learning.",
+      "An iOS app exploring human nature, social dynamics, influence, and behavioural patterns through practical principles.",
+    features: [
+      "Daily principle notifications",
+      "Built-in reminders",
+      "Add selected principles to Apple Reminders",
+      "Read-aloud button for listening to principles",
+    ],
   },
   {
     title: "Context Bridge",
@@ -355,6 +361,13 @@ function SoftwareSection() {
               <h3>{product.title}</h3>
               <p className="software-status">{product.status}</p>
               <p>{product.description}</p>
+              {product.features ? (
+                <ul className="software-features">
+                  {product.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
+              ) : null}
             </div>
           </article>
         ))}

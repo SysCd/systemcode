@@ -421,6 +421,17 @@ h3 {
   font-weight: 900;
 }
 
+.software-features {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding-left: 18px;
+}
+
+.software-features li::marker {
+  color: var(--accent);
+}
+
 .featured-project {
   grid-column: 1 / -1;
   min-height: 0;
@@ -529,6 +540,7 @@ h3 {
 
 .project-card p:not(.eyebrow),
 .software-card p:not(.eyebrow),
+.software-features li,
 .thinking-card p:not(.eyebrow),
 .working-card p:not(.eyebrow),
 .specialty-card p:not(.eyebrow),
