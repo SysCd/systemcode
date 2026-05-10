@@ -4,6 +4,7 @@ import {
   FaBars,
   FaEnvelope,
   FaExternalLinkAlt,
+  FaGithub,
   FaTimes,
 } from "react-icons/fa";
 import buildInfo from "./build-info.json";
@@ -13,6 +14,7 @@ const contact = {
 };
 
 const siteUrl = "https://systemcode.net";
+const githubUrl = "https://github.com/SysCd";
 
 const logoSrc = "/system-code-lockup.png";
 const emblemSrc = "/system-code-emblem.png";
@@ -147,7 +149,8 @@ const contactPaths = [
 const projects = [
   {
     title: "Intune / Autopilot / Endpoint Compliance Lab",
-    link: "/portfolio#projects",
+    id: "intune-autopilot-endpoint-compliance",
+    link: "#intune-autopilot-endpoint-compliance",
     linkLabel: "View project",
     tags: [
       "Microsoft Intune",
@@ -163,7 +166,8 @@ const projects = [
   },
   {
     title: "Microsoft Identity & Endpoint Lab",
-    link: "/portfolio#projects",
+    id: "microsoft-identity-endpoint",
+    link: "#microsoft-identity-endpoint",
     linkLabel: "View project",
     tags: ["Entra ID", "Intune", "Microsoft 365", "PowerShell"],
     summary:
@@ -171,7 +175,8 @@ const projects = [
   },
   {
     title: "Windows Server Active Directory Lab",
-    link: "/portfolio#projects",
+    id: "windows-server-active-directory",
+    link: "#windows-server-active-directory",
     linkLabel: "View project",
     tags: ["Windows Server 2022", "Active Directory", "DNS", "Group Policy", "SMB"],
     summary:
@@ -181,7 +186,8 @@ const projects = [
   },
   {
     title: "Azure Infrastructure Admin Lab",
-    link: "/portfolio#projects",
+    id: "azure-infrastructure-admin",
+    link: "#azure-infrastructure-admin",
     linkLabel: "View project",
     tags: ["Azure VMs", "Virtual Network", "NSGs", "Linux"],
     summary:
@@ -190,7 +196,8 @@ const projects = [
   {
     title: "Azure DevOps Platform Lab",
     label: "Azure Platform Lab (In Progress)",
-    link: "/portfolio#projects",
+    id: "azure-devops-platform",
+    link: "#azure-devops-platform",
     linkLabel: "View project",
     tags: [
       "Azure",
@@ -210,6 +217,7 @@ const projects = [
   {
     title: "Principles of Nature iOS App Deployment",
     label: "iOS App Submission",
+    id: "principles-of-nature-deployment",
     link: "/#principles-of-nature",
     linkLabel: "View app section",
     tags: [
@@ -228,7 +236,8 @@ const projects = [
     title: "CortexAI / Reasoning-Enhanced SLM 2.0",
     subtitle: "Custom reasoning model + RAG research assistant",
     label: "Advanced AI Systems Lab",
-    link: "/portfolio#projects",
+    id: "cortexai-reasoning-enhanced-slm",
+    link: "#cortexai-reasoning-enhanced-slm",
     linkLabel: "View project",
     featured: true,
     tags: [
@@ -393,6 +402,16 @@ function Header({ page }) {
             {link.label}
           </a>
         ))}
+        <a
+          className="github-nav-link"
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="System Code GitHub"
+          onClick={handleNavClick}
+        >
+          <FaGithub aria-hidden="true" />
+        </a>
       </nav>
     </header>
   );
@@ -427,6 +446,9 @@ function Footer({ onBackToTop }) {
         </p>
       </div>
       <div className="footer-links">
+        <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
         <a href="/portfolio">Portfolio</a>
         <a href="#top" onClick={onBackToTop}>
           Back to top
@@ -804,11 +826,7 @@ function PortfolioPage() {
               className={`project-card ${
                 project.featured ? "featured-project" : ""
               }`}
-              id={
-                project.title === "Principles of Nature iOS App Deployment"
-                  ? "principles-of-nature"
-                  : undefined
-              }
+              id={project.id}
               key={project.title}
             >
               <div>

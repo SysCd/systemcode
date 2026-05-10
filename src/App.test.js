@@ -17,6 +17,9 @@ test("renders the System Code homepage", () => {
   expect(
     screen.getAllByRole("link", { name: /support@systemcode\.net/i }).length
   ).toBeGreaterThan(0);
+  expect(
+    screen.getByRole("link", { name: /system code github/i })
+  ).toHaveAttribute("href", "https://github.com/SysCd");
 });
 
 test("renders Erik's portfolio page", () => {
@@ -37,4 +40,27 @@ test("renders Erik's portfolio page", () => {
       name: /cortexai \/ reasoning-enhanced slm 2\.0/i,
     })
   ).toBeInTheDocument();
+  expect(
+    document.getElementById("intune-autopilot-endpoint-compliance")
+  ).toBeInTheDocument();
+  expect(
+    document.getElementById("cortexai-reasoning-enhanced-slm")
+  ).toBeInTheDocument();
+
+  const projectLinks = screen.getAllByRole("link", { name: /view project/i });
+
+  expect(
+    projectLinks.some(
+      (link) =>
+        link.getAttribute("href") === "#intune-autopilot-endpoint-compliance"
+    )
+  ).toBe(true);
+  expect(
+    projectLinks.some(
+      (link) => link.getAttribute("href") === "#cortexai-reasoning-enhanced-slm"
+    )
+  ).toBe(true);
+  expect(
+    projectLinks.some((link) => link.getAttribute("href") === "/portfolio#projects")
+  ).toBe(false);
 });
