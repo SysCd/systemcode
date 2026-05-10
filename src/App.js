@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./index.css";
 import {
   FaEnvelope,
@@ -62,7 +63,7 @@ const softwareProducts = [
     title: "Principles of Nature",
     type: "iOS App",
     description:
-      "Original iOS app for daily principles, reflection, reminders, widgets, and focused reading.",
+      "Original daily principles app with widgets, reminders, notifications, and read aloud.",
     status: "Submitted to App Store Review",
     links: [
       {
@@ -74,7 +75,7 @@ const softwareProducts = [
   },
   {
     title: "AI Context Bridge",
-    type: "AI Tool / In Development",
+    type: "AI Tool / Private MVP",
     description:
       "Experimental SysCd tool exploring privacy-focused AI workflows and user-controlled software infrastructure.",
     status: "Private MVP",
@@ -145,7 +146,7 @@ const projects = [
   {
     title: "Principles of Nature iOS App Deployment",
     label: "iOS App Release",
-    link: "https://syscdsoftware.com/#principles-of-nature",
+    link: "/#principles-of-nature",
     linkLabel: "View app section",
     tags: [
       "iOS App Deployment",
@@ -356,367 +357,244 @@ function HeroCircuitGraphic() {
   );
 }
 
-function App() {
-  const handleBackToTop = (event) => {
-    event.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+function Header({ page }) {
+  const isPortfolio = page === "portfolio";
+  const navLinks = isPortfolio
+    ? [
+        { href: "#projects", label: "Projects" },
+        { href: "#experience", label: "Experience" },
+        { href: "#skills", label: "Skills" },
+        { href: "#contact", label: "Contact" },
+      ]
+    : [
+        { href: "#software", label: "Software" },
+        { href: "#about", label: "About" },
+        { href: "/portfolio", label: "Portfolio" },
+        { href: "#contact", label: "Contact" },
+      ];
 
   return (
-    <div className="site-shell">
-      <header className="site-header" id="top">
-        <a className="brand" href="#top" aria-label="SysCd Software home">
-          <img src={logoSrc} alt="SysCd Software logo" />
+    <header className="site-header" id="top">
+      <a className="brand" href="/" aria-label="SysCd Software home">
+        <img src={logoSrc} alt="SysCd Software logo" />
+      </a>
+      <nav className="nav-links" aria-label="Main navigation">
+        {navLinks.map((link) => (
+          <a href={link.href} key={link.label}>
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </header>
+  );
+}
+
+function Footer({ onBackToTop }) {
+  return (
+    <footer className="site-footer">
+      <div className="footer-brand">
+        <img className="footer-logo" src={logoSrc} alt="SysCd Software logo" />
+        <p className="footer-name">SysCd Software™</p>
+        <p>
+          SysCd &mdash; System Code. Practical software and infrastructure,
+          built from first principles.
+        </p>
+        <p>© 2026 Erik Gombar. All rights reserved.</p>
+      </div>
+      <div className="footer-links">
+        <a href="/portfolio">Portfolio</a>
+        <a href="#top" onClick={onBackToTop}>
+          Back to top
         </a>
-        <nav className="nav-links" aria-label="Main navigation">
-          <a href="#projects">Projects</a>
-          <a href="#software">Software</a>
-          <a href="#experience">Experience</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+      </div>
+    </footer>
+  );
+}
 
-      <main>
-        <section className="hero-section" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <p className="eyebrow">Azure &amp; Microsoft Infrastructure Engineer</p>
-            <h1 id="hero-title">Erik Gombar</h1>
-            <p className="hero-lede">
-              Building reliable systems across identity, endpoints, automation,
-              cloud infrastructure, and deployment workflows.
-            </p>
-            <div className="hero-tags" aria-label="Microsoft infrastructure focus">
-              {heroTags.map((tag) => (
-                <span key={tag}>{tag}</span>
-              ))}
+function SoftwareSection() {
+  return (
+    <section className="section-block software-section" id="software">
+      <div className="section-heading">
+        <p className="eyebrow">Software</p>
+        <h2>Software by SysCd</h2>
+        <p>
+          Independent apps and tools built around systems, infrastructure, and
+          AI.
+        </p>
+      </div>
+      <div className="software-grid">
+        {softwareProducts.map((product) => (
+          <article
+            className="software-card"
+            id={
+              product.title === "Principles of Nature"
+                ? "principles-of-nature"
+                : undefined
+            }
+            key={product.title}
+          >
+            <div>
+              <span className="project-label">{product.type}</span>
+              <h3>{product.title}</h3>
+              <p>{product.description}</p>
             </div>
-            <div className="hero-actions" aria-label="Primary contact links">
-              <a className="button primary" href={`mailto:${contact.email}`}>
-                <FaEnvelope aria-hidden="true" />
-                Email
-              </a>
-              <a
-                className="button secondary"
-                href={contact.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub aria-hidden="true" />
-                GitHub
-              </a>
+            <div className="software-meta">
+              <span className="status-pill">{product.status}</span>
+              {product.note && <span>{product.note}</span>}
             </div>
-          </div>
-
-          <HeroCircuitGraphic />
-        </section>
-
-        <section className="section-block thinking-section" id="thinking">
-          <div className="section-heading">
-            <p className="eyebrow">Approach</p>
-            <h2>First-Principles Approach</h2>
-            <p>
-              I approach infrastructure from first principles: what components
-              exist, how they connect, what assumptions they depend on, and
-              where they can fail.
-            </p>
-            <p>
-              My systems-thinking approach helps me map identity, endpoints,
-              servers, networking, policies, automation, monitoring, access
-              paths, and failure points into clear diagrams, fixes, and
-              repeatable workflows.
-            </p>
-          </div>
-          <div className="thinking-grid">
-            {thinkingCards.map((card) => (
-              <article className="thinking-card" key={card.title}>
-                <h3>{card.title}</h3>
-                <p>{card.body}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-block working-section" id="working-style">
-          <div className="section-heading">
-            <p className="eyebrow">Working Style</p>
-            <h2>Working Style</h2>
-            <p>
-              I&apos;m a calm, independent and systems-focused engineer who
-              works best with clear problems, practical evidence and
-              well-documented technical environments.
-            </p>
-            <p>
-              I work best in technical environments where identity, endpoint,
-              server, network, and cloud components need to be understood
-              clearly, documented properly, and improved systematically.
-            </p>
-            <p>
-              I prefer to understand the underlying structure of a system before
-              changing it: the components, dependencies, assumptions, access
-              paths and likely failure points.
-            </p>
-            <p>
-              My working style is direct, analytical and outcome-focused: map
-              the system, isolate the issue, test the fix, document the result,
-              and make the process easier to repeat.
-            </p>
-          </div>
-          <div className="working-grid">
-            {workingStyleCards.map((card) => (
-              <article className="working-card" key={card.title}>
-                <h3>{card.title}</h3>
-                <p>{card.body}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-block" id="projects">
-          <div className="section-heading">
-            <p className="eyebrow">Selected labs</p>
-            <h2>Technical Projects</h2>
-            <p>
-              Microsoft infrastructure is the core focus: identity, endpoints,
-              Windows Server, Azure, automation, monitoring, and operational
-              documentation. Additional cloud and AI systems projects
-              demonstrate broader systems-thinking, automation, and architecture
-              skills.
-            </p>
-          </div>
-          <div className="project-grid">
-            {projects.map((project) => (
-              <article
-                className={`project-card ${
-                  project.featured ? "featured-project" : ""
-                }`}
-                id={
-                  project.title === "Principles of Nature iOS App Deployment"
-                    ? "principles-of-nature"
-                    : undefined
-                }
-                key={project.title}
-              >
-                <div>
-                  {project.label && (
-                    <span className="project-label">{project.label}</span>
-                  )}
-                  <h3>{project.title}</h3>
-                  {project.subtitle && (
-                    <p className="project-subtitle">{project.subtitle}</p>
-                  )}
-                  <p>{project.summary}</p>
-                  {project.shortText && <p>{project.shortText}</p>}
-                  {project.architecture && (
-                    <p className="architecture-line">{project.architecture}</p>
-                  )}
-                  {project.details && (
-                    <ul className="project-details">
-                      {project.details.map((detail) => (
-                        <li key={detail}>{detail}</li>
-                      ))}
-                    </ul>
-                  )}
-                  {project.extraDetails && (
-                    <details className="project-more">
-                      <summary>More architecture notes</summary>
-                      <ul>
-                        {project.extraDetails.map((detail) => (
-                          <li key={detail}>{detail}</li>
-                        ))}
-                      </ul>
-                    </details>
-                  )}
-                </div>
-                <div className="tag-row">
-                  {project.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-                <div className="project-actions">
-                  <a
-                    className="text-link"
-                    href={project.link}
-                    target={
-                      project.link.startsWith("http") ? "_blank" : undefined
-                    }
-                    rel={
-                      project.link.startsWith("http")
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
-                  >
-                    {project.linkLabel || "View repository"}
+            {product.links && (
+              <div className="project-actions">
+                {product.links.map((link) => (
+                  <a className="text-link" href={link.href} key={link.label}>
+                    {link.label}
                     <FaExternalLinkAlt aria-hidden="true" />
                   </a>
-                  {project.demoLink && (
-                    <a
-                      className="text-link"
-                      href={project.demoLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View CortexAI demo
-                      <FaExternalLinkAlt aria-hidden="true" />
-                    </a>
-                  )}
-                  {project.writeupLink && (
-                    <a
-                      className="text-link"
-                      href={project.writeupLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Read write-up
-                      <FaExternalLinkAlt aria-hidden="true" />
-                    </a>
-                  )}
-                  {project.readmeLink && (
-                    <a
-                      className="text-link"
-                      href={project.readmeLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Read README
-                      <FaExternalLinkAlt aria-hidden="true" />
-                    </a>
-                  )}
-                  {project.diagramLink && (
-                    <a
-                      className="text-link"
-                      href={project.diagramLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View diagrams
-                      <FaExternalLinkAlt aria-hidden="true" />
-                    </a>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-block software-section" id="software">
-          <div className="section-heading">
-            <p className="eyebrow">Software</p>
-            <h2>Software by SysCd</h2>
-            <p>
-              Independent apps and tools built around systems, infrastructure,
-              and AI.
-            </p>
-            <p className="brand-note">
-              SysCd Software™ is my personal software brand for independent
-              apps, tools, and infrastructure-focused projects.
-            </p>
-          </div>
-          <div className="software-grid">
-            {softwareProducts.map((product) => (
-              <article className="software-card" key={product.title}>
-                <div>
-                  <span className="project-label">{product.type}</span>
-                  <h3>{product.title}</h3>
-                  <p>{product.description}</p>
-                </div>
-                <div className="software-meta">
-                  <span className="status-pill">{product.status}</span>
-                  {product.note && <span>{product.note}</span>}
-                </div>
-                {product.links && (
-                  <div className="project-actions">
-                    {product.links.map((link) => (
-                      <a className="text-link" href={link.href} key={link.label}>
-                        {link.label}
-                        <FaExternalLinkAlt aria-hidden="true" />
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-block split-section" id="experience">
-          <div className="section-heading sticky-heading">
-            <p className="eyebrow">Professional record</p>
-            <h2>Experience</h2>
-            <p>
-              Microsoft-focused infrastructure and support experience across
-              Windows Server, Active Directory, Intune, Okta, Microsoft 365,
-              VMware ESXi, endpoint support, networking, documentation, and
-              troubleshooting.
-            </p>
-          </div>
-          <div className="timeline-list">
-            {experience.map((item) => (
-              <article className="timeline-entry" key={item.role}>
-                <span className="date-pill">{item.date}</span>
-                <h3>{item.role}</h3>
-                <p className="company">{item.company}</p>
-                <ul>
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-block" id="skills">
-          <div className="section-heading">
-            <p className="eyebrow">Tooling range</p>
-            <h2>Technical Skills</h2>
-            <p>
-              Split by where the evidence comes from: professional Microsoft
-              infrastructure experience, Microsoft-focused labs, and supporting
-              broader cloud and systems projects.
-            </p>
-          </div>
-          <div className="skill-groups">
-            {skillGroups.map((group) => (
-              <article className="skill-group" key={group.title}>
-                <h3>{group.title}</h3>
-                <div className="tag-row">
-                  {group.skills.map((skill) => (
-                    <span key={skill}>{skill}</span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-block education-section">
-          <div className="section-heading education-heading">
-            <p className="eyebrow">Education</p>
-          </div>
-          <article className="education-card">
-            <h2>BSc (Hons) Computer Science</h2>
-            <p>Brunel University London · 2018–2022</p>
-            <p>Academic Excellence CEDPS Scholarship Recipient</p>
+                ))}
+              </div>
+            )}
           </article>
-        </section>
+        ))}
+      </div>
+    </section>
+  );
+}
 
-        <section className="contact-section" id="contact">
-          <div>
-            <p className="eyebrow">Get in touch</p>
-            <h2>Available for infrastructure and cloud engineering roles.</h2>
-            <p>
-              For roles, collaborations, or technical enquiries, contact me at
-              support@syscdsoftware.com.
-            </p>
+function HomePage() {
+  return (
+    <main>
+      <section className="hero-section home-hero" aria-labelledby="home-title">
+        <div className="hero-copy">
+          <p className="eyebrow">SysCd Software™</p>
+          <h1 className="brand-hero-title" id="home-title">
+            SysCd Software
+          </h1>
+          <p className="hero-lede">
+            SysCd &mdash; System Code. Practical software and infrastructure,
+            built from first principles.
+          </p>
+          <p className="home-summary">
+            Independent software, infrastructure tools, and AI-focused products
+            built by Erik Gombar.
+          </p>
+          <div className="hero-actions" aria-label="Homepage actions">
+            <a className="button primary" href="#software">
+              View Software
+            </a>
+            <a className="button secondary" href="/portfolio">
+              View Portfolio
+            </a>
           </div>
-          <div className="contact-actions">
+        </div>
+
+        <HeroCircuitGraphic />
+      </section>
+
+      <SoftwareSection />
+
+      <section className="section-block" id="products">
+        <div className="section-heading">
+          <p className="eyebrow">Products</p>
+          <h2>Product Focus</h2>
+          <p>
+            SysCd products are small, practical systems: shipped or in-progress
+            tools with clear support paths, careful documentation, and a focus
+            on useful software rather than noise.
+          </p>
+        </div>
+        <div className="specialty-grid">
+          <article className="specialty-card">
+            <h3>Independent Apps</h3>
+            <p>
+              Focused iOS products built around daily use, reading, reminders,
+              widgets, and clean support operations.
+            </p>
+          </article>
+          <article className="specialty-card">
+            <h3>Infrastructure Tools</h3>
+            <p>
+              Practical tooling ideas shaped by Microsoft infrastructure,
+              automation, documentation, and operational reliability.
+            </p>
+          </article>
+          <article className="specialty-card">
+            <h3>AI-Focused Systems</h3>
+            <p>
+              Private experiments around privacy-focused AI workflows and
+              user-controlled software infrastructure.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="section-block split-section" id="about">
+        <div className="section-heading sticky-heading">
+          <p className="eyebrow">About SysCd</p>
+          <h2>Software from systems thinking.</h2>
+        </div>
+        <div className="timeline-list">
+          <article className="timeline-entry">
+            <p>
+              SysCd Software™ is Erik Gombar&apos;s personal software brand for
+              independent apps, tools, and infrastructure-focused projects.
+            </p>
+            <p>
+              The work sits at the intersection of practical software,
+              Microsoft infrastructure, automation, AI-assisted workflows, and
+              first-principles documentation.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="contact-section" id="contact">
+        <div>
+          <p className="eyebrow">Contact</p>
+          <h2>Software, support, and technical enquiries.</h2>
+          <p>
+            For product support, collaborations, or technical enquiries, contact
+            me at support@syscdsoftware.com.
+          </p>
+        </div>
+        <div className="contact-actions">
+          <a className="button primary" href={`mailto:${contact.email}`}>
+            <FaEnvelope aria-hidden="true" />
+            {contact.email}
+          </a>
+          <a
+            className="button secondary"
+            href={contact.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaGithub aria-hidden="true" />
+            GitHub
+          </a>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function PortfolioPage() {
+  return (
+    <main>
+      <section className="hero-section" aria-labelledby="hero-title">
+        <div className="hero-copy">
+          <p className="eyebrow">Azure &amp; Microsoft Infrastructure Engineer</p>
+          <h1 id="hero-title">Erik Gombar</h1>
+          <p className="hero-lede">
+            Building reliable systems across identity, endpoints, automation,
+            cloud infrastructure, and deployment workflows.
+          </p>
+          <div className="hero-tags" aria-label="Microsoft infrastructure focus">
+            {heroTags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+          <div className="hero-actions" aria-label="Primary contact links">
             <a className="button primary" href={`mailto:${contact.email}`}>
               <FaEnvelope aria-hidden="true" />
-              {contact.email}
+              Email
             </a>
             <a
               className="button secondary"
@@ -728,23 +606,311 @@ function App() {
               GitHub
             </a>
           </div>
-        </section>
-      </main>
-
-      <footer className="site-footer">
-        <div className="footer-brand">
-          <img className="footer-logo" src={logoSrc} alt="SysCd Software logo" />
-          <p className="footer-name">SysCd Software™</p>
-          <p>
-            SysCd &mdash; System Code. Practical software and infrastructure,
-            built from first principles.
-          </p>
-          <p>© 2026 Erik Gombar. All rights reserved.</p>
         </div>
-        <a href="#top" onClick={handleBackToTop}>
-          Back to top
-        </a>
-      </footer>
+
+        <HeroCircuitGraphic />
+      </section>
+
+      <section className="section-block thinking-section" id="thinking">
+        <div className="section-heading">
+          <p className="eyebrow">Approach</p>
+          <h2>First-Principles Approach</h2>
+          <p>
+            I approach infrastructure from first principles: what components
+            exist, how they connect, what assumptions they depend on, and where
+            they can fail.
+          </p>
+          <p>
+            My systems-thinking approach helps me map identity, endpoints,
+            servers, networking, policies, automation, monitoring, access paths,
+            and failure points into clear diagrams, fixes, and repeatable
+            workflows.
+          </p>
+        </div>
+        <div className="thinking-grid">
+          {thinkingCards.map((card) => (
+            <article className="thinking-card" key={card.title}>
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block working-section" id="working-style">
+        <div className="section-heading">
+          <p className="eyebrow">Working Style</p>
+          <h2>Working Style</h2>
+          <p>
+            I&apos;m a calm, independent and systems-focused engineer who works
+            best with clear problems, practical evidence and well-documented
+            technical environments.
+          </p>
+          <p>
+            I work best in technical environments where identity, endpoint,
+            server, network, and cloud components need to be understood clearly,
+            documented properly, and improved systematically.
+          </p>
+          <p>
+            I prefer to understand the underlying structure of a system before
+            changing it: the components, dependencies, assumptions, access paths
+            and likely failure points.
+          </p>
+          <p>
+            My working style is direct, analytical and outcome-focused: map the
+            system, isolate the issue, test the fix, document the result, and
+            make the process easier to repeat.
+          </p>
+        </div>
+        <div className="working-grid">
+          {workingStyleCards.map((card) => (
+            <article className="working-card" key={card.title}>
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block" id="projects">
+        <div className="section-heading">
+          <p className="eyebrow">Selected labs</p>
+          <h2>Technical Projects</h2>
+          <p>
+            Microsoft infrastructure is the core focus: identity, endpoints,
+            Windows Server, Azure, automation, monitoring, and operational
+            documentation. Additional cloud and AI systems projects demonstrate
+            broader systems-thinking, automation, and architecture skills.
+          </p>
+        </div>
+        <div className="project-grid">
+          {projects.map((project) => (
+            <article
+              className={`project-card ${
+                project.featured ? "featured-project" : ""
+              }`}
+              id={
+                project.title === "Principles of Nature iOS App Deployment"
+                  ? "principles-of-nature"
+                  : undefined
+              }
+              key={project.title}
+            >
+              <div>
+                {project.label && (
+                  <span className="project-label">{project.label}</span>
+                )}
+                <h3>{project.title}</h3>
+                {project.subtitle && (
+                  <p className="project-subtitle">{project.subtitle}</p>
+                )}
+                <p>{project.summary}</p>
+                {project.shortText && <p>{project.shortText}</p>}
+                {project.architecture && (
+                  <p className="architecture-line">{project.architecture}</p>
+                )}
+                {project.details && (
+                  <ul className="project-details">
+                    {project.details.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
+                  </ul>
+                )}
+                {project.extraDetails && (
+                  <details className="project-more">
+                    <summary>More architecture notes</summary>
+                    <ul>
+                      {project.extraDetails.map((detail) => (
+                        <li key={detail}>{detail}</li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
+              </div>
+              <div className="tag-row">
+                {project.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+              <div className="project-actions">
+                <a
+                  className="text-link"
+                  href={project.link}
+                  target={project.link.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    project.link.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                >
+                  {project.linkLabel || "View repository"}
+                  <FaExternalLinkAlt aria-hidden="true" />
+                </a>
+                {project.demoLink && (
+                  <a
+                    className="text-link"
+                    href={project.demoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View CortexAI demo
+                    <FaExternalLinkAlt aria-hidden="true" />
+                  </a>
+                )}
+                {project.writeupLink && (
+                  <a
+                    className="text-link"
+                    href={project.writeupLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Read write-up
+                    <FaExternalLinkAlt aria-hidden="true" />
+                  </a>
+                )}
+                {project.readmeLink && (
+                  <a
+                    className="text-link"
+                    href={project.readmeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Read README
+                    <FaExternalLinkAlt aria-hidden="true" />
+                  </a>
+                )}
+                {project.diagramLink && (
+                  <a
+                    className="text-link"
+                    href={project.diagramLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View diagrams
+                    <FaExternalLinkAlt aria-hidden="true" />
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block split-section" id="experience">
+        <div className="section-heading sticky-heading">
+          <p className="eyebrow">Professional record</p>
+          <h2>Experience</h2>
+          <p>
+            Microsoft-focused infrastructure and support experience across
+            Windows Server, Active Directory, Intune, Okta, Microsoft 365,
+            VMware ESXi, endpoint support, networking, documentation, and
+            troubleshooting.
+          </p>
+        </div>
+        <div className="timeline-list">
+          {experience.map((item) => (
+            <article className="timeline-entry" key={item.role}>
+              <span className="date-pill">{item.date}</span>
+              <h3>{item.role}</h3>
+              <p className="company">{item.company}</p>
+              <ul>
+                {item.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block" id="skills">
+        <div className="section-heading">
+          <p className="eyebrow">Tooling range</p>
+          <h2>Technical Skills</h2>
+          <p>
+            Split by where the evidence comes from: professional Microsoft
+            infrastructure experience, Microsoft-focused labs, and supporting
+            broader cloud and systems projects.
+          </p>
+        </div>
+        <div className="skill-groups">
+          {skillGroups.map((group) => (
+            <article className="skill-group" key={group.title}>
+              <h3>{group.title}</h3>
+              <div className="tag-row">
+                {group.skills.map((skill) => (
+                  <span key={skill}>{skill}</span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block education-section">
+        <div className="section-heading education-heading">
+          <p className="eyebrow">Education</p>
+        </div>
+        <article className="education-card">
+          <h2>BSc (Hons) Computer Science</h2>
+          <p>Brunel University London · 2018–2022</p>
+          <p>Academic Excellence CEDPS Scholarship Recipient</p>
+        </article>
+      </section>
+
+      <section className="contact-section" id="contact">
+        <div>
+          <p className="eyebrow">Get in touch</p>
+          <h2>Available for infrastructure and cloud engineering roles.</h2>
+          <p>
+            For roles, collaborations, or technical enquiries, contact me at
+            support@syscdsoftware.com.
+          </p>
+        </div>
+        <div className="contact-actions">
+          <a className="button primary" href={`mailto:${contact.email}`}>
+            <FaEnvelope aria-hidden="true" />
+            {contact.email}
+          </a>
+          <a
+            className="button secondary"
+            href={contact.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaGithub aria-hidden="true" />
+            GitHub
+          </a>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function App() {
+  const normalizedPath = window.location.pathname.replace(/\/$/, "") || "/";
+  const page = normalizedPath === "/portfolio" ? "portfolio" : "home";
+
+  useEffect(() => {
+    document.title =
+      page === "portfolio"
+        ? "Erik Gombar | Azure & Microsoft Infrastructure Engineer"
+        : "SysCd Software";
+  }, [page]);
+
+  const handleBackToTop = (event) => {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <div className="site-shell">
+      <Header page={page} />
+      {page === "portfolio" ? <PortfolioPage /> : <HomePage />}
+      <Footer onBackToTop={handleBackToTop} />
     </div>
   );
 }

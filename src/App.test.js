@@ -1,7 +1,26 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders the infrastructure portfolio", () => {
+test("renders the SysCd Software homepage", () => {
+  window.history.pushState({}, "", "/");
+  render(<App />);
+
+  expect(
+    screen.getByRole("heading", { name: /^syscd software$/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("heading", { name: /software by syscd/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("link", { name: /view portfolio/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getAllByRole("link", { name: /support@syscdsoftware\.com/i }).length
+  ).toBeGreaterThan(0);
+});
+
+test("renders Erik's portfolio page", () => {
+  window.history.pushState({}, "", "/portfolio");
   render(<App />);
 
   expect(
@@ -10,12 +29,6 @@ test("renders the infrastructure portfolio", () => {
   expect(
     screen.getByText(/^azure & microsoft infrastructure engineer$/i)
   ).toBeInTheDocument();
-  expect(
-    screen.getByRole("heading", { name: /software by syscd/i })
-  ).toBeInTheDocument();
-  expect(
-    screen.getAllByRole("link", { name: /support@syscdsoftware\.com/i }).length
-  ).toBeGreaterThan(0);
   expect(
     screen.getByRole("heading", { name: /technical projects/i })
   ).toBeInTheDocument();
