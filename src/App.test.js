@@ -1,21 +1,21 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders the SysCd Software homepage", () => {
+test("renders the System Code homepage", () => {
   window.history.pushState({}, "", "/");
   render(<App />);
 
   expect(
-    screen.getByRole("heading", { name: /^syscd software$/i })
+    screen.getByRole("heading", { name: /^system code$/i })
   ).toBeInTheDocument();
   expect(
-    screen.getByRole("heading", { name: /software by syscd/i })
+    screen.getByRole("heading", { name: /^software$/i })
   ).toBeInTheDocument();
   expect(
     screen.getByRole("link", { name: /view portfolio/i })
   ).toBeInTheDocument();
   expect(
-    screen.getAllByRole("link", { name: /support@syscdsoftware\.com/i }).length
+    screen.getAllByRole("link", { name: /support@systemcode\.net/i }).length
   ).toBeGreaterThan(0);
 });
 

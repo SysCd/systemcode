@@ -7,12 +7,12 @@ import {
 } from "react-icons/fa";
 
 const contact = {
-  email: "support@syscdsoftware.com",
+  email: "support@systemcode.net",
   github: "https://github.com/SysCd",
 };
 
-const logoSrc = "/logo-wordmark.png";
-const systemCodeLogoSrc = "/system-code-logo.png";
+const logoSrc = "/system-code-logo.png";
+const emblemSrc = "/brand-icon.png";
 
 const thinkingCards = [
   {
@@ -61,25 +61,28 @@ const heroTags = [
 
 const softwareProducts = [
   {
-    title: "Principles of Nature",
-    type: "iOS App",
+    title: "Infrastructure Tools",
+    type: "Systems",
     description:
-      "Original daily principles app with widgets, reminders, notifications, and read aloud.",
-    status: "Submitted to App Store Review",
-    links: [
-      {
-        label: "Support contact",
-        href: `mailto:${contact.email}`,
-      },
-    ],
-    note: "App Store link pending review.",
+      "Small operational tools for cloud, endpoint, identity, deployment, and repeatable infrastructure work.",
   },
   {
-    title: "AI Context Bridge",
-    type: "AI Tool / Private MVP",
+    title: "AI Products",
+    type: "AI",
     description:
-      "Experimental SysCd tool exploring privacy-focused AI workflows and user-controlled software infrastructure.",
-    status: "Private MVP",
+      "Focused AI workflows and product experiments built around clear user control, useful context, and practical outputs.",
+  },
+  {
+    title: "Developer Utilities",
+    type: "Utilities",
+    description:
+      "Lean helpers for automation, validation, scripting, release hygiene, and day-to-day engineering flow.",
+  },
+  {
+    title: "Systems Documentation",
+    type: "Documentation",
+    description:
+      "Architecture notes, runbooks, diagrams, and evidence-led technical writing for systems that need to be understood.",
   },
 ];
 
@@ -290,7 +293,7 @@ function Header({ page }) {
   const isPortfolio = page === "portfolio";
   const navLinks = isPortfolio
     ? [
-        { href: "/", label: "SysCd" },
+        { href: "/", label: "System Code" },
         { href: "#projects", label: "Projects" },
         { href: "#experience", label: "Experience" },
         { href: "#skills", label: "Skills" },
@@ -305,8 +308,8 @@ function Header({ page }) {
 
   return (
     <header className="site-header" id="top">
-      <a className="brand" href="/" aria-label="SysCd Software home">
-        <img src={logoSrc} alt="SysCd Software logo" />
+      <a className="brand" href="/" aria-label="System Code home">
+        <img src={logoSrc} alt="System Code logo" />
       </a>
       <nav className="nav-links" aria-label="Main navigation">
         {navLinks.map((link) => (
@@ -323,13 +326,13 @@ function Footer({ onBackToTop }) {
   return (
     <footer className="site-footer">
       <div className="footer-brand">
-        <img className="footer-logo" src={logoSrc} alt="SysCd Software logo" />
-        <p className="footer-name">SysCd Software™</p>
+        <img className="footer-logo" src={logoSrc} alt="System Code logo" />
+        <p className="footer-name">System Code</p>
         <p>
-          SysCd &mdash; System Code. Practical software and infrastructure,
-          built from first principles.
+          Practical software and infrastructure, built from first principles.
         </p>
-        <p>© 2026 Erik Gombar. All rights reserved.</p>
+        <p>SysCd is shorthand for System Code.</p>
+        <p>© 2026 System Code. All rights reserved.</p>
       </div>
       <div className="footer-links">
         <a href="/portfolio">Portfolio</a>
@@ -345,11 +348,10 @@ function SoftwareSection() {
   return (
     <section className="section-block software-section" id="software">
       <div className="section-heading">
-        <p className="eyebrow">Software</p>
-        <h2>Software by SysCd</h2>
+        <h2>Software</h2>
         <p>
-          Independent apps and tools built around systems, infrastructure, and
-          AI.
+          Focused tools for infrastructure, automation, AI workflows, and
+          practical systems.
         </p>
       </div>
       <div className="software-grid">
@@ -368,20 +370,6 @@ function SoftwareSection() {
               <h3>{product.title}</h3>
               <p>{product.description}</p>
             </div>
-            <div className="software-meta">
-              <span className="status-pill">{product.status}</span>
-              {product.note && <span>{product.note}</span>}
-            </div>
-            {product.links && (
-              <div className="project-actions">
-                {product.links.map((link) => (
-                  <a className="text-link" href={link.href} key={link.label}>
-                    {link.label}
-                    <FaExternalLinkAlt aria-hidden="true" />
-                  </a>
-                ))}
-              </div>
-            )}
           </article>
         ))}
       </div>
@@ -394,20 +382,22 @@ function HomePage() {
     <main>
       <section className="hero-section home-hero" aria-labelledby="home-title">
         <div className="hero-copy">
-          <p className="eyebrow">SYSTEM CODE</p>
+          <img className="hero-emblem" src={emblemSrc} alt="" aria-hidden="true" />
           <h1 className="brand-hero-title" id="home-title">
-            SysCd
+            System Code
           </h1>
           <p className="hero-lede">
-            Practical software and infrastructure, built from first principles.
+            Practical software and infrastructure,
+            <br />
+            built from first principles.
           </p>
           <p className="home-summary">
             Independent software, infrastructure tools, and AI-focused products
-            by Erik Gombar.
+            built under System Code.
           </p>
           <div className="hero-actions" aria-label="Homepage actions">
             <a className="button primary" href="#software">
-              View Software
+              Explore Software
             </a>
             <a className="button secondary" href="/portfolio">
               View Portfolio
@@ -420,12 +410,11 @@ function HomePage() {
 
       <section className="section-block" id="products">
         <div className="section-heading">
-          <p className="eyebrow">Products</p>
           <h2>Product Focus</h2>
           <p>
-            SysCd products are small, practical systems: shipped or in-progress
-            tools with clear support paths, careful documentation, and a focus
-            on useful software rather than noise.
+            System Code products are small, practical systems: shipped or
+            in-progress tools with clear support paths, careful documentation,
+            and a focus on useful software rather than noise.
           </p>
         </div>
         <div className="specialty-grid">
@@ -455,19 +444,19 @@ function HomePage() {
 
       <section className="section-block split-section" id="about">
         <div className="section-heading sticky-heading">
-          <p className="eyebrow">About SysCd</p>
           <h2>Software from systems thinking.</h2>
         </div>
         <div className="timeline-list">
           <article className="timeline-entry">
             <img
               className="system-code-mark system-code-mark-small"
-              src={systemCodeLogoSrc}
+              src={logoSrc}
               alt="System Code logo"
             />
             <p>
-              SysCd Software™ is Erik Gombar&apos;s personal software brand for
-              independent apps, tools, and infrastructure-focused projects.
+              System Code is an independent software and infrastructure brand
+              for practical tools, automation, AI workflows, and technical
+              systems.
             </p>
             <p>
               The work sits at the intersection of practical software,
@@ -484,7 +473,7 @@ function HomePage() {
           <h2>Software, support, and technical enquiries.</h2>
           <p>
             For product support, collaborations, or technical enquiries, contact
-            me at support@syscdsoftware.com.
+            System Code at support@systemcode.net.
           </p>
         </div>
         <div className="contact-actions">
@@ -794,7 +783,7 @@ function PortfolioPage() {
           <h2>Available for infrastructure and cloud engineering roles.</h2>
           <p>
             For roles, collaborations, or technical enquiries, contact me at
-            support@syscdsoftware.com.
+            support@systemcode.net.
           </p>
         </div>
         <div className="contact-actions">
@@ -825,7 +814,7 @@ function App() {
     document.title =
       page === "portfolio"
         ? "Erik Gombar | Azure & Microsoft Infrastructure Engineer"
-        : "SysCd Software";
+        : "System Code";
   }, [page]);
 
   useEffect(() => {
