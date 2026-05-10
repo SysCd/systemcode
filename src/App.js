@@ -59,28 +59,18 @@ const heroTags = [
 
 const softwareProducts = [
   {
-    title: "Infrastructure Tools",
-    type: "Systems",
+    title: "Principles of Nature",
+    type: "iOS App",
+    status: "Submitted for App Store Review",
     description:
-      "Small operational tools for cloud, endpoint, identity, deployment, and repeatable infrastructure work.",
+      "An iOS app focused on structured, first-principles learning.",
   },
   {
-    title: "AI Products",
-    type: "AI",
+    title: "Context Bridge",
+    type: "AI Tool",
+    status: "Planned / In development",
     description:
-      "Focused AI workflows and product experiments built around clear user control, useful context, and practical outputs.",
-  },
-  {
-    title: "Developer Utilities",
-    type: "Utilities",
-    description:
-      "Lean helpers for automation, validation, scripting, release hygiene, and day-to-day engineering flow.",
-  },
-  {
-    title: "Systems Documentation",
-    type: "Documentation",
-    description:
-      "Architecture notes, runbooks, diagrams, and evidence-led technical writing for systems that need to be understood.",
+      "A local-first AI workflow utility for organizing and preparing context across tools.",
   },
 ];
 
@@ -149,21 +139,20 @@ const projects = [
   },
   {
     title: "Principles of Nature iOS App Deployment",
-    label: "iOS App Release",
+    label: "iOS App Submission",
     link: "/#principles-of-nature",
     linkLabel: "View app section",
     tags: [
-      "iOS App Deployment",
-      "App Store Connect",
+      "iOS App Submission",
+      "App Store Review",
       "TestFlight",
-      "Public Release",
       "Support Email",
       "Documentation",
     ],
     summary:
-      "Public release work for the Principles of Nature iOS app, covering app presentation, support contact setup, release documentation, and production-facing website readiness.",
+      "App Store review preparation for the Principles of Nature iOS app, covering app presentation, support contact setup, submission documentation, and production-facing website readiness.",
     shortText:
-      "Positioned as a lightweight deployment and operations project alongside the Microsoft infrastructure portfolio, showing release hygiene, support routing, and public-domain readiness.",
+      "Positioned as a lightweight deployment and operations project alongside the Microsoft infrastructure portfolio, showing submission hygiene, support routing, and public-domain readiness.",
   },
   {
     title: "CortexAI / Reasoning-Enhanced SLM 2.0",
@@ -328,7 +317,7 @@ function Footer({ onBackToTop }) {
           Practical software and infrastructure, built from first principles.
         </p>
         <p>© 2026 System Code Software. All rights reserved.</p>
-        <p>System Code™ and AskBetter™ are brand names of System Code Software.</p>
+        <p>System Code™ is a brand name of System Code Software.</p>
       </div>
       <div className="footer-links">
         <a href="/portfolio">Portfolio</a>
@@ -364,6 +353,7 @@ function SoftwareSection() {
             <div>
               <span className="project-label">{product.type}</span>
               <h3>{product.title}</h3>
+              <p className="software-status">{product.status}</p>
               <p>{product.description}</p>
             </div>
           </article>
