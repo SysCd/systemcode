@@ -361,7 +361,7 @@ function Header({ page }) {
   const isPortfolio = page === "portfolio";
   const navLinks = isPortfolio
     ? [
-        { href: "/", label: "SysCd Home" },
+        { href: "/", label: "SysCd" },
         { href: "#projects", label: "Projects" },
         { href: "#experience", label: "Experience" },
         { href: "#skills", label: "Skills" },
