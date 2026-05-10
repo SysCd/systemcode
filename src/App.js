@@ -431,7 +431,7 @@ function formatBuildDate(value) {
   }).format(date);
 }
 
-function Footer({ onBackToTop }) {
+function Footer({ isPortfolio, onBackToTop }) {
   return (
     <footer className="site-footer">
       <div className="footer-brand">
@@ -449,7 +449,7 @@ function Footer({ onBackToTop }) {
         <a href={githubUrl} target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
-        <a href="/portfolio">Portfolio</a>
+        {!isPortfolio && <a href="/portfolio">Portfolio</a>}
         <a href="#top" onClick={onBackToTop}>
           Back to top
         </a>
@@ -1110,7 +1110,7 @@ function App() {
     <div className="site-shell">
       <Header page={page} />
       {isPortfolio ? <PortfolioPage /> : <HomePage />}
-      <Footer onBackToTop={handleBackToTop} />
+      <Footer isPortfolio={isPortfolio} onBackToTop={handleBackToTop} />
     </div>
   );
 }

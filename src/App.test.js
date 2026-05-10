@@ -63,4 +63,7 @@ test("renders Erik's portfolio page", () => {
   expect(
     projectLinks.some((link) => link.getAttribute("href") === "/portfolio#projects")
   ).toBe(false);
+  expect(
+    screen.queryByRole("link", { name: /^portfolio$/i })
+  ).not.toBeInTheDocument();
 });
