@@ -4,7 +4,7 @@
 
 Practical software and infrastructure, built from first principles.
 
-System Code is the public website for independent software, infrastructure tools, AI-focused products, developer utilities, and systems documentation. SysCd is shorthand for System Code and remains in GitHub/project references.
+System Code is the public website for independent software, infrastructure tools, AI-focused products, developer utilities, and systems documentation.
 
 ## Site Focus
 
@@ -25,5 +25,4 @@ Cloudflare Pages settings:
 ## Contact / Links
 
 - **Email:** [support@systemcode.net](mailto:support@systemcode.net)
-- **GitHub:** [https://github.com/SysCd](https://github.com/SysCd)
 - **Portfolio:** [https://systemcode.net/portfolio](https://systemcode.net/portfolio)

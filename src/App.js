@@ -3,12 +3,10 @@ import "./index.css";
 import {
   FaEnvelope,
   FaExternalLinkAlt,
-  FaGithub,
 } from "react-icons/fa";
 
 const contact = {
   email: "support@systemcode.net",
-  github: "https://github.com/SysCd",
 };
 
 const logoSrc = "/system-code-lockup.png";
@@ -89,9 +87,8 @@ const softwareProducts = [
 const projects = [
   {
     title: "Intune / Autopilot / Endpoint Compliance Lab",
-    link: "https://github.com/SysCd/intune-autopilot-endpoint-lab",
-    readmeLink:
-      "https://github.com/SysCd/intune-autopilot-endpoint-lab/blob/main/README.md",
+    link: "/portfolio#projects",
+    linkLabel: "View project",
     tags: [
       "Microsoft Intune",
       "Entra ID",
@@ -106,15 +103,16 @@ const projects = [
   },
   {
     title: "Microsoft Identity & Endpoint Lab",
-    link: "https://github.com/SysCd/Microsoft-Identity-Endpoint-Lab",
+    link: "/portfolio#projects",
+    linkLabel: "View project",
     tags: ["Entra ID", "Intune", "Microsoft 365", "PowerShell"],
     summary:
       "Built a dedicated Microsoft cloud administration lab covering users, groups, roles, Conditional Access, MFA, endpoint configuration, scripted exports, validation evidence, and operational documentation.",
   },
   {
     title: "Windows Server Active Directory Lab",
-    link: "https://github.com/SysCd/windows-server-ad-lab",
-    readmeLink: "https://github.com/SysCd/windows-server-ad-lab/blob/main/README.md",
+    link: "/portfolio#projects",
+    linkLabel: "View project",
     tags: ["Windows Server 2022", "Active Directory", "DNS", "Group Policy", "SMB"],
     summary:
       "Built a local Microsoft infrastructure lab with a Windows Server 2022 domain controller, Active Directory, DNS, Group Policy, SMB file shares, and a domain-joined client.",
@@ -123,7 +121,8 @@ const projects = [
   },
   {
     title: "Azure Infrastructure Admin Lab",
-    link: "https://github.com/SysCd/Azure-Infrastructure-Admin-Lab",
+    link: "/portfolio#projects",
+    linkLabel: "View project",
     tags: ["Azure VMs", "Virtual Network", "NSGs", "Linux"],
     summary:
       "Administered Azure infrastructure with Linux virtual machines, secure remote access, virtual networking, baseline validation, user provisioning, and initial security hardening.",
@@ -131,7 +130,8 @@ const projects = [
   {
     title: "Azure DevOps Platform Lab",
     label: "Azure Platform Lab (In Progress)",
-    link: "https://github.com/SysCd/azure-devops-platform-lab",
+    link: "/portfolio#projects",
+    linkLabel: "View project",
     tags: [
       "Azure",
       "Terraform",
@@ -169,11 +169,8 @@ const projects = [
     title: "CortexAI / Reasoning-Enhanced SLM 2.0",
     subtitle: "Custom reasoning model + RAG research assistant",
     label: "Advanced AI Systems Lab",
-    link: "https://github.com/SysCd/Reasoning-Enhanced-SLM-2.0",
-    readmeLink:
-      "https://github.com/SysCd/Reasoning-Enhanced-SLM-2.0/blob/main/README.md",
-    diagramLink:
-      "https://github.com/SysCd/Reasoning-Enhanced-SLM-2.0/tree/main/Diagrams",
+    link: "/portfolio#projects",
+    linkLabel: "View project",
     featured: true,
     tags: [
       "CortexAI",
@@ -331,7 +328,6 @@ function Footer({ onBackToTop }) {
         <p>
           Practical software and infrastructure, built from first principles.
         </p>
-        <p>SysCd is shorthand for System Code.</p>
         <p>© 2026 System Code. All rights reserved.</p>
       </div>
       <div className="footer-links">
@@ -481,15 +477,6 @@ function HomePage() {
             <FaEnvelope aria-hidden="true" />
             {contact.email}
           </a>
-          <a
-            className="button secondary"
-            href={contact.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaGithub aria-hidden="true" />
-            GitHub
-          </a>
         </div>
       </section>
     </main>
@@ -516,15 +503,6 @@ function PortfolioPage() {
             <a className="button primary" href={`mailto:${contact.email}`}>
               <FaEnvelope aria-hidden="true" />
               Email
-            </a>
-            <a
-              className="button secondary"
-              href={contact.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGithub aria-hidden="true" />
-              GitHub
             </a>
           </div>
         </div>
@@ -790,15 +768,6 @@ function PortfolioPage() {
           <a className="button primary" href={`mailto:${contact.email}`}>
             <FaEnvelope aria-hidden="true" />
             {contact.email}
-          </a>
-          <a
-            className="button secondary"
-            href={contact.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaGithub aria-hidden="true" />
-            GitHub
           </a>
         </div>
       </section>
