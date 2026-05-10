@@ -26,5 +26,5 @@ Cloudflare Pages settings:
 
 ## Contact / Links
 
-- **Email:** [support@syscdsoftware.com](mailto:support@syscdsoftware.com)
+- **Email:** [support@systemcode.net](mailto:support@systemcode.net)
 - **Portfolio:** [https://systemcode.net/portfolio](https://systemcode.net/portfolio)

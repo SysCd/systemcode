@@ -9,7 +9,7 @@ import {
 import buildInfo from "./build-info.json";
 
 const contact = {
-  email: "support@syscdsoftware.com",
+  email: "support@systemcode.net",
 };
 
 const siteUrl = "https://systemcode.net";
@@ -680,7 +680,7 @@ function HomePage() {
           <h2>Software, support, and technical enquiries.</h2>
           <p>
             For product support, collaborations, or technical enquiries, contact
-            System Code at support@syscdsoftware.com.
+            System Code at support@systemcode.net.
           </p>
           <ContactPathCards />
         </div>
@@ -979,7 +979,7 @@ function PortfolioPage() {
           <h2>Available for infrastructure and cloud engineering roles.</h2>
           <p>
             For roles, collaborations, or technical enquiries, contact me at
-            support@syscdsoftware.com.
+            support@systemcode.net.
           </p>
           <ContactPathCards />
         </div>

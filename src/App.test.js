@@ -15,7 +15,7 @@ test("renders the System Code homepage", () => {
     screen.getByRole("link", { name: /view portfolio/i })
   ).toBeInTheDocument();
   expect(
-    screen.getAllByRole("link", { name: /support@syscdsoftware\.com/i }).length
+    screen.getAllByRole("link", { name: /support@systemcode\.net/i }).length
   ).toBeGreaterThan(0);
 });
 
