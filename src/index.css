@@ -86,6 +86,7 @@ a {
 }
 
 .nav-links a {
+  position: relative;
   padding: 9px 13px;
   border-radius: 6px;
   color: var(--muted);
@@ -97,11 +98,30 @@ a {
     color 180ms ease;
 }
 
+.nav-links a::after {
+  position: absolute;
+  right: 12px;
+  bottom: 5px;
+  left: 12px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--accent);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 200ms ease;
+}
+
 .nav-links a:hover,
 .nav-links a:focus-visible {
-  background: var(--ink);
-  color: var(--paper);
+  background: rgba(201, 151, 0, 0.08);
+  color: var(--ink);
   outline: none;
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after {
+  transform: scaleX(1);
 }
 
 main {
@@ -114,6 +134,11 @@ main {
   overflow: hidden;
   min-height: auto;
   padding: 72px 0;
+  background-image:
+    linear-gradient(rgba(17, 17, 17, 0.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 17, 17, 0.026) 1px, transparent 1px);
+  background-position: -1px -1px;
+  background-size: 44px 44px;
   isolation: isolate;
 }
 
@@ -224,7 +249,9 @@ h3 {
   transition:
     transform 180ms ease,
     box-shadow 180ms ease,
-    background 180ms ease;
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
 }
 
 .button:hover,
@@ -243,6 +270,11 @@ h3 {
   color: var(--paper);
 }
 
+.primary:hover,
+.primary:focus-visible {
+  background: #000000;
+}
+
 .secondary {
   background: rgba(255, 255, 255, 0.62);
   color: var(--ink);
@@ -252,6 +284,9 @@ h3 {
 .secondary:focus-visible {
   border-color: var(--accent);
   background: var(--panel);
+  box-shadow:
+    0 12px 26px rgba(17, 17, 17, 0.12),
+    inset 0 -2px 0 var(--accent);
 }
 
 .hero-circuit {
@@ -377,6 +412,33 @@ h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .reveal-section {
+    opacity: 1;
+    transform: none;
+  }
+
+  .button:hover,
+  .button:focus-visible,
+  .project-card:hover,
+  .software-card:hover,
+  .thinking-card:hover,
+  .working-card:hover,
+  .specialty-card:hover,
+  .skill-group:hover,
+  .timeline-entry:hover,
+  .education-card:hover {
+    transform: none;
+  }
+
   .hero-circuit,
   .signal-traces path,
   .pulse-node {
@@ -396,11 +458,33 @@ h3 {
   border-radius: 8px;
   background: var(--panel);
   box-shadow: 0 12px 32px rgba(17, 17, 17, 0.06);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.project-card:hover,
+.software-card:hover,
+.thinking-card:hover,
+.working-card:hover,
+.specialty-card:hover,
+.skill-group:hover,
+.timeline-entry:hover,
+.education-card:hover {
+  border-color: rgba(216, 190, 106, 0.72);
+  box-shadow: 0 18px 42px rgba(17, 17, 17, 0.1);
+  transform: translateY(-4px);
 }
 
 .section-block {
+  position: relative;
   padding: 72px 0;
   border-top: 1px solid var(--line);
+  background-image:
+    linear-gradient(rgba(95, 102, 115, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 102, 115, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 .section-heading {
@@ -711,6 +795,10 @@ h3 {
   grid-template-columns: 1fr auto;
   gap: 32px;
   align-items: center;
+  background-image:
+    linear-gradient(rgba(95, 102, 115, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 102, 115, 0.022) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 .education-section {
@@ -776,6 +864,19 @@ h3 {
   flex-wrap: wrap;
   gap: 16px;
   justify-content: flex-end;
+}
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 520ms ease,
+    transform 520ms ease;
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .site-footer a:hover,
@@ -895,5 +996,25 @@ h3 {
 
   .footer-logo {
     width: 118px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-section {
+    opacity: 1;
+    transform: none;
+  }
+
+  .button:hover,
+  .button:focus-visible,
+  .project-card:hover,
+  .software-card:hover,
+  .thinking-card:hover,
+  .working-card:hover,
+  .specialty-card:hover,
+  .skill-group:hover,
+  .timeline-entry:hover,
+  .education-card:hover {
+    transform: none;
   }
 }

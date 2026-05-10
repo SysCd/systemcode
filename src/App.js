@@ -899,6 +899,52 @@ function App() {
         : "SysCd Software";
   }, [page]);
 
+  useEffect(() => {
+    const sections = document.querySelectorAll(
+      ".hero-section, .section-block, .contact-section, .site-footer"
+    );
+    const prefersReducedMotion =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    sections.forEach((section) => {
+      section.classList.add("reveal-section");
+      if (section.getBoundingClientRect().top < window.innerHeight * 0.9) {
+        section.classList.add("is-visible");
+      }
+    });
+
+    if (prefersReducedMotion || typeof IntersectionObserver === "undefined") {
+      sections.forEach((section) => {
+        section.classList.add("is-visible");
+      });
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "0px 0px -80px 0px",
+        threshold: 0.12,
+      }
+    );
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [page]);
+
   const handleBackToTop = (event) => {
     event.preventDefault();
     window.scrollTo({
