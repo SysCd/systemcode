@@ -700,20 +700,18 @@ function HomePage() {
         <div>
           <p className="eyebrow">Contact</p>
           <h2>Software, support, and technical enquiries.</h2>
-          <p>
+          <p className="contact-line">
             For product support, collaborations, or technical enquiries, contact
-            System Code at support@systemcode.net.
+            System Code at:{" "}
+            <a
+              className="button primary inline-contact-button"
+              href={mailtoWithSubject("System Code enquiry")}
+            >
+              <FaEnvelope aria-hidden="true" />
+              {contact.email}
+            </a>
           </p>
           <ContactPathCards />
-        </div>
-        <div className="contact-actions">
-          <a
-            className="button primary"
-            href={mailtoWithSubject("System Code enquiry")}
-          >
-            <FaEnvelope aria-hidden="true" />
-            {contact.email}
-          </a>
         </div>
       </section>
     </main>
@@ -995,20 +993,17 @@ function PortfolioPage() {
         <div>
           <p className="eyebrow">Get in touch</p>
           <h2>Available for infrastructure and cloud engineering roles.</h2>
-          <p>
-            For roles, collaborations, or technical enquiries, contact me at
-            support@systemcode.net.
+          <p className="contact-line">
+            For roles, collaborations, or technical enquiries, contact me at:{" "}
+            <a
+              className="button primary inline-contact-button"
+              href={mailtoWithSubject("Infrastructure and cloud enquiry")}
+            >
+              <FaEnvelope aria-hidden="true" />
+              {contact.email}
+            </a>
           </p>
           <ContactPathCards />
-        </div>
-        <div className="contact-actions">
-          <a
-            className="button primary"
-            href={mailtoWithSubject("Infrastructure and cloud enquiry")}
-          >
-            <FaEnvelope aria-hidden="true" />
-            {contact.email}
-          </a>
         </div>
       </section>
     </main>

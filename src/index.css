@@ -749,10 +749,7 @@ h3 {
 }
 
 .contact-section {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 32px;
-  align-items: center;
+  display: block;
   background: transparent;
 }
 
@@ -766,6 +763,19 @@ h3 {
 
 .contact-section h2 {
   max-width: 780px;
+}
+
+.contact-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.inline-contact-button {
+  min-height: 42px;
+  padding: 10px 14px;
+  vertical-align: middle;
 }
 
 .contact-actions {
@@ -992,6 +1002,10 @@ h3 {
 
   .button {
     width: 100%;
+  }
+
+  .inline-contact-button {
+    width: fit-content;
   }
 
   .software-meta-list {
