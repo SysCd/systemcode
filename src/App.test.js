@@ -18,6 +18,15 @@ test("renders the System Code homepage", () => {
     screen.getAllByRole("link", { name: /support@systemcode\.net/i }).length
   ).toBeGreaterThan(0);
   expect(
+    screen.getByText(/released on the app store/i)
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("link", { name: /view on app store/i })
+  ).toHaveAttribute(
+    "href",
+    "https://apps.apple.com/us/app/principles-of-nature/id6767882826"
+  );
+  expect(
     screen.getByRole("link", { name: /system code github/i })
   ).toHaveAttribute("href", "https://github.com/SysCd");
 });
@@ -35,6 +44,21 @@ test("renders Erik's portfolio page", () => {
   expect(
     screen.getByRole("heading", { name: /technical projects/i })
   ).toBeInTheDocument();
+  expect(
+    screen.getByRole("heading", { name: /open source contributions/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText(/qwen3 qlora apple silicon documentation example/i)
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText(/pull request open/i)
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("link", { name: /view pull request/i })
+  ).toHaveAttribute("href", "https://github.com/ml-explore/mlx-lm/pull/1270");
+  expect(
+    screen.getByRole("link", { name: /open source/i })
+  ).toHaveAttribute("href", "#open-source");
   expect(
     screen.getByRole("heading", {
       name: /cortexai \/ reasoning-enhanced slm 2\.0/i,

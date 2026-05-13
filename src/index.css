@@ -350,6 +350,7 @@ h3 {
   .contact-path-card:focus-visible,
   .project-card:hover,
   .software-card:hover,
+  .open-source-card:hover,
   .thinking-card:hover,
   .working-card:hover,
   .specialty-card:hover,
@@ -362,6 +363,7 @@ h3 {
 
 .project-card,
 .software-card,
+.open-source-card,
 .thinking-card,
 .working-card,
 .specialty-card,
@@ -380,6 +382,7 @@ h3 {
 
 .project-card:hover,
 .software-card:hover,
+.open-source-card:hover,
 .thinking-card:hover,
 .working-card:hover,
 .specialty-card:hover,
@@ -413,6 +416,7 @@ h3 {
 }
 
 .project-grid,
+.open-source-grid,
 .thinking-grid,
 .working-grid,
 .software-grid {
@@ -430,7 +434,8 @@ h3 {
 }
 
 .project-card,
-.software-card {
+.software-card,
+.open-source-card {
   display: flex;
   scroll-margin-top: 96px;
   min-height: 360px;
@@ -438,6 +443,11 @@ h3 {
   justify-content: space-between;
   gap: 22px;
   padding: var(--card-padding);
+}
+
+.open-source-card {
+  min-height: 0;
+  border-color: var(--accent-border);
 }
 
 .software-card {
@@ -491,6 +501,10 @@ h3 {
   color: var(--accent);
 }
 
+.software-actions {
+  margin-top: 18px;
+}
+
 .featured-project {
   grid-column: 1 / -1;
   min-height: 0;
@@ -540,6 +554,7 @@ h3 {
 
 .project-details li::marker,
 .project-more li::marker,
+.open-source-card li::marker,
 .timeline-entry li::marker {
   color: var(--accent);
 }
@@ -597,7 +612,43 @@ h3 {
   gap: 14px;
 }
 
+.open-source-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.contribution-tags {
+  margin-bottom: 20px;
+}
+
+.contribution-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.contribution-meta div {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.contribution-meta dt {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contribution-meta dd {
+  margin: 2px 0 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
 .project-card p:not(.eyebrow),
+.open-source-card p:not(.eyebrow),
 .software-card p:not(.eyebrow),
 .software-features li,
 .thinking-card p:not(.eyebrow),
@@ -911,6 +962,10 @@ h3 {
   .project-details {
     grid-template-columns: 1fr;
   }
+
+  .contribution-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 920px) {
@@ -948,6 +1003,7 @@ h3 {
   }
 
   .project-grid,
+  .open-source-grid,
   .software-grid,
   .thinking-grid,
   .working-grid,
@@ -1021,6 +1077,10 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .contribution-meta {
+    grid-template-columns: 1fr;
+  }
+
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
@@ -1047,6 +1107,7 @@ h3 {
   .contact-path-card:focus-visible,
   .project-card:hover,
   .software-card:hover,
+  .open-source-card:hover,
   .thinking-card:hover,
   .working-card:hover,
   .specialty-card:hover,

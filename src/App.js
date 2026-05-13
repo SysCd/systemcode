@@ -15,6 +15,8 @@ const contact = {
 
 const siteUrl = "https://systemcode.net";
 const githubUrl = "https://github.com/SysCd";
+const principlesOfNatureAppStoreUrl =
+  "https://apps.apple.com/us/app/principles-of-nature/id6767882826";
 
 const logoSrc = "/system-code-lockup.png";
 const emblemSrc = "/system-code-emblem.png";
@@ -68,11 +70,13 @@ const softwareProducts = [
   {
     title: "Principles of Nature",
     type: "iOS App",
-    status: "Submitted for App Store Review",
+    status: "Released on the App Store",
     platform: "iPhone",
     purpose: "Principle-based learning",
     audience: "Individual learners",
-    support: "Email support ready",
+    support: "Email support available",
+    link: principlesOfNatureAppStoreUrl,
+    linkLabel: "View on App Store",
     description:
       "An iOS app exploring human nature, social dynamics, influence, and behavioural patterns through practical principles.",
     features: [
@@ -92,6 +96,22 @@ const softwareProducts = [
     support: "Private planning stage",
     description:
       "A local-first AI workflow utility for organizing and preparing context across tools.",
+  },
+];
+
+const openSourceContributions = [
+  {
+    project: "mlx-lm",
+    organisation: "Apple MLX / ml-explore",
+    contribution: "Qwen3 QLoRA Apple Silicon documentation example",
+    type: "Documentation",
+    technologies: "MLX, Qwen3, LoRA, QLoRA, Apple Silicon, Python",
+    status: "Pull Request Open",
+    pr: "#1270",
+    link: "https://github.com/ml-explore/mlx-lm/pull/1270",
+    tags: ["AI Engineering", "Apple Silicon", "MLX", "Qwen3", "Open Source"],
+    description:
+      "Added a practical Qwen3 QLoRA example for Apple Silicon users, showing how to fine-tune Qwen/Qwen3-8B-MLX-4bit with mlx_lm.lora, structure train/valid/test JSONL datasets, generate with adapters, and disable Qwen3 thinking mode for shorter direct responses.",
   },
 ];
 
@@ -222,15 +242,15 @@ const projects = [
     linkLabel: "View repository",
     tags: [
       "iOS App Submission",
-      "App Store Review",
-      "TestFlight",
+      "App Store Release",
+      "App Store",
       "Support Email",
       "Documentation",
     ],
     summary:
-      "App Store review preparation for the Principles of Nature iOS app, covering app presentation, support contact setup, submission documentation, and production-facing website readiness.",
+      "Released the Principles of Nature iOS app on the App Store, with production-facing support contact setup, public website readiness, and app presentation work.",
     shortText:
-      "Positioned as a lightweight deployment and operations project alongside the Microsoft infrastructure portfolio, showing submission hygiene, support routing, and public-domain readiness.",
+      "Positioned as a lightweight deployment and operations project alongside the Microsoft infrastructure portfolio, showing release hygiene, support routing, and public-domain readiness.",
   },
   {
     title: "CortexAI / Reasoning-Enhanced SLM 2.0",
@@ -361,6 +381,7 @@ function Header({ page }) {
     ? [
         { href: "/", label: "System Code" },
         { href: "#projects", label: "Projects" },
+        { href: "#open-source", label: "Open Source" },
         { href: "#experience", label: "Experience" },
         { href: "#skills", label: "Skills" },
         { href: "#contact", label: "Contact" },
@@ -508,6 +529,19 @@ function SoftwareSection() {
                     <li key={feature}>{feature}</li>
                   ))}
                 </ul>
+              ) : null}
+              {product.link ? (
+                <div className="project-actions software-actions">
+                  <a
+                    className="text-link"
+                    href={product.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {product.linkLabel}
+                    <FaExternalLinkAlt aria-hidden="true" />
+                  </a>
+                </div>
               ) : null}
             </div>
           </article>
@@ -921,6 +955,70 @@ function PortfolioPage() {
                     <FaExternalLinkAlt aria-hidden="true" />
                   </a>
                 )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block open-source-section" id="open-source">
+        <div className="section-heading">
+          <p className="eyebrow">Open source</p>
+          <h2>Open Source Contributions</h2>
+          <p>
+            I contribute to open-source AI and infrastructure projects, focusing
+            on practical documentation, local model workflows, Apple Silicon
+            development, RAG systems, and AI engineering tooling.
+          </p>
+        </div>
+        <div className="open-source-grid">
+          {openSourceContributions.map((contribution) => (
+            <article className="open-source-card" key={contribution.pr}>
+              <div>
+                <div className="tag-row contribution-tags">
+                  {contribution.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+                <h3>{contribution.contribution}</h3>
+                <dl className="contribution-meta">
+                  <div>
+                    <dt>Project</dt>
+                    <dd>{contribution.project}</dd>
+                  </div>
+                  <div>
+                    <dt>Organisation</dt>
+                    <dd>{contribution.organisation}</dd>
+                  </div>
+                  <div>
+                    <dt>Type</dt>
+                    <dd>{contribution.type}</dd>
+                  </div>
+                  <div>
+                    <dt>Status</dt>
+                    <dd>{contribution.status}</dd>
+                  </div>
+                  <div>
+                    <dt>PR</dt>
+                    <dd>{contribution.pr}</dd>
+                  </div>
+                  <div>
+                    <dt>Technologies</dt>
+                    <dd>{contribution.technologies}</dd>
+                  </div>
+                </dl>
+                <p>{contribution.description}</p>
+              </div>
+              <div className="project-actions">
+                <a
+                  className="text-link"
+                  href={contribution.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Pull Request
+                  <FaExternalLinkAlt aria-hidden="true" />
+                </a>
               </div>
             </article>
           ))}
