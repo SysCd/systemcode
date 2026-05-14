@@ -673,7 +673,7 @@ h3 {
 
 .tinyllm-chat-card textarea {
   width: 100%;
-  min-height: clamp(150px, 16vw, 185px);
+  min-height: clamp(112px, 12vw, 140px);
   resize: vertical;
   padding: 13px 15px;
   border: 1px solid var(--line);
@@ -822,6 +822,38 @@ h3 {
   margin: 0;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.tech-nowrap {
+  white-space: nowrap;
+}
+
+.tinyllm-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.tinyllm-link-row a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.tinyllm-link-row a:not(:first-child)::before {
+  margin-right: 18px;
+  color: var(--muted);
+  content: "·";
+}
+
+.tinyllm-link-row a:hover,
+.tinyllm-link-row a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .blueprint-card {
@@ -1751,7 +1783,7 @@ h3 {
   }
 
   .tinyllm-chat-card textarea {
-    min-height: 170px;
+    min-height: 128px;
   }
 
   .inline-contact-button {

@@ -48,16 +48,32 @@ test("renders Erik's portfolio page", () => {
     screen.getByRole("heading", { name: /^syscd tinyllm$/i })
   ).toBeInTheDocument();
   expect(
-    screen.getByText(
-      /self-hosted fine-tuned ai assistant running on azure infrastructure/i
-    )
-  ).toBeInTheDocument();
+    screen.getAllByText((_, element) =>
+      Boolean(
+        element?.textContent?.match(
+          /self-hosted fine-tuned ai assistant running on azure infrastructure/i
+        )
+      )
+    ).length
+  ).toBeGreaterThan(0);
   expect(
-    screen.getByText(/fine-tuned qwen2\.5-1\.5b with peft lora/i)
-  ).toBeInTheDocument();
-  expect(screen.getByText(/^azure vm$/i)).toBeInTheDocument();
+    screen.getAllByText((_, element) =>
+      Boolean(
+        element?.textContent?.match(/fine-tuned qwen2\.5-1\.5b with peft lora/i)
+      )
+    ).length
+  ).toBeGreaterThan(0);
+  expect(
+    screen.getAllByText((_, element) =>
+      Boolean(element?.textContent?.match(/^azure vm$/i))
+    ).length
+  ).toBeGreaterThan(0);
   expect(screen.getAllByText(/^llama-server$/i).length).toBeGreaterThan(0);
-  expect(screen.getByText(/fine-tuned gguf model/i)).toBeInTheDocument();
+  expect(
+    screen.getAllByText((_, element) =>
+      Boolean(element?.textContent?.match(/fine-tuned gguf model/i))
+    ).length
+  ).toBeGreaterThan(0);
   expect(screen.getByLabelText(/user prompt/i)).toBeInTheDocument();
   expect(
     screen.getByRole("button", { name: /explain kubernetes/i })
@@ -71,10 +87,22 @@ test("renders Erik's portfolio page", () => {
   expect(
     screen.getByRole("button", { name: /copy response/i })
   ).toBeDisabled();
-  expect(screen.getByText(/https api/i)).toBeInTheDocument();
   expect(
-    screen.getByText(/runs on a cpu-only azure vm/i)
-  ).toBeInTheDocument();
+    screen.getAllByText((_, element) =>
+      Boolean(element?.textContent?.match(/https api/i))
+    ).length
+  ).toBeGreaterThan(0);
+  expect(
+    screen.getAllByText((_, element) =>
+      Boolean(element?.textContent?.match(/runs on a cpu-only azure vm/i))
+    ).length
+  ).toBeGreaterThan(0);
+  expect(
+    screen.getByRole("link", { name: /github repo/i })
+  ).toHaveAttribute("href", "https://github.com/SysCd/syscd-tinyllm");
+  expect(
+    screen.getByRole("link", { name: /live api/i })
+  ).toHaveAttribute("href", "https://api.systemcode.net/v1/chat/completions");
   expect(
     screen.getByRole("heading", { name: /reasoning style blueprint/i })
   ).toBeInTheDocument();

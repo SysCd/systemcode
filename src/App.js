@@ -160,6 +160,18 @@ const tinyLlmSectionLabels = [
   "Compressed takeaway",
 ];
 
+const tinyLlmNoWrapTerms = ["Qwen2.5-1.5B", "Azure", "GGUF", "API", "Nginx"];
+const tinyLlmLinks = [
+  {
+    label: "GitHub repo",
+    href: "https://github.com/SysCd/syscd-tinyllm",
+  },
+  {
+    label: "Live API",
+    href: tinyLlmEndpoint,
+  },
+];
+
 const reasoningBlueprintNotes = [
   "Core topic \u2192 defines the system being analysed",
   "Principle compression \u2192 reduces complexity into short logic statements",
@@ -646,6 +658,28 @@ function ContactPathCards() {
   );
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function renderTinyLlmText(text) {
+  const termPattern = new RegExp(
+    `(${tinyLlmNoWrapTerms.map(escapeRegExp).join("|")})`,
+    "gi"
+  );
+  const noWrapTerms = new Set(tinyLlmNoWrapTerms.map((term) => term.toLowerCase()));
+
+  return text.split(termPattern).map((part, index) =>
+    noWrapTerms.has(part.toLowerCase()) ? (
+      <span className="tech-nowrap" key={`${part}-${index}`}>
+        {part}
+      </span>
+    ) : (
+      part
+    )
+  );
+}
+
 function formatTinyLlmResponse(response) {
   const lines = response.split(/\r?\n/);
   const elements = [];
@@ -661,7 +695,7 @@ function formatTinyLlmResponse(response) {
     elements.push(
       <ListTag className="tinyllm-response-list" key={`list-${elements.length}`}>
         {listItems.map((item, index) => (
-          <li key={`${item}-${index}`}>{item}</li>
+          <li key={`${item}-${index}`}>{renderTinyLlmText(item)}</li>
         ))}
       </ListTag>
     );
@@ -688,7 +722,7 @@ function formatTinyLlmResponse(response) {
       elements.push(
         <div className="tinyllm-response-section" key={`section-${index}`}>
           <strong>{sectionMatch[1]}</strong>
-          {sectionMatch[2] ? <p>{sectionMatch[2]}</p> : null}
+          {sectionMatch[2] ? <p>{renderTinyLlmText(sectionMatch[2])}</p> : null}
         </div>
       );
       return;
@@ -710,7 +744,9 @@ function formatTinyLlmResponse(response) {
     }
 
     flushList();
-    elements.push(<p key={`paragraph-${index}`}>{trimmedLine}</p>);
+    elements.push(
+      <p key={`paragraph-${index}`}>{renderTinyLlmText(trimmedLine)}</p>
+    );
   });
 
   flushList();
@@ -848,12 +884,13 @@ function TinyLlmSection() {
           <span className="project-label">Experimental self-hosted AI demo</span>
           <h2>SysCd TinyLLM</h2>
           <p>
-            Self-hosted fine-tuned AI assistant running on Azure
-            infrastructure.
+            {renderTinyLlmText(
+              "Self-hosted fine-tuned AI assistant running on Azure infrastructure."
+            )}
           </p>
           <div className="tinyllm-status-row" aria-label="TinyLLM status">
             {tinyLlmStatusBadges.map((badge) => (
-              <span key={badge}>{badge}</span>
+              <span key={badge}>{renderTinyLlmText(badge)}</span>
             ))}
           </div>
         </div>
@@ -861,7 +898,7 @@ function TinyLlmSection() {
         <div className="architecture-strip" aria-label="TinyLLM architecture">
           {tinyLlmArchitecture.map((item, index) => (
             <span className="architecture-node" key={item}>
-              {item}
+              {renderTinyLlmText(item)}
               {index < tinyLlmArchitecture.length - 1 ? (
                 <span className="architecture-arrow" aria-hidden="true">
                   &rarr;
@@ -873,14 +910,13 @@ function TinyLlmSection() {
 
         <article className="tinyllm-card tinyllm-summary-card">
           <p>
-            SysCd TinyLLM is a lightweight AI chatbot project built around
-            Qwen2.5-1.5B. It was fine-tuned with PEFT LoRA, merged and
-            converted to GGUF, then deployed on an Azure Ubuntu VM using
-            llama.cpp/llama-server behind Nginx.
+            {renderTinyLlmText(
+              "SysCd TinyLLM is a lightweight AI chatbot project built around Qwen2.5-1.5B. It was fine-tuned with PEFT LoRA, merged and converted to GGUF, then deployed on an Azure Ubuntu VM using llama.cpp/llama-server behind Nginx."
+            )}
           </p>
           <ul className="software-features tinyllm-highlights">
             {tinyLlmHighlights.map((highlight) => (
-              <li key={highlight}>{highlight}</li>
+              <li key={highlight}>{renderTinyLlmText(highlight)}</li>
             ))}
           </ul>
         </article>
@@ -890,7 +926,11 @@ function TinyLlmSection() {
             <div>
               <h3>Ask SysCd TinyLLM</h3>
             </div>
-            <p>Live chat interface connected to the self-hosted Azure model.</p>
+            <p>
+              {renderTinyLlmText(
+                "Live chat interface connected to the self-hosted Azure model."
+              )}
+            </p>
           </div>
           <form onSubmit={handleAskTinyLlm}>
             <div className="tinyllm-prompt-chips" aria-label="Example prompts">
@@ -913,7 +953,7 @@ function TinyLlmSection() {
                 id="tinyllm-prompt"
                 value={prompt}
                 onChange={(event) => setPrompt(event.target.value)}
-                rows="8"
+                rows="5"
               />
             </div>
             <div className="tinyllm-actions">
@@ -978,8 +1018,22 @@ function TinyLlmSection() {
             ) : null}
           </div>
           <p className="tinyllm-note">
-            Runs on a CPU-only Azure VM, so responses may take a few seconds.
+            {renderTinyLlmText(
+              "Runs on a CPU-only Azure VM, so responses may take a few seconds."
+            )}
           </p>
+          <div className="tinyllm-link-row" aria-label="TinyLLM links">
+            {tinyLlmLinks.map((link) => (
+              <a
+                href={link.href}
+                key={link.label}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </article>
       </div>
     </section>
