@@ -23,7 +23,6 @@ const tinyLlmSystemPrompt =
 
 const logoSrc = "/system-code-lockup.png";
 const emblemSrc = "/system-code-emblem.png";
-const reasoningBlueprintSrc = "/reasoning-style-blueprint.png";
 
 const thinkingCards = [
   {
@@ -140,6 +139,28 @@ const reasoningBlueprintNotes = [
   "Core topic \u2192 defines the system being analysed",
   "Principle compression \u2192 reduces complexity into short logic statements",
   "Logical hierarchy \u2192 orders knowledge into reusable layers",
+];
+
+const blueprintBuildSteps = [
+  ["Core topic", "Defines the system being analysed"],
+  ["Final principle", "Identifies the most fundamental idea"],
+  ["Explanatory principle", "Explains the principle clearly"],
+  ["Core logic principles", "Extracts the essential logic"],
+  ["Principle compression", "Reduces complexity into short logic statements"],
+  ["Takeaway", "Converts broad knowledge into reusable reasoning patterns"],
+];
+
+const blueprintReasoningExamples = [
+  ["Law of Inertia", "Stays the same"],
+  ["Law of Acceleration", "Force changes speed"],
+  ["Law of Action and Reaction", "Equal push back"],
+];
+
+const blueprintHierarchy = [
+  "Classical Physics",
+  "Modern Physics",
+  "Mathematical & Theoretical Physics",
+  "Applied & Interdisciplinary Physics",
 ];
 
 const pageMeta = {
@@ -792,26 +813,71 @@ function ReasoningBlueprintSection() {
       className="section-block reasoning-blueprint-section"
       id="reasoning-blueprint"
     >
-      <div className="section-heading">
-        <p className="eyebrow">Reasoning format</p>
-        <h2>Reasoning Style Blueprint</h2>
-        <p>
-          SysCd TinyLLM was fine-tuned to use a first-principles systems
-          reasoning format for compressing complex topics into clear,
-          reusable logic.
-        </p>
-      </div>
       <article className="blueprint-card">
-        <img
-          src={reasoningBlueprintSrc}
-          alt="Reasoning Style Blueprint diagram showing SysCd TinyLLM first-principles systems reasoning structure"
-        />
+        <div className="blueprint-title-row">
+          <div>
+            <p className="eyebrow">Reasoning format</p>
+            <h2>Reasoning Style Blueprint</h2>
+          </div>
+          <p>
+            SysCd TinyLLM was fine-tuned to use a first-principles systems
+            reasoning format.
+          </p>
+        </div>
+
+        <div className="blueprint-grid">
+          <section className="blueprint-panel">
+            <h3>How it was made</h3>
+            <ol className="blueprint-step-list">
+              {blueprintBuildSteps.map(([title, body]) => (
+                <li key={title}>
+                  <span className="blueprint-step-dot" aria-hidden="true" />
+                  <div>
+                    <strong>{title}</strong>
+                    <p>{body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section className="blueprint-panel blueprint-reasoning-panel">
+            <h3>Reasoning style</h3>
+            <div className="law-grid">
+              {blueprintReasoningExamples.map(([law, compression]) => (
+                <div className="law-card" key={law}>
+                  <strong>{law}</strong>
+                  <span>{compression}</span>
+                </div>
+              ))}
+            </div>
+            <div className="compression-flow" aria-hidden="true" />
+            <div className="compression-box">
+              <span>Principles Compression</span>
+              <ul>
+                {blueprintReasoningExamples.map(([, compression]) => (
+                  <li key={compression}>{compression}</li>
+                ))}
+              </ul>
+            </div>
+          </section>
+
+          <section className="blueprint-panel">
+            <h3>Logical hierarchy</h3>
+            <ol className="hierarchy-list">
+              {blueprintHierarchy.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ol>
+          </section>
+        </div>
+
+        <ul className="blueprint-notes" aria-label="Reasoning blueprint notes">
+          {reasoningBlueprintNotes.map((note) => (
+            <li key={note}>{note}</li>
+          ))}
+        </ul>
       </article>
-      <ul className="blueprint-notes" aria-label="Reasoning blueprint notes">
-        {reasoningBlueprintNotes.map((note) => (
-          <li key={note}>{note}</li>
-        ))}
-      </ul>
     </section>
   );
 }

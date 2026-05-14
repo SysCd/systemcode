@@ -73,8 +73,16 @@ test("renders Erik's portfolio page", () => {
     screen.getByText(/first-principles systems reasoning format/i)
   ).toBeInTheDocument();
   expect(
-    screen.getByAltText(/reasoning style blueprint diagram/i)
-  ).toHaveAttribute("src", "/reasoning-style-blueprint.png");
+    screen.getByRole("heading", { name: /how it was made/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("heading", { name: /^reasoning style$/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("heading", { name: /logical hierarchy/i })
+  ).toBeInTheDocument();
+  expect(screen.getByText(/law of acceleration/i)).toBeInTheDocument();
+  expect(screen.getAllByText(/force changes speed/i).length).toBeGreaterThan(0);
   expect(
     screen.getByText(/logical hierarchy.*reusable layers/i)
   ).toBeInTheDocument();

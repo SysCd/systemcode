@@ -688,39 +688,259 @@ h3 {
   font-size: 0.92rem;
 }
 
-.reasoning-blueprint-section .section-heading {
-  max-width: 780px;
-}
-
 .blueprint-card {
   overflow: hidden;
-  padding: clamp(8px, 1.4vw, 14px);
+  padding: clamp(18px, 3vw, 28px);
   border: 1px solid var(--line);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(17, 17, 17, 0.035), transparent 50%),
+    linear-gradient(rgba(37, 99, 235, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.035) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(37, 99, 235, 0.05), transparent 46%),
     var(--panel);
+  background-size:
+    18px 18px,
+    18px 18px,
+    auto;
 }
 
-.blueprint-card img {
-  display: block;
-  width: 100%;
-  height: auto;
+.blueprint-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px 28px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.22);
+}
+
+.blueprint-title-row h2 {
+  margin-bottom: 0;
+  color: #0f172a;
+  font-size: clamp(1.8rem, 4.2vw, 3.25rem);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.blueprint-title-row p:not(.eyebrow) {
+  max-width: 430px;
+  margin: 0;
+  color: #475569;
+  font-weight: 700;
+  text-align: right;
+}
+
+.blueprint-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.86fr) minmax(0, 1.55fr) minmax(220px, 0.92fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.blueprint-panel {
+  padding: clamp(14px, 2vw, 18px);
+  border: 1px solid rgba(37, 99, 235, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.blueprint-panel h3 {
+  margin-bottom: 14px;
+  color: #0f4c9a;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.blueprint-step-list,
+.hierarchy-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blueprint-step-list {
+  counter-reset: blueprint-step;
+}
+
+.blueprint-step-list li {
+  counter-increment: blueprint-step;
+  position: relative;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.blueprint-step-list li::before {
+  position: absolute;
+  left: 16px;
+  top: 34px;
+  bottom: -10px;
+  width: 1px;
+  background: rgba(37, 99, 235, 0.3);
+  content: "";
+}
+
+.blueprint-step-list li:last-child::before {
+  display: none;
+}
+
+.blueprint-step-dot {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(37, 99, 235, 0.55);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.blueprint-step-dot::before {
+  color: #0f4c9a;
+  font-size: 0.82rem;
+  font-weight: 900;
+  content: counter(blueprint-step);
+}
+
+.blueprint-step-list strong,
+.law-card strong,
+.compression-box span {
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.blueprint-step-list p {
+  margin: 2px 0 0;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.blueprint-reasoning-panel {
+  display: grid;
+  grid-template-rows: auto auto 22px auto;
+}
+
+.law-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.law-card {
+  display: grid;
+  gap: 10px;
+  min-height: 138px;
+  align-content: space-between;
+  padding: 14px;
+  border: 1px solid rgba(37, 99, 235, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.84);
+  text-align: center;
+}
+
+.law-card span {
+  padding: 8px 10px;
   border-radius: 6px;
+  background: var(--ink);
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.compression-flow {
+  position: relative;
+}
+
+.compression-flow::before {
+  position: absolute;
+  top: 50%;
+  left: 12%;
+  width: 76%;
+  height: 1px;
+  background: rgba(37, 99, 235, 0.34);
+  content: "";
+}
+
+.compression-flow::after {
+  position: absolute;
+  top: calc(50% - 4px);
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid rgba(37, 99, 235, 0.55);
+  border-bottom: 1px solid rgba(37, 99, 235, 0.55);
+  transform: rotate(45deg);
+  content: "";
+}
+
+.compression-box {
+  width: min(100%, 420px);
+  justify-self: center;
+  padding: 14px;
+  border: 1px solid rgba(37, 99, 235, 0.34);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.compression-box ul {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.compression-box li,
+.hierarchy-list li {
+  padding: 9px 10px;
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  border-radius: 6px;
+  background: rgba(248, 250, 252, 0.86);
+  color: #1f2937;
+  font-weight: 800;
+}
+
+.hierarchy-list {
+  counter-reset: hierarchy-step;
+}
+
+.hierarchy-list li {
+  counter-increment: hierarchy-step;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hierarchy-list li::before {
+  display: inline-grid;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.1);
+  color: #0f4c9a;
+  font-size: 0.78rem;
+  font-weight: 900;
+  content: counter(hierarchy-step);
 }
 
 .blueprint-notes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
-  margin: 14px 0 0;
+  margin: 12px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .blueprint-notes li {
-  padding: 12px 14px;
-  border: 1px solid var(--line);
+  padding: 11px 12px;
+  border: 1px solid rgba(37, 99, 235, 0.22);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.72);
   color: var(--muted);
@@ -1312,6 +1532,23 @@ h3 {
   .tinyllm-chat-heading p {
     max-width: none;
     text-align: left;
+  }
+
+  .blueprint-title-row {
+    display: grid;
+  }
+
+  .blueprint-title-row p:not(.eyebrow) {
+    max-width: none;
+    text-align: left;
+  }
+
+  .blueprint-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .law-grid {
+    grid-template-columns: 1fr;
   }
 
   .blueprint-notes {
