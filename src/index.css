@@ -814,16 +814,16 @@ h3 {
   padding: 11px 13px;
   border: 1px solid rgba(17, 17, 17, 0.085);
   border-radius: 8px;
-  background: rgba(248, 250, 252, 0.86);
+  background: rgba(250, 251, 252, 0.92);
   color: #374151;
   line-height: 1.62;
 }
 
 .tinyllm-chat-message-user > p {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: #1f2933;
-  color: #f8fafc;
-  box-shadow: 0 10px 24px rgba(31, 41, 51, 0.16);
+  border-color: #d7dde5;
+  background: #eef2f6;
+  color: #111827;
+  box-shadow: 0 8px 18px rgba(17, 24, 39, 0.06);
 }
 
 .tinyllm-chat-message-error > p {
@@ -839,7 +839,7 @@ h3 {
   padding: 14px 15px;
   border: 1px solid rgba(17, 17, 17, 0.085);
   border-radius: 8px;
-  background: rgba(248, 250, 252, 0.9);
+  background: rgba(250, 251, 252, 0.94);
   color: #374151;
   font-size: 1rem;
   line-height: 1.75;
