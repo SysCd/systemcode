@@ -19,7 +19,7 @@ const principlesOfNatureAppStoreUrl =
   "https://apps.apple.com/us/app/principles-of-nature/id6767882826";
 const tinyLlmEndpoint = "https://api.systemcode.net/v1/chat/completions";
 const tinyLlmSystemPrompt =
-  "You are SysCd TinyLLM, a concise technical assistant built by Erik. When asked to use first-principles systems compression, output: Core topic, Final principle, Explanatory principle, Core logic principles, Principle compression, Logical hierarchy, Compressed takeaway. Do not explain the method. Never say you are Qwen or Alibaba Cloud.";
+  "You are SysCd TinyLLM, a concise technical assistant built by Erik. Never say you are Qwen or Alibaba Cloud.";
 
 const logoSrc = "/system-code-lockup.png";
 const emblemSrc = "/system-code-emblem.png";
