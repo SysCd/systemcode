@@ -536,12 +536,12 @@ h3 {
 
 .tinyllm-chat-card {
   width: 100%;
-  gap: 10px;
+  gap: 8px;
   justify-self: stretch;
   padding: clamp(13px, 1.8vw, 18px);
   position: relative;
   overflow: hidden;
-  border-color: rgba(115, 124, 137, 0.34);
+  border-color: rgba(100, 110, 123, 0.42);
   border-radius: 12px;
   background:
     linear-gradient(90deg, transparent, rgba(178, 188, 201, 0.86), transparent) top / 100% 1px no-repeat,
@@ -552,14 +552,14 @@ h3 {
     auto,
     auto;
   box-shadow:
-    0 20px 52px rgba(15, 23, 42, 0.09),
+    0 22px 58px rgba(15, 23, 42, 0.105),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .tinyllm-chat-heading {
   display: grid;
-  gap: 7px;
-  padding: 3px 4px 10px;
+  gap: 6px;
+  padding: 3px 4px 9px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -578,7 +578,7 @@ h3 {
 .tinyllm-live-badge {
   display: inline-flex;
   width: fit-content;
-  margin-bottom: 7px;
+  margin-bottom: 5px;
   padding: 4px 7px;
   border: 1px solid rgba(104, 113, 126, 0.24);
   border-radius: 999px;
@@ -592,13 +592,13 @@ h3 {
 
 .tinyllm-chat-shell {
   display: grid;
-  gap: 8px;
+  gap: 7px;
 }
 
 .tinyllm-prompt-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
   padding: 0 4px;
 }
 
@@ -729,8 +729,8 @@ h3 {
 
 .tinyllm-composer {
   display: grid;
-  gap: 6px;
-  padding: 9px;
+  gap: 5px;
+  padding: 8px;
   border: 1px solid rgba(17, 17, 17, 0.1);
   border-radius: 9px;
   background: #ffffff;
@@ -752,7 +752,7 @@ h3 {
 .tinyllm-composer-bar {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 8px;
+  gap: 7px;
   align-items: end;
   border: 1px solid rgba(17, 17, 17, 0.11);
   border-radius: 8px;
@@ -790,11 +790,11 @@ h3 {
 .tinyllm-output {
   display: grid;
   align-content: start;
-  gap: 8px;
-  min-height: clamp(300px, 28vw, 390px);
-  max-height: 430px;
-  overflow: auto;
-  padding: clamp(12px, 1.8vw, 18px);
+  gap: 7px;
+  min-height: clamp(260px, 24vw, 338px);
+  max-height: 370px;
+  overflow-y: auto;
+  padding: clamp(11px, 1.6vw, 16px);
   border: 1px solid rgba(104, 113, 126, 0.16);
   border-radius: 9px 9px 7px 7px;
   background: #f8fafc;
@@ -854,9 +854,9 @@ h3 {
 }
 
 .tinyllm-chat-message-user > p {
-  border-color: #d2d8e1;
-  background: linear-gradient(180deg, #f2f5f8, #e7edf3);
-  color: #18212f;
+  border: 1px solid #d5dde6;
+  background: linear-gradient(180deg, #eef2f6, #e6ebf1);
+  color: #1f2937;
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.055);
 }
 
@@ -877,7 +877,6 @@ h3 {
   color: #374151;
   font-size: 0.96rem;
   line-height: 1.68;
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.035);
 }
 
 .tinyllm-response-message p {
@@ -917,6 +916,8 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  width: fit-content;
+  padding-right: 14px;
 }
 
 .tinyllm-slow-note {
