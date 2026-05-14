@@ -1046,6 +1046,7 @@ function TinyLlmSection() {
                   </div>
                   {message.isStatus ? (
                     <div className="tinyllm-status-message">
+                      <span>Offline / Cost Control</span>
                       <p>{renderTinyLlmText(message.content)}</p>
                       {message.note ? (
                         <small>{renderTinyLlmText(message.note)}</small>
