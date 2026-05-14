@@ -867,6 +867,31 @@ h3 {
   font-weight: 800;
 }
 
+.tinyllm-status-message {
+  display: grid;
+  gap: 8px;
+  padding: 13px 14px;
+  border: 1px solid #d5dde6;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffffff, #eef2f6);
+  color: #1f2937;
+}
+
+.tinyllm-status-message p {
+  margin: 0;
+  color: #1f2937;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.56;
+}
+
+.tinyllm-status-message small {
+  color: #5b6472;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
 .tinyllm-response-message {
   display: grid;
   gap: 10px;

@@ -170,6 +170,11 @@ const tinyLlmNoWrapTerms = [
   "Nginx",
 ];
 const tinyLlmMaxPromptLength = 1000;
+const tinyLlmOfflineStatuses = new Set([502, 503, 504]);
+const tinyLlmOfflineMessage =
+  "TinyLLM is currently offline to reduce Azure costs. The demo runs during scheduled working hours, or when the Azure VM is manually started.";
+const tinyLlmOfflineNote =
+  "This project uses automated Azure VM start/stop scheduling for cost control, reducing compute runtime by roughly 70% compared with running 24/7.";
 const tinyLlmLinks = [
   {
     label: "GitHub repo",
@@ -865,6 +870,15 @@ function TinyLlmSection() {
 
       if (!response.ok) {
         const errorBody = await response.text();
+        if (tinyLlmOfflineStatuses.has(response.status)) {
+          const offlineError = new Error(
+            `TinyLLM gateway unavailable with HTTP ${response.status}: ${
+              errorBody || response.statusText
+            }`
+          );
+          offlineError.name = "TinyLlmOfflineError";
+          throw offlineError;
+        }
         throw new Error(
           `API offline or returned HTTP ${response.status}: ${errorBody || response.statusText}`
         );
@@ -887,13 +901,24 @@ function TinyLlmSection() {
       ]);
     } catch (requestError) {
       let requestErrorMessage = "TinyLLM request failed.";
+      let requestErrorNote = "";
+      let isOfflineStatus = false;
 
       if (requestError instanceof DOMException && requestError.name === "AbortError") {
-        requestErrorMessage =
-          "Request timed out after 45 seconds. The CPU-only Azure VM may be busy or offline.";
+        requestErrorMessage = tinyLlmOfflineMessage;
+        requestErrorNote = tinyLlmOfflineNote;
+        isOfflineStatus = true;
       } else if (requestError instanceof TypeError) {
-        requestErrorMessage =
-          "Network or CORS error. The API may be unreachable from this browser.";
+        requestErrorMessage = tinyLlmOfflineMessage;
+        requestErrorNote = tinyLlmOfflineNote;
+        isOfflineStatus = true;
+      } else if (
+        requestError instanceof Error &&
+        requestError.name === "TinyLlmOfflineError"
+      ) {
+        requestErrorMessage = tinyLlmOfflineMessage;
+        requestErrorNote = tinyLlmOfflineNote;
+        isOfflineStatus = true;
       } else if (requestError instanceof Error) {
         requestErrorMessage = requestError.message;
       } else {
@@ -906,7 +931,9 @@ function TinyLlmSection() {
         {
           role: "assistant",
           content: requestErrorMessage,
-          isError: true,
+          note: requestErrorNote,
+          isError: !isOfflineStatus,
+          isStatus: isOfflineStatus,
         },
       ]);
     } finally {
@@ -997,12 +1024,16 @@ function TinyLlmSection() {
                     message.role === "user"
                       ? "tinyllm-chat-message-user"
                       : "tinyllm-chat-message-assistant"
-                  } ${message.isError ? "tinyllm-chat-message-error" : ""}`}
+                  } ${message.isError ? "tinyllm-chat-message-error" : ""} ${
+                    message.isStatus ? "tinyllm-chat-message-status" : ""
+                  }`}
                   key={`${message.role}-${index}`}
                 >
                   <div className="tinyllm-message-meta">
                     <span>{message.role === "user" ? "You" : "TinyLLM"}</span>
-                    {message.role === "assistant" && !message.isError ? (
+                    {message.role === "assistant" &&
+                    !message.isError &&
+                    !message.isStatus ? (
                       <button
                         className="tinyllm-copy-inline"
                         type="button"
@@ -1013,7 +1044,14 @@ function TinyLlmSection() {
                       </button>
                     ) : null}
                   </div>
-                  {message.role === "assistant" && !message.isError ? (
+                  {message.isStatus ? (
+                    <div className="tinyllm-status-message">
+                      <p>{renderTinyLlmText(message.content)}</p>
+                      {message.note ? (
+                        <small>{renderTinyLlmText(message.note)}</small>
+                      ) : null}
+                    </div>
+                  ) : message.role === "assistant" && !message.isError ? (
                     <div className="tinyllm-response-message">
                       {formatTinyLlmResponse(message.content)}
                     </div>
