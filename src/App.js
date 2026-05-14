@@ -160,7 +160,15 @@ const tinyLlmSectionLabels = [
   "Compressed takeaway",
 ];
 
-const tinyLlmNoWrapTerms = ["Qwen2.5-1.5B", "Azure", "GGUF", "API", "Nginx"];
+const tinyLlmNoWrapTerms = [
+  "Qwen2.5-1.5B",
+  "PEFT LoRA",
+  "llama-server",
+  "Azure",
+  "GGUF",
+  "API",
+  "Nginx",
+];
 const tinyLlmMaxPromptLength = 1000;
 const tinyLlmLinks = [
   {
@@ -949,22 +957,10 @@ function TinyLlmSection() {
           ))}
         </div>
 
-        <article className="tinyllm-card tinyllm-summary-card">
-          <p>
-            {renderTinyLlmText(
-              "SysCd TinyLLM is a self-hosted AI assistant built around Qwen2.5-1.5B. It was fine-tuned with PEFT LoRA, merged into GGUF, quantized, and deployed on an Azure Ubuntu VM using llama.cpp, Nginx, and Terraform."
-            )}
-          </p>
-          <ul className="software-features tinyllm-highlights">
-            {tinyLlmHighlights.map((highlight) => (
-              <li key={highlight}>{renderTinyLlmText(highlight)}</li>
-            ))}
-          </ul>
-        </article>
-
         <article className="tinyllm-card tinyllm-chat-card">
           <div className="tinyllm-chat-heading">
             <div>
+              <span className="tinyllm-live-badge">Live AI Demo</span>
               <h3>Ask SysCd TinyLLM</h3>
             </div>
             <p>
@@ -972,11 +968,6 @@ function TinyLlmSection() {
                 "Live chat interface connected to the self-hosted Azure model."
               )}
             </p>
-            <div className="tinyllm-chat-badges" aria-label="TinyLLM demo status">
-              {tinyLlmStatusBadges.map((badge) => (
-                <span key={badge}>{renderTinyLlmText(badge)}</span>
-              ))}
-            </div>
           </div>
           <div className="tinyllm-chat-shell">
             <div className="tinyllm-prompt-chips" aria-label="Example prompts">
@@ -1096,27 +1087,45 @@ function TinyLlmSection() {
             </form>
           </div>
         </article>
-        <div className="tinyllm-chat-footer">
-          <p className="tinyllm-note">
+
+        <article className="tinyllm-card tinyllm-summary-card">
+          <p>
             {renderTinyLlmText(
-              "Runs on a CPU-only Azure VM, so responses may take a few seconds."
+              "SysCd TinyLLM is a self-hosted AI assistant built around Qwen2.5-1.5B. It was fine-tuned with PEFT LoRA, merged into GGUF, quantized, and deployed on an Azure Ubuntu VM using llama.cpp, Nginx, and Terraform."
             )}
           </p>
-          <div className="tinyllm-link-row" aria-label="TinyLLM links">
-            {tinyLlmLinks.map((link) => (
-              <a
-                href={link.href}
-                key={link.label}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.label}
-              </a>
+          <ul className="software-features tinyllm-highlights">
+            {tinyLlmHighlights.map((highlight) => (
+              <li key={highlight}>{renderTinyLlmText(highlight)}</li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </article>
       </div>
     </section>
+  );
+}
+
+function TinyLlmLinks() {
+  return (
+    <div className="tinyllm-chat-footer">
+      <p className="tinyllm-note">
+        {renderTinyLlmText(
+          "Runs on a CPU-only Azure VM, so responses may take a few seconds."
+        )}
+      </p>
+      <div className="tinyllm-link-row" aria-label="TinyLLM links">
+        {tinyLlmLinks.map((link) => (
+          <a
+            href={link.href}
+            key={link.label}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -1587,6 +1596,8 @@ function PortfolioPage() {
       <TinyLlmSection />
 
       <ReasoningBlueprintSection />
+
+      <TinyLlmLinks />
 
       <section className="section-block open-source-section" id="open-source">
         <div className="section-heading">

@@ -65,7 +65,11 @@ test("renders Erik's portfolio page", () => {
       )
     ).length
   ).toBeGreaterThan(0);
-  expect(screen.getByText(/peft lora fine-tune/i)).toBeInTheDocument();
+  expect(
+    screen.getAllByText((_, element) =>
+      Boolean(element?.textContent?.match(/peft lora fine-tune/i))
+    ).length
+  ).toBeGreaterThan(0);
   expect(
     screen.getAllByText((_, element) =>
       Boolean(element?.textContent?.match(/gguf q4_k_m quantization/i))

@@ -493,14 +493,18 @@ h3 {
   margin-top: 22px;
 }
 
-.tinyllm-status-row span {
-  padding: 7px 10px;
-  border: 1px solid var(--accent-border);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.76);
+.tinyllm-status-row > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid rgba(17, 17, 17, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
   color: var(--accent-text);
-  font-size: 0.82rem;
-  font-weight: 900;
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .tinyllm-card {
@@ -517,6 +521,10 @@ h3 {
   align-items: start;
   gap: clamp(16px, 2.4vw, 28px);
   padding: clamp(16px, 2.3vw, 22px);
+  border-color: rgba(17, 17, 17, 0.11);
+  background:
+    linear-gradient(135deg, rgba(17, 17, 17, 0.022), transparent 48%),
+    rgba(255, 255, 255, 0.76);
 }
 
 .tinyllm-summary-card p {
@@ -528,29 +536,36 @@ h3 {
 
 .tinyllm-chat-card {
   width: 100%;
-  gap: 12px;
+  gap: 10px;
   justify-self: stretch;
-  padding: clamp(14px, 2vw, 20px);
-  border-color: rgba(17, 17, 17, 0.1);
-  border-radius: 10px;
+  padding: clamp(13px, 1.8vw, 18px);
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(120, 120, 120, 0.28);
+  border-radius: 12px;
   background:
-    linear-gradient(rgba(17, 17, 17, 0.014) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17, 17, 17, 0.014) 1px, transparent 1px),
-    rgba(255, 255, 255, 0.84);
-  background-size: 28px 28px;
-  box-shadow: 0 18px 54px rgba(17, 17, 17, 0.055);
+    linear-gradient(90deg, transparent, rgba(180, 190, 205, 0.8), transparent) top / 100% 1px no-repeat,
+    linear-gradient(rgba(17, 17, 17, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 17, 17, 0.012) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(245, 247, 250, 0.9));
+  background-size:
+    100% 1px,
+    28px 28px,
+    28px 28px,
+    auto;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
 }
 
 .tinyllm-chat-heading {
   display: grid;
-  gap: 8px;
-  padding: 4px 4px 12px;
+  gap: 7px;
+  padding: 3px 4px 10px;
   border-bottom: 1px solid var(--line);
 }
 
 .tinyllm-chat-heading h3 {
   margin-bottom: 0;
-  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-size: clamp(1.12rem, 1.8vw, 1.42rem);
 }
 
 .tinyllm-chat-heading p {
@@ -560,25 +575,24 @@ h3 {
   text-align: left;
 }
 
-.tinyllm-chat-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.tinyllm-chat-badges span {
-  padding: 5px 8px;
-  border: 1px solid rgba(17, 17, 17, 0.1);
+.tinyllm-live-badge {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 7px;
+  padding: 4px 7px;
+  border: 1px solid rgba(17, 17, 17, 0.12);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.64);
-  color: var(--muted);
-  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--accent-text);
+  font-size: 0.68rem;
   font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .tinyllm-chat-shell {
   display: grid;
-  gap: 9px;
+  gap: 8px;
 }
 
 .tinyllm-prompt-chips {
@@ -589,15 +603,15 @@ h3 {
 }
 
 .tinyllm-prompt-chips button {
-  min-height: 30px;
-  padding: 6px 9px;
+  min-height: 28px;
+  padding: 5px 8px;
   border: 1px solid rgba(17, 17, 17, 0.09);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.52);
   color: var(--muted);
   cursor: pointer;
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 800;
   transition:
     border-color 160ms ease,
@@ -656,9 +670,9 @@ h3 {
 }
 
 .tinyllm-section .architecture-strip {
-  width: fit-content;
+  width: 100%;
   max-width: 100%;
-  padding: 8px;
+  padding: 7px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.68);
@@ -668,12 +682,12 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 8px;
+  padding: 5px 7px;
   border: 1px solid var(--accent-border);
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.78);
   color: var(--accent-text);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 900;
 }
 
@@ -685,7 +699,7 @@ h3 {
 .demo-label {
   margin: 0;
   color: var(--ink);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -693,8 +707,8 @@ h3 {
 
 .tinyllm-chat-card textarea {
   width: 100%;
-  min-height: 52px;
-  max-height: 96px;
+  min-height: 48px;
+  max-height: 88px;
   resize: vertical;
   padding: 11px 12px;
   border: 0;
@@ -702,8 +716,8 @@ h3 {
   background: transparent;
   color: var(--ink);
   font: inherit;
-  font-size: 0.98rem;
-  line-height: 1.45;
+  font-size: 0.94rem;
+  line-height: 1.4;
 }
 
 .tinyllm-chat-card textarea:focus-visible {
@@ -712,8 +726,8 @@ h3 {
 
 .tinyllm-composer {
   display: grid;
-  gap: 7px;
-  padding: 10px;
+  gap: 6px;
+  padding: 9px;
   border: 1px solid rgba(17, 17, 17, 0.1);
   border-radius: 9px;
   background: rgba(255, 255, 255, 0.72);
@@ -752,7 +766,7 @@ h3 {
   flex-wrap: wrap;
   gap: 6px;
   justify-content: flex-end;
-  padding: 7px;
+  padding: 6px;
 }
 
 .tinyllm-submit {
@@ -773,9 +787,9 @@ h3 {
 .tinyllm-output {
   display: grid;
   align-content: start;
-  gap: 10px;
-  min-height: clamp(280px, 26vw, 360px);
-  max-height: 420px;
+  gap: 8px;
+  min-height: clamp(300px, 28vw, 390px);
+  max-height: 430px;
   overflow: auto;
   padding: clamp(12px, 1.8vw, 18px);
   border: 1px solid rgba(17, 17, 17, 0.075);
@@ -804,7 +818,7 @@ h3 {
 
 .tinyllm-chat-message {
   display: grid;
-  gap: 6px;
+  gap: 5px;
   max-width: min(760px, 85%);
 }
 
@@ -823,7 +837,7 @@ h3 {
   justify-content: space-between;
   gap: 12px;
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -831,12 +845,13 @@ h3 {
 
 .tinyllm-chat-message > p {
   margin: 0;
-  padding: 11px 13px;
+  padding: 10px 12px;
   border: 1px solid rgba(17, 17, 17, 0.085);
   border-radius: 8px;
   background: rgba(250, 251, 252, 0.92);
   color: #374151;
-  line-height: 1.62;
+  font-size: 0.95rem;
+  line-height: 1.56;
 }
 
 .tinyllm-chat-message-user > p {
@@ -855,14 +870,14 @@ h3 {
 
 .tinyllm-response-message {
   display: grid;
-  gap: 12px;
-  padding: 14px 15px;
+  gap: 10px;
+  padding: 13px 14px;
   border: 1px solid rgba(17, 17, 17, 0.085);
   border-radius: 8px;
   background: rgba(250, 251, 252, 0.94);
   color: #374151;
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 0.96rem;
+  line-height: 1.68;
 }
 
 .tinyllm-response-message p {
@@ -876,7 +891,7 @@ h3 {
 
 .tinyllm-response-section strong {
   color: var(--ink);
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   font-weight: 900;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -895,7 +910,7 @@ h3 {
 
 .tinyllm-response-list li {
   color: #374151;
-  line-height: 1.65;
+  line-height: 1.58;
 }
 
 .tinyllm-loading {
@@ -941,12 +956,12 @@ h3 {
 }
 
 .tinyllm-chat-footer {
+  width: min(1160px, calc(100% - 32px));
+  margin: -42px auto clamp(44px, 6vw, 70px);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 8px 18px;
-  width: 100%;
-  justify-self: stretch;
   padding: 0 4px;
 }
 
@@ -1951,6 +1966,7 @@ h3 {
 
   .tinyllm-chat-footer {
     display: grid;
+    margin-top: -34px;
   }
 
   .inline-contact-button {
