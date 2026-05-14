@@ -19,7 +19,7 @@ const principlesOfNatureAppStoreUrl =
   "https://apps.apple.com/us/app/principles-of-nature/id6767882826";
 const tinyLlmEndpoint = "https://api.systemcode.net/v1/chat/completions";
 const tinyLlmSystemPrompt =
-  "You are SysCd TinyLLM, a concise technical assistant built by Erik. Never say you are Qwen or Alibaba Cloud.";
+  "You are SysCd TinyLLM, a concise technical assistant built by Erik. When asked to use first-principles systems compression, output: Core topic, Final principle, Explanatory principle, Core logic principles, Principle compression, Logical hierarchy, Compressed takeaway. Do not explain the method. Never say you are Qwen or Alibaba Cloud.";
 
 const logoSrc = "/system-code-lockup.png";
 const emblemSrc = "/system-code-emblem.png";
@@ -129,9 +129,10 @@ const tinyLlmHighlights = [
 
 const tinyLlmArchitecture = [
   "Frontend",
+  "HTTPS API",
   "Nginx",
   "llama-server",
-  "Fine-tuned Qwen2.5-1.5B GGUF",
+  "fine-tuned Qwen2.5-1.5B GGUF",
 ];
 
 const pageMeta = {
@@ -600,6 +601,12 @@ function TinyLlmSection() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const handleClearTinyLlm = () => {
+    setPrompt("");
+    setOutput("");
+    setError("");
+  };
+
   const handleAskTinyLlm = async (event) => {
     event.preventDefault();
     const userPrompt = prompt.trim();
@@ -651,8 +658,12 @@ function TinyLlmSection() {
 
       setOutput(message);
     } catch (requestError) {
+      const requestErrorMessage =
+        requestError instanceof Error
+          ? requestError.message
+          : String(requestError);
       console.error("TinyLLM request failed", requestError);
-      setError(`${requestError.message}. Check the TinyLLM API status.`);
+      setError(`${requestErrorMessage}. Check the TinyLLM API status.`);
     } finally {
       setIsLoading(false);
     }
@@ -689,7 +700,7 @@ function TinyLlmSection() {
                 {item}
                 {index < tinyLlmArchitecture.length - 1 ? (
                   <span className="architecture-arrow" aria-hidden="true">
-                    -&gt;
+                    &rarr;
                   </span>
                 ) : null}
               </span>
@@ -697,34 +708,71 @@ function TinyLlmSection() {
           </div>
         </article>
 
-        <article className="tinyllm-card tinyllm-demo-card">
+        <article className="tinyllm-card tinyllm-chat-card">
+          <div className="tinyllm-chat-heading">
+            <div>
+              <h3>Ask SysCd TinyLLM</h3>
+            </div>
+            <p>OpenAI-compatible chat completion interface for the hosted model.</p>
+          </div>
           <form onSubmit={handleAskTinyLlm}>
-            <label className="demo-label" htmlFor="tinyllm-prompt">
-              Prompt
-            </label>
-            <textarea
-              id="tinyllm-prompt"
-              value={prompt}
-              onChange={(event) => setPrompt(event.target.value)}
-              rows="6"
-            />
-            <button
-              className="button primary tinyllm-submit"
-              type="submit"
-              disabled={isLoading}
-            >
-              {isLoading ? "Asking TinyLLM..." : "Ask TinyLLM"}
-            </button>
+            <div className="tinyllm-message tinyllm-user-message">
+              <label className="demo-label" htmlFor="tinyllm-prompt">
+                User prompt
+              </label>
+              <textarea
+                id="tinyllm-prompt"
+                value={prompt}
+                onChange={(event) => setPrompt(event.target.value)}
+                rows="8"
+              />
+            </div>
+            <div className="tinyllm-actions">
+              <button
+                className="button primary tinyllm-submit"
+                type="submit"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <span className="tinyllm-spinner" aria-hidden="true" />
+                    Asking TinyLLM...
+                  </>
+                ) : (
+                  "Ask TinyLLM"
+                )}
+              </button>
+              <button
+                className="button secondary tinyllm-clear"
+                type="button"
+                onClick={handleClearTinyLlm}
+              >
+                Clear
+              </button>
+            </div>
           </form>
           <div className="tinyllm-output" aria-live="polite">
-            <p className="demo-label">Output</p>
-            {isLoading ? <p>Waiting for TinyLLM...</p> : null}
-            {error ? <p className="demo-error">{error}</p> : null}
+            <p className="demo-label">Assistant response</p>
+            {isLoading ? (
+              <p className="tinyllm-loading">
+                <span className="tinyllm-spinner" aria-hidden="true" />
+                Waiting for TinyLLM...
+              </p>
+            ) : null}
+            {error ? (
+              <div className="demo-error" role="alert">
+                <span>Request failed</span>
+                <p>{error}</p>
+              </div>
+            ) : null}
             {output ? <pre>{output}</pre> : null}
             {!isLoading && !error && !output ? (
               <p>Response will appear here after the demo returns.</p>
             ) : null}
           </div>
+          <p className="tinyllm-note">
+            CPU-only Azure VM inference — responses may take a few seconds.
+          </p>
         </article>
       </div>
     </section>
