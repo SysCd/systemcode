@@ -17,7 +17,7 @@ const siteUrl = "https://systemcode.net";
 const githubUrl = "https://github.com/SysCd";
 const principlesOfNatureAppStoreUrl =
   "https://apps.apple.com/us/app/principles-of-nature/id6767882826";
-const tinyLlmEndpoint = "http://51.140.231.73/v1/chat/completions";
+const tinyLlmEndpoint = "https://api.systemcode.net/v1/chat/completions";
 const tinyLlmSystemPrompt =
   "You are SysCd TinyLLM. When asked to use first-principles systems compression, output: Core topic, Final principle, Explanatory principle, Core logic principles, Principle compression, Logical hierarchy, Compressed takeaway. Do not explain the method.";
 
@@ -648,9 +648,7 @@ function TinyLlmSection() {
 
       setOutput(message);
     } catch (requestError) {
-      setError(
-        `${requestError.message}. If you are viewing the HTTPS site, the browser may block this HTTP demo endpoint.`
-      );
+      setError(`${requestError.message}. Check the TinyLLM API status.`);
     } finally {
       setIsLoading(false);
     }
