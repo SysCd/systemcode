@@ -461,7 +461,7 @@ h3 {
 .tinyllm-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 18px;
+  gap: 14px;
   align-items: stretch;
 }
 
@@ -513,13 +513,17 @@ h3 {
 
 .tinyllm-summary-card {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(18px, 3vw, 34px);
-  padding: clamp(20px, 3vw, 30px);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.92fr);
+  align-items: start;
+  gap: clamp(16px, 2.4vw, 28px);
+  padding: clamp(16px, 2.3vw, 22px);
 }
 
 .tinyllm-summary-card p {
   margin-bottom: 0;
+  color: #4b5563;
+  font-size: 0.98rem;
+  line-height: 1.52;
 }
 
 .tinyllm-chat-card {
@@ -619,19 +623,22 @@ h3 {
 
 .tinyllm-highlights {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 28px;
+  gap: 7px 22px;
   padding-left: 0;
   list-style: none;
 }
 
 .tinyllm-highlights li {
   position: relative;
-  padding-left: 16px;
+  padding-left: 14px;
+  color: #4b5563;
+  font-size: 0.92rem;
+  line-height: 1.45;
 }
 
 .tinyllm-highlights li::before {
   position: absolute;
-  top: 0.74em;
+  top: 0.68em;
   left: 0;
   width: 4px;
   height: 4px;
@@ -651,7 +658,7 @@ h3 {
 .tinyllm-section .architecture-strip {
   width: fit-content;
   max-width: 100%;
-  padding: 12px;
+  padding: 8px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.68);
@@ -660,13 +667,13 @@ h3 {
 .architecture-node {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 10px;
+  gap: 6px;
+  padding: 6px 8px;
   border: 1px solid var(--accent-border);
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.78);
   color: var(--accent-text);
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   font-weight: 900;
 }
 
@@ -712,6 +719,19 @@ h3 {
   background: rgba(255, 255, 255, 0.72);
 }
 
+.tinyllm-composer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tinyllm-composer-meta span {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
 .tinyllm-composer-bar {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -754,8 +774,8 @@ h3 {
   display: grid;
   align-content: start;
   gap: 10px;
-  min-height: clamp(320px, 30vw, 420px);
-  max-height: 460px;
+  min-height: clamp(280px, 26vw, 360px);
+  max-height: 420px;
   overflow: auto;
   padding: clamp(12px, 1.8vw, 18px);
   border: 1px solid rgba(17, 17, 17, 0.075);
@@ -1807,6 +1827,10 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .tinyllm-summary-card {
+    grid-template-columns: 1fr;
+  }
+
   .tinyllm-chat-heading {
     display: grid;
   }
@@ -1913,8 +1937,8 @@ h3 {
   }
 
   .tinyllm-output {
-    min-height: 320px;
-    max-height: 460px;
+    min-height: 300px;
+    max-height: 420px;
   }
 
   .tinyllm-chat-message {

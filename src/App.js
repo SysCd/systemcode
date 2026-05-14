@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./index.css";
 import {
   FaBars,
@@ -119,12 +119,12 @@ const openSourceContributions = [
 ];
 
 const tinyLlmHighlights = [
-  "Fine-tuned Qwen2.5-1.5B with PEFT LoRA",
-  "Merged and converted to GGUF",
-  "Deployed on Azure Ubuntu VM",
-  "Served with llama-server behind Nginx",
-  "Frontend connects to hosted chat API",
-  "Custom first-principles systems reasoning style",
+  "PEFT LoRA fine-tune",
+  "GGUF Q4_K_M quantization",
+  "Azure VM deployment",
+  "Nginx reverse proxy",
+  "llama-server runtime",
+  "Live frontend API",
 ];
 
 const tinyLlmArchitecture = [
@@ -161,6 +161,7 @@ const tinyLlmSectionLabels = [
 ];
 
 const tinyLlmNoWrapTerms = ["Qwen2.5-1.5B", "Azure", "GGUF", "API", "Nginx"];
+const tinyLlmMaxPromptLength = 1000;
 const tinyLlmLinks = [
   {
     label: "GitHub repo",
@@ -755,6 +756,7 @@ function formatTinyLlmResponse(response) {
 }
 
 function TinyLlmSection() {
+  const messagesEndRef = useRef(null);
   const [prompt, setPrompt] = useState(
     "Use first-principles systems compression to explain why local AI infrastructure matters."
   );
@@ -775,6 +777,10 @@ function TinyLlmSection() {
   const handlePromptChipClick = (examplePrompt) => {
     setPrompt(examplePrompt);
     setCopyStatus("");
+  };
+
+  const handlePromptChange = (event) => {
+    setPrompt(event.target.value.slice(0, tinyLlmMaxPromptLength));
   };
 
   const handleCopyTinyLlmResponse = async (content = output) => {
@@ -903,6 +909,15 @@ function TinyLlmSection() {
     }
   };
 
+  useEffect(() => {
+    if (typeof messagesEndRef.current?.scrollIntoView === "function") {
+      messagesEndRef.current.scrollIntoView({
+        block: "end",
+        behavior: "smooth",
+      });
+    }
+  }, [messages, isLoading, isSlowResponse]);
+
   return (
     <section className="section-block tinyllm-section" id="tinyllm">
       <div className="tinyllm-layout">
@@ -937,7 +952,7 @@ function TinyLlmSection() {
         <article className="tinyllm-card tinyllm-summary-card">
           <p>
             {renderTinyLlmText(
-              "SysCd TinyLLM is a lightweight AI chatbot project built around Qwen2.5-1.5B. It was fine-tuned with PEFT LoRA, merged and converted to GGUF, then deployed on an Azure Ubuntu VM using llama.cpp/llama-server behind Nginx."
+              "SysCd TinyLLM is a self-hosted AI assistant built around Qwen2.5-1.5B. It was fine-tuned with PEFT LoRA, merged into GGUF, quantized, and deployed on an Azure Ubuntu VM using llama.cpp, Nginx, and Terraform."
             )}
           </p>
           <ul className="software-features tinyllm-highlights">
@@ -982,7 +997,7 @@ function TinyLlmSection() {
               <p className="demo-label">Conversation</p>
               {messages.length === 0 ? (
                 <div className="tinyllm-empty-state">
-                  <p>Ask TinyLLM a question to test the self-hosted model.</p>
+                  <p>Ask TinyLLM to test the self-hosted Azure model.</p>
                 </div>
               ) : null}
               {messages.map((message, index) => (
@@ -1032,17 +1047,24 @@ function TinyLlmSection() {
                   Slow response detected. CPU inference can take a few seconds.
                 </p>
               ) : null}
+              <span ref={messagesEndRef} aria-hidden="true" />
             </div>
 
             <form className="tinyllm-composer" onSubmit={handleAskTinyLlm}>
-              <label className="demo-label" htmlFor="tinyllm-prompt">
-                User prompt
-              </label>
+              <div className="tinyllm-composer-meta">
+                <label className="demo-label" htmlFor="tinyllm-prompt">
+                  User prompt
+                </label>
+                <span>
+                  {prompt.length}/{tinyLlmMaxPromptLength}
+                </span>
+              </div>
               <div className="tinyllm-composer-bar">
                 <textarea
                   id="tinyllm-prompt"
                   value={prompt}
-                  onChange={(event) => setPrompt(event.target.value)}
+                  onChange={handlePromptChange}
+                  maxLength={tinyLlmMaxPromptLength}
                   rows="2"
                   placeholder="Ask TinyLLM..."
                 />

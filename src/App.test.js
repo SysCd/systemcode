@@ -59,8 +59,16 @@ test("renders Erik's portfolio page", () => {
   expect(
     screen.getAllByText((_, element) =>
       Boolean(
-        element?.textContent?.match(/fine-tuned qwen2\.5-1\.5b with peft lora/i)
+        element?.textContent?.match(
+          /self-hosted ai assistant built around qwen2\.5-1\.5b/i
+        )
       )
+    ).length
+  ).toBeGreaterThan(0);
+  expect(screen.getByText(/peft lora fine-tune/i)).toBeInTheDocument();
+  expect(
+    screen.getAllByText((_, element) =>
+      Boolean(element?.textContent?.match(/gguf q4_k_m quantization/i))
     ).length
   ).toBeGreaterThan(0);
   expect(
@@ -89,8 +97,9 @@ test("renders Erik's portfolio page", () => {
   ).not.toBeInTheDocument();
   expect(screen.getByText(/conversation/i)).toBeInTheDocument();
   expect(
-    screen.getByText(/ask tinyllm a question to test the self-hosted model/i)
+    screen.getByText(/ask tinyllm to test the self-hosted azure model/i)
   ).toBeInTheDocument();
+  expect(screen.getByText(/\/1000/i)).toBeInTheDocument();
   expect(
     screen.getAllByText((_, element) =>
       Boolean(element?.textContent?.match(/https api/i))
