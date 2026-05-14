@@ -120,11 +120,11 @@ const openSourceContributions = [
 
 const tinyLlmHighlights = [
   "Fine-tuned Qwen2.5-1.5B with PEFT LoRA",
+  "Merged and converted to GGUF",
+  "Deployed on Azure Ubuntu VM",
+  "Served with llama-server behind Nginx",
+  "Frontend connects to hosted chat API",
   "Custom first-principles systems reasoning style",
-  "Converted merged model to GGUF for efficient CPU inference",
-  "Deployed on Azure VM with Terraform-managed infrastructure",
-  "Served through llama-server and Nginx reverse proxy",
-  "Frontend calls the Azure-hosted chat completion API",
 ];
 
 const tinyLlmArchitecture = [
@@ -132,7 +132,32 @@ const tinyLlmArchitecture = [
   "HTTPS API",
   "Nginx",
   "llama-server",
-  "fine-tuned Qwen2.5-1.5B GGUF",
+  "fine-tuned GGUF model",
+];
+
+const tinyLlmStatusBadges = [
+  "Fine-tuned Qwen2.5-1.5B",
+  "Azure VM",
+  "llama-server",
+  "CPU inference",
+];
+
+const tinyLlmPromptChips = [
+  "Explain Kubernetes",
+  "Explain Azure VMs",
+  "Explain Docker networking",
+  "Explain physics",
+  "Explain trading risk",
+];
+
+const tinyLlmSectionLabels = [
+  "Core topic",
+  "Final principle",
+  "Explanatory principle",
+  "Core logic principles",
+  "Principle compression",
+  "Logical hierarchy",
+  "Compressed takeaway",
 ];
 
 const reasoningBlueprintNotes = [
@@ -621,6 +646,78 @@ function ContactPathCards() {
   );
 }
 
+function formatTinyLlmResponse(response) {
+  const lines = response.split(/\r?\n/);
+  const elements = [];
+  let listItems = [];
+  let listType = null;
+
+  const flushList = () => {
+    if (!listItems.length) {
+      return;
+    }
+
+    const ListTag = listType === "ol" ? "ol" : "ul";
+    elements.push(
+      <ListTag className="tinyllm-response-list" key={`list-${elements.length}`}>
+        {listItems.map((item, index) => (
+          <li key={`${item}-${index}`}>{item}</li>
+        ))}
+      </ListTag>
+    );
+    listItems = [];
+    listType = null;
+  };
+
+  lines.forEach((line, index) => {
+    const trimmedLine = line.trim();
+
+    if (!trimmedLine) {
+      flushList();
+      return;
+    }
+
+    const sectionPattern = new RegExp(
+      `^(${tinyLlmSectionLabels.join("|")}):\\s*(.*)$`,
+      "i"
+    );
+    const sectionMatch = trimmedLine.match(sectionPattern);
+
+    if (sectionMatch) {
+      flushList();
+      elements.push(
+        <div className="tinyllm-response-section" key={`section-${index}`}>
+          <strong>{sectionMatch[1]}</strong>
+          {sectionMatch[2] ? <p>{sectionMatch[2]}</p> : null}
+        </div>
+      );
+      return;
+    }
+
+    const bulletMatch = trimmedLine.match(/^[-*•]\s+(.+)$/);
+    const numberedMatch = trimmedLine.match(/^\d+[.)]\s+(.+)$/);
+
+    if (bulletMatch || numberedMatch) {
+      const nextListType = numberedMatch ? "ol" : "ul";
+
+      if (listType && listType !== nextListType) {
+        flushList();
+      }
+
+      listType = nextListType;
+      listItems.push(bulletMatch ? bulletMatch[1] : numberedMatch[1]);
+      return;
+    }
+
+    flushList();
+    elements.push(<p key={`paragraph-${index}`}>{trimmedLine}</p>);
+  });
+
+  flushList();
+
+  return elements;
+}
+
 function TinyLlmSection() {
   const [prompt, setPrompt] = useState(
     "Use first-principles systems compression to explain why local AI infrastructure matters."
@@ -628,11 +725,35 @@ function TinyLlmSection() {
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSlowResponse, setIsSlowResponse] = useState(false);
+  const [copyStatus, setCopyStatus] = useState("");
 
   const handleClearTinyLlm = () => {
     setPrompt("");
     setOutput("");
     setError("");
+    setCopyStatus("");
+    setIsSlowResponse(false);
+  };
+
+  const handlePromptChipClick = (examplePrompt) => {
+    setPrompt(examplePrompt);
+    setError("");
+    setCopyStatus("");
+  };
+
+  const handleCopyTinyLlmResponse = async () => {
+    if (!output || isLoading) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(output);
+      setCopyStatus("Copied");
+    } catch (copyError) {
+      console.error("TinyLLM copy failed", copyError);
+      setCopyStatus("Copy failed");
+    }
   };
 
   const handleAskTinyLlm = async (event) => {
@@ -646,15 +767,25 @@ function TinyLlmSection() {
     }
 
     setIsLoading(true);
+    setIsSlowResponse(false);
+    setCopyStatus("");
     setError("");
     setOutput("");
 
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 45000);
+    const slowResponseId = window.setTimeout(() => {
+      setIsSlowResponse(true);
+    }, 8000);
+
     try {
+      // TODO: Move TinyLLM API calls behind a server-side proxy with API key/rate limiting before wider public release.
       const response = await fetch(tinyLlmEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        signal: controller.signal,
         body: JSON.stringify({
           model: "syscd-tinyllm",
           messages: [
@@ -673,7 +804,7 @@ function TinyLlmSection() {
       if (!response.ok) {
         const errorBody = await response.text();
         throw new Error(
-          `TinyLLM returned HTTP ${response.status}: ${errorBody || response.statusText}`
+          `API offline or returned HTTP ${response.status}: ${errorBody || response.statusText}`
         );
       }
 
@@ -686,54 +817,72 @@ function TinyLlmSection() {
 
       setOutput(message);
     } catch (requestError) {
-      const requestErrorMessage =
-        requestError instanceof Error
-          ? requestError.message
-          : String(requestError);
+      let requestErrorMessage = "TinyLLM request failed.";
+
+      if (requestError instanceof DOMException && requestError.name === "AbortError") {
+        requestErrorMessage =
+          "Request timed out after 45 seconds. The CPU-only Azure VM may be busy or offline.";
+      } else if (requestError instanceof TypeError) {
+        requestErrorMessage =
+          "Network or CORS error. The API may be unreachable from this browser.";
+      } else if (requestError instanceof Error) {
+        requestErrorMessage = requestError.message;
+      } else {
+        requestErrorMessage = String(requestError);
+      }
+
       console.error("TinyLLM request failed", requestError);
-      setError(`${requestErrorMessage}. Check the TinyLLM API status.`);
+      setError(requestErrorMessage);
     } finally {
+      window.clearTimeout(timeoutId);
+      window.clearTimeout(slowResponseId);
       setIsLoading(false);
+      setIsSlowResponse(false);
     }
   };
 
   return (
     <section className="section-block tinyllm-section" id="tinyllm">
-      <div className="section-heading">
-        <p className="eyebrow">Self-hosted AI demo</p>
-        <h2>SysCd TinyLLM</h2>
-        <p>
-          Self-hosted fine-tuned AI assistant running on Azure infrastructure.
-        </p>
-      </div>
       <div className="tinyllm-layout">
-        <article className="tinyllm-card">
-          <div>
-            <span className="project-label">Experimental self-hosted AI demo</span>
-            <p>
-              SysCd TinyLLM is a lightweight AI chatbot project built around
-              Qwen2.5-1.5B. It was fine-tuned with PEFT LoRA, merged and
-              converted to GGUF, then deployed on an Azure Ubuntu VM using
-              llama.cpp/llama-server behind Nginx.
-            </p>
-            <ul className="software-features tinyllm-highlights">
-              {tinyLlmHighlights.map((highlight) => (
-                <li key={highlight}>{highlight}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="architecture-strip" aria-label="TinyLLM architecture">
-            {tinyLlmArchitecture.map((item, index) => (
-              <span className="architecture-node" key={item}>
-                {item}
-                {index < tinyLlmArchitecture.length - 1 ? (
-                  <span className="architecture-arrow" aria-hidden="true">
-                    &rarr;
-                  </span>
-                ) : null}
-              </span>
+        <div className="tinyllm-project-hero">
+          <span className="project-label">Experimental self-hosted AI demo</span>
+          <h2>SysCd TinyLLM</h2>
+          <p>
+            Self-hosted fine-tuned AI assistant running on Azure
+            infrastructure.
+          </p>
+          <div className="tinyllm-status-row" aria-label="TinyLLM status">
+            {tinyLlmStatusBadges.map((badge) => (
+              <span key={badge}>{badge}</span>
             ))}
           </div>
+        </div>
+
+        <div className="architecture-strip" aria-label="TinyLLM architecture">
+          {tinyLlmArchitecture.map((item, index) => (
+            <span className="architecture-node" key={item}>
+              {item}
+              {index < tinyLlmArchitecture.length - 1 ? (
+                <span className="architecture-arrow" aria-hidden="true">
+                  &rarr;
+                </span>
+              ) : null}
+            </span>
+          ))}
+        </div>
+
+        <article className="tinyllm-card tinyllm-summary-card">
+          <p>
+            SysCd TinyLLM is a lightweight AI chatbot project built around
+            Qwen2.5-1.5B. It was fine-tuned with PEFT LoRA, merged and
+            converted to GGUF, then deployed on an Azure Ubuntu VM using
+            llama.cpp/llama-server behind Nginx.
+          </p>
+          <ul className="software-features tinyllm-highlights">
+            {tinyLlmHighlights.map((highlight) => (
+              <li key={highlight}>{highlight}</li>
+            ))}
+          </ul>
         </article>
 
         <article className="tinyllm-card tinyllm-chat-card">
@@ -741,9 +890,21 @@ function TinyLlmSection() {
             <div>
               <h3>Ask SysCd TinyLLM</h3>
             </div>
-            <p>OpenAI-compatible chat completion interface for the hosted model.</p>
+            <p>Live chat interface connected to the self-hosted Azure model.</p>
           </div>
           <form onSubmit={handleAskTinyLlm}>
+            <div className="tinyllm-prompt-chips" aria-label="Example prompts">
+              {tinyLlmPromptChips.map((examplePrompt) => (
+                <button
+                  type="button"
+                  key={examplePrompt}
+                  onClick={() => handlePromptChipClick(examplePrompt)}
+                  disabled={isLoading}
+                >
+                  {examplePrompt}
+                </button>
+              ))}
+            </div>
             <div className="tinyllm-message tinyllm-user-message">
               <label className="demo-label" htmlFor="tinyllm-prompt">
                 User prompt
@@ -774,8 +935,17 @@ function TinyLlmSection() {
                 className="button secondary tinyllm-clear"
                 type="button"
                 onClick={handleClearTinyLlm}
+                disabled={isLoading}
               >
                 Clear
+              </button>
+              <button
+                className="button secondary tinyllm-copy"
+                type="button"
+                onClick={handleCopyTinyLlmResponse}
+                disabled={isLoading || !output}
+              >
+                {copyStatus || "Copy response"}
               </button>
             </div>
           </form>
@@ -787,19 +957,28 @@ function TinyLlmSection() {
                 Waiting for TinyLLM...
               </p>
             ) : null}
+            {isSlowResponse ? (
+              <p className="tinyllm-slow-note">
+                Slow response detected. CPU inference can take a few seconds.
+              </p>
+            ) : null}
             {error ? (
               <div className="demo-error" role="alert">
                 <span>Request failed</span>
                 <p>{error}</p>
               </div>
             ) : null}
-            {output ? <pre>{output}</pre> : null}
+            {output ? (
+              <div className="tinyllm-response-message">
+                {formatTinyLlmResponse(output)}
+              </div>
+            ) : null}
             {!isLoading && !error && !output ? (
               <p>Response will appear here after the demo returns.</p>
             ) : null}
           </div>
           <p className="tinyllm-note">
-            CPU-only Azure VM inference — responses may take a few seconds.
+            Runs on a CPU-only Azure VM, so responses may take a few seconds.
           </p>
         </article>
       </div>

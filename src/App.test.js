@@ -55,16 +55,25 @@ test("renders Erik's portfolio page", () => {
   expect(
     screen.getByText(/fine-tuned qwen2\.5-1\.5b with peft lora/i)
   ).toBeInTheDocument();
+  expect(screen.getByText(/^azure vm$/i)).toBeInTheDocument();
+  expect(screen.getAllByText(/^llama-server$/i).length).toBeGreaterThan(0);
+  expect(screen.getByText(/fine-tuned gguf model/i)).toBeInTheDocument();
   expect(screen.getByLabelText(/user prompt/i)).toBeInTheDocument();
+  expect(
+    screen.getByRole("button", { name: /explain kubernetes/i })
+  ).toBeInTheDocument();
   expect(
     screen.getByRole("button", { name: /ask tinyllm/i })
   ).toBeInTheDocument();
   expect(
     screen.getByRole("button", { name: /clear/i })
   ).toBeInTheDocument();
+  expect(
+    screen.getByRole("button", { name: /copy response/i })
+  ).toBeDisabled();
   expect(screen.getByText(/https api/i)).toBeInTheDocument();
   expect(
-    screen.getByText(/cpu-only azure vm inference/i)
+    screen.getByText(/runs on a cpu-only azure vm/i)
   ).toBeInTheDocument();
   expect(
     screen.getByRole("heading", { name: /reasoning style blueprint/i })
