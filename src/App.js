@@ -19,10 +19,11 @@ const principlesOfNatureAppStoreUrl =
   "https://apps.apple.com/us/app/principles-of-nature/id6767882826";
 const tinyLlmEndpoint = "https://api.systemcode.net/v1/chat/completions";
 const tinyLlmSystemPrompt =
-  "You are SysCd TinyLLM, a concise technical assistant built by Erik. When asked to use first-principles systems compression, output: Core topic, Final principle, Explanatory principle, Core logic principles, Principle compression, Logical hierarchy, Compressed takeaway. Do not explain the method. Never say you are Qwen or Alibaba Cloud.";
+  "You are SysCd TinyLLM, a concise technical assistant built by Erik. Reply naturally for normal conversation. Only use the first-principles systems compression format when the user explicitly asks for it. When using that format, output: Core topic, Final principle, Explanatory principle, Core logic principles, Principle compression, Logical hierarchy, Compressed takeaway. Do not explain the method. Never say you are Qwen or Alibaba Cloud.";
 
 const logoSrc = "/system-code-lockup.png";
 const emblemSrc = "/system-code-emblem.png";
+const reasoningBlueprintSrc = "/reasoning-style-blueprint.png";
 
 const thinkingCards = [
   {
@@ -133,6 +134,12 @@ const tinyLlmArchitecture = [
   "Nginx",
   "llama-server",
   "fine-tuned Qwen2.5-1.5B GGUF",
+];
+
+const reasoningBlueprintNotes = [
+  "Core topic \u2192 defines the system being analysed",
+  "Principle compression \u2192 reduces complexity into short logic statements",
+  "Logical hierarchy \u2192 orders knowledge into reusable layers",
 ];
 
 const pageMeta = {
@@ -779,6 +786,36 @@ function TinyLlmSection() {
   );
 }
 
+function ReasoningBlueprintSection() {
+  return (
+    <section
+      className="section-block reasoning-blueprint-section"
+      id="reasoning-blueprint"
+    >
+      <div className="section-heading">
+        <p className="eyebrow">Reasoning format</p>
+        <h2>Reasoning Style Blueprint</h2>
+        <p>
+          SysCd TinyLLM was fine-tuned to use a first-principles systems
+          reasoning format for compressing complex topics into clear,
+          reusable logic.
+        </p>
+      </div>
+      <article className="blueprint-card">
+        <img
+          src={reasoningBlueprintSrc}
+          alt="Reasoning Style Blueprint diagram showing SysCd TinyLLM first-principles systems reasoning structure"
+        />
+      </article>
+      <ul className="blueprint-notes" aria-label="Reasoning blueprint notes">
+        {reasoningBlueprintNotes.map((note) => (
+          <li key={note}>{note}</li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 function getPageFromPath(pathname) {
   const normalizedPath = pathname.replace(/\/$/, "") || "/";
 
@@ -1169,6 +1206,8 @@ function PortfolioPage() {
       </section>
 
       <TinyLlmSection />
+
+      <ReasoningBlueprintSection />
 
       <section className="section-block open-source-section" id="open-source">
         <div className="section-heading">

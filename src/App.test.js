@@ -67,6 +67,18 @@ test("renders Erik's portfolio page", () => {
     screen.getByText(/cpu-only azure vm inference/i)
   ).toBeInTheDocument();
   expect(
+    screen.getByRole("heading", { name: /reasoning style blueprint/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText(/first-principles systems reasoning format/i)
+  ).toBeInTheDocument();
+  expect(
+    screen.getByAltText(/reasoning style blueprint diagram/i)
+  ).toHaveAttribute("src", "/reasoning-style-blueprint.png");
+  expect(
+    screen.getByText(/logical hierarchy.*reusable layers/i)
+  ).toBeInTheDocument();
+  expect(
     screen.getByRole("link", { name: /tinyllm/i })
   ).toHaveAttribute("href", "#tinyllm");
   expect(
