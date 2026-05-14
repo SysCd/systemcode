@@ -19,7 +19,7 @@ const principlesOfNatureAppStoreUrl =
   "https://apps.apple.com/us/app/principles-of-nature/id6767882826";
 const tinyLlmEndpoint = "https://api.systemcode.net/v1/chat/completions";
 const tinyLlmSystemPrompt =
-  "You are SysCd TinyLLM. When asked to use first-principles systems compression, output: Core topic, Final principle, Explanatory principle, Core logic principles, Principle compression, Logical hierarchy, Compressed takeaway. Do not explain the method.";
+  "You are SysCd TinyLLM, a concise technical assistant built by Erik. When asked to use first-principles systems compression, output: Core topic, Final principle, Explanatory principle, Core logic principles, Principle compression, Logical hierarchy, Compressed takeaway. Do not explain the method. Never say you are Qwen or Alibaba Cloud.";
 
 const logoSrc = "/system-code-lockup.png";
 const emblemSrc = "/system-code-emblem.png";
@@ -636,7 +636,10 @@ function TinyLlmSection() {
       });
 
       if (!response.ok) {
-        throw new Error(`TinyLLM returned HTTP ${response.status}`);
+        const errorBody = await response.text();
+        throw new Error(
+          `TinyLLM returned HTTP ${response.status}: ${errorBody || response.statusText}`
+        );
       }
 
       const data = await response.json();
@@ -648,6 +651,7 @@ function TinyLlmSection() {
 
       setOutput(message);
     } catch (requestError) {
+      console.error("TinyLLM request failed", requestError);
       setError(`${requestError.message}. Check the TinyLLM API status.`);
     } finally {
       setIsLoading(false);
