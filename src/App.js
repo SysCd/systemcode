@@ -758,23 +758,22 @@ function TinyLlmSection() {
   const [prompt, setPrompt] = useState(
     "Use first-principles systems compression to explain why local AI infrastructure matters."
   );
+  const [messages, setMessages] = useState([]);
   const [output, setOutput] = useState("");
-  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSlowResponse, setIsSlowResponse] = useState(false);
   const [copyStatus, setCopyStatus] = useState("");
 
   const handleClearTinyLlm = () => {
     setPrompt("");
+    setMessages([]);
     setOutput("");
-    setError("");
     setCopyStatus("");
     setIsSlowResponse(false);
   };
 
   const handlePromptChipClick = (examplePrompt) => {
     setPrompt(examplePrompt);
-    setError("");
     setCopyStatus("");
   };
 
@@ -797,16 +796,29 @@ function TinyLlmSection() {
     const userPrompt = prompt.trim();
 
     if (!userPrompt) {
-      setError("Enter a prompt before asking TinyLLM.");
       setOutput("");
+      setMessages((currentMessages) => [
+        ...currentMessages,
+        {
+          role: "assistant",
+          content: "Enter a prompt before asking TinyLLM.",
+          isError: true,
+        },
+      ]);
       return;
     }
 
     setIsLoading(true);
     setIsSlowResponse(false);
     setCopyStatus("");
-    setError("");
     setOutput("");
+    setMessages((currentMessages) => [
+      ...currentMessages,
+      {
+        role: "user",
+        content: userPrompt,
+      },
+    ]);
 
     const controller = new AbortController();
     const timeoutId = window.setTimeout(() => controller.abort(), 45000);
@@ -852,6 +864,13 @@ function TinyLlmSection() {
       }
 
       setOutput(message);
+      setMessages((currentMessages) => [
+        ...currentMessages,
+        {
+          role: "assistant",
+          content: message,
+        },
+      ]);
     } catch (requestError) {
       let requestErrorMessage = "TinyLLM request failed.";
 
@@ -868,7 +887,14 @@ function TinyLlmSection() {
       }
 
       console.error("TinyLLM request failed", requestError);
-      setError(requestErrorMessage);
+      setMessages((currentMessages) => [
+        ...currentMessages,
+        {
+          role: "assistant",
+          content: requestErrorMessage,
+          isError: true,
+        },
+      ]);
     } finally {
       window.clearTimeout(timeoutId);
       window.clearTimeout(slowResponseId);
@@ -932,7 +958,7 @@ function TinyLlmSection() {
               )}
             </p>
           </div>
-          <form onSubmit={handleAskTinyLlm}>
+          <div className="tinyllm-chat-shell">
             <div className="tinyllm-prompt-chips" aria-label="Example prompts">
               {tinyLlmPromptChips.map((examplePrompt) => (
                 <button
@@ -945,77 +971,105 @@ function TinyLlmSection() {
                 </button>
               ))}
             </div>
-            <div className="tinyllm-message tinyllm-user-message">
+
+            <div className="tinyllm-output" aria-live="polite">
+              <p className="demo-label">Conversation</p>
+              {messages.length === 0 ? (
+                <div className="tinyllm-empty-state">
+                  <strong>Ready for a technical prompt.</strong>
+                  <p>
+                    Try a chip above, or ask TinyLLM for a short systems
+                    explanation.
+                  </p>
+                </div>
+              ) : null}
+              {messages.map((message, index) => (
+                <div
+                  className={`tinyllm-chat-message ${
+                    message.role === "user"
+                      ? "tinyllm-chat-message-user"
+                      : "tinyllm-chat-message-assistant"
+                  } ${message.isError ? "tinyllm-chat-message-error" : ""}`}
+                  key={`${message.role}-${index}`}
+                >
+                  <div className="tinyllm-message-meta">
+                    <span>{message.role === "user" ? "You" : "TinyLLM"}</span>
+                    {message.role === "assistant" && !message.isError ? (
+                      <button
+                        className="tinyllm-copy-inline"
+                        type="button"
+                        onClick={handleCopyTinyLlmResponse}
+                        disabled={isLoading || !output}
+                      >
+                        {copyStatus || "Copy response"}
+                      </button>
+                    ) : null}
+                  </div>
+                  {message.role === "assistant" && !message.isError ? (
+                    <div className="tinyllm-response-message">
+                      {formatTinyLlmResponse(message.content)}
+                    </div>
+                  ) : (
+                    <p>{renderTinyLlmText(message.content)}</p>
+                  )}
+                </div>
+              ))}
+              {isLoading ? (
+                <div className="tinyllm-chat-message tinyllm-chat-message-assistant">
+                  <div className="tinyllm-message-meta">
+                    <span>TinyLLM</span>
+                  </div>
+                  <p className="tinyllm-loading">
+                    <span className="tinyllm-spinner" aria-hidden="true" />
+                    Waiting for TinyLLM...
+                  </p>
+                </div>
+              ) : null}
+              {isSlowResponse ? (
+                <p className="tinyllm-slow-note">
+                  Slow response detected. CPU inference can take a few seconds.
+                </p>
+              ) : null}
+            </div>
+
+            <form className="tinyllm-composer" onSubmit={handleAskTinyLlm}>
               <label className="demo-label" htmlFor="tinyllm-prompt">
                 User prompt
               </label>
-              <textarea
-                id="tinyllm-prompt"
-                value={prompt}
-                onChange={(event) => setPrompt(event.target.value)}
-                rows="5"
-              />
-            </div>
-            <div className="tinyllm-actions">
-              <button
-                className="button primary tinyllm-submit"
-                type="submit"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <span className="tinyllm-spinner" aria-hidden="true" />
-                    Asking TinyLLM...
-                  </>
-                ) : (
-                  "Ask TinyLLM"
-                )}
-              </button>
-              <button
-                className="button secondary tinyllm-clear"
-                type="button"
-                onClick={handleClearTinyLlm}
-                disabled={isLoading}
-              >
-                Clear
-              </button>
-              <button
-                className="button secondary tinyllm-copy"
-                type="button"
-                onClick={handleCopyTinyLlmResponse}
-                disabled={isLoading || !output}
-              >
-                {copyStatus || "Copy response"}
-              </button>
-            </div>
-          </form>
-          <div className="tinyllm-output" aria-live="polite">
-            <p className="demo-label">Assistant response</p>
-            {isLoading ? (
-              <p className="tinyllm-loading">
-                <span className="tinyllm-spinner" aria-hidden="true" />
-                Waiting for TinyLLM...
-              </p>
-            ) : null}
-            {isSlowResponse ? (
-              <p className="tinyllm-slow-note">
-                Slow response detected. CPU inference can take a few seconds.
-              </p>
-            ) : null}
-            {error ? (
-              <div className="demo-error" role="alert">
-                <span>Request failed</span>
-                <p>{error}</p>
+              <div className="tinyllm-composer-bar">
+                <textarea
+                  id="tinyllm-prompt"
+                  value={prompt}
+                  onChange={(event) => setPrompt(event.target.value)}
+                  rows="2"
+                  placeholder="Ask TinyLLM..."
+                />
+                <div className="tinyllm-composer-actions">
+                  <button
+                    className="button secondary tinyllm-clear"
+                    type="button"
+                    onClick={handleClearTinyLlm}
+                    disabled={isLoading}
+                  >
+                    Clear
+                  </button>
+                  <button
+                    className="button primary tinyllm-submit"
+                    type="submit"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <span className="tinyllm-spinner" aria-hidden="true" />
+                        Asking TinyLLM...
+                      </>
+                    ) : (
+                      "Ask TinyLLM"
+                    )}
+                  </button>
+                </div>
               </div>
-            ) : null}
-            {output ? (
-              <div className="tinyllm-response-message">
-                {formatTinyLlmResponse(output)}
-              </div>
-            ) : null}
-            {!isLoading && !error && !output ? (
-              <p>Response will appear here after the demo returns.</p>
-            ) : null}
+            </form>
           </div>
           <p className="tinyllm-note">
             {renderTinyLlmText(

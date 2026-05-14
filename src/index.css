@@ -524,9 +524,9 @@ h3 {
 
 .tinyllm-chat-card {
   width: min(100%, 1080px);
-  gap: 12px;
+  gap: 14px;
   justify-self: center;
-  padding: clamp(18px, 2.5vw, 28px);
+  padding: clamp(16px, 2.3vw, 24px);
 }
 
 .tinyllm-chat-heading {
@@ -550,9 +550,9 @@ h3 {
   text-align: right;
 }
 
-.tinyllm-chat-card form {
+.tinyllm-chat-shell {
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
 .tinyllm-prompt-chips {
@@ -590,18 +590,6 @@ h3 {
   cursor: not-allowed;
   opacity: 0.62;
   transform: none;
-}
-
-.tinyllm-message {
-  display: grid;
-  gap: 8px;
-}
-
-.tinyllm-user-message {
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.72);
 }
 
 .tinyllm-highlights {
@@ -673,28 +661,54 @@ h3 {
 
 .tinyllm-chat-card textarea {
   width: 100%;
-  min-height: clamp(112px, 12vw, 140px);
+  min-height: 54px;
+  max-height: 138px;
   resize: vertical;
-  padding: 13px 15px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #ffffff;
+  padding: 11px 12px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--ink);
   font: inherit;
-  font-size: 1rem;
-  line-height: 1.55;
+  font-size: 0.98rem;
+  line-height: 1.45;
 }
 
 .tinyllm-chat-card textarea:focus-visible {
-  border-color: rgba(17, 17, 17, 0.46);
-  outline: 2px solid rgba(17, 17, 17, 0.12);
-  outline-offset: 2px;
+  outline: none;
 }
 
-.tinyllm-actions {
+.tinyllm-composer {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 18px 50px rgba(17, 17, 17, 0.06);
+}
+
+.tinyllm-composer-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: end;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.tinyllm-composer-bar:focus-within {
+  border-color: rgba(17, 17, 17, 0.38);
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.07);
+}
+
+.tinyllm-composer-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
+  justify-content: flex-end;
+  padding: 8px;
 }
 
 .tinyllm-submit {
@@ -707,32 +721,102 @@ h3 {
 }
 
 .tinyllm-submit:disabled,
-.tinyllm-clear:disabled,
-.tinyllm-copy:disabled {
+.tinyllm-clear:disabled {
   cursor: progress;
   opacity: 0.72;
 }
 
 .tinyllm-output {
-  min-height: clamp(180px, 19vw, 250px);
-  padding: 15px;
+  display: grid;
+  gap: 12px;
+  min-height: clamp(310px, 34vw, 430px);
+  max-height: 560px;
+  overflow: auto;
+  padding: clamp(14px, 2vw, 20px);
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.7);
+  background:
+    linear-gradient(rgba(17, 17, 17, 0.024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 17, 17, 0.024) 1px, transparent 1px),
+    rgba(255, 255, 255, 0.7);
+  background-size: 28px 28px;
 }
 
-.tinyllm-output > p:last-child {
-  margin: 10px 0 0;
+.tinyllm-empty-state {
+  max-width: 520px;
+  padding: 16px;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--muted);
+}
+
+.tinyllm-empty-state strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.tinyllm-empty-state p {
+  margin: 0;
+}
+
+.tinyllm-chat-message {
+  display: grid;
+  gap: 7px;
+  max-width: min(760px, 92%);
+}
+
+.tinyllm-chat-message-user {
+  justify-self: end;
+}
+
+.tinyllm-chat-message-assistant {
+  justify-self: start;
+}
+
+.tinyllm-message-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tinyllm-chat-message > p {
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.84);
+  color: #4b5563;
+  line-height: 1.62;
+}
+
+.tinyllm-chat-message-user > p {
+  background: #111111;
+  color: #ffffff;
+}
+
+.tinyllm-chat-message-error > p {
+  border-color: rgba(17, 17, 17, 0.24);
+  background: rgba(17, 17, 17, 0.055);
+  color: var(--ink);
+  font-weight: 800;
 }
 
 .tinyllm-response-message {
   display: grid;
   gap: 14px;
-  margin-top: 12px;
-  padding: 16px;
+  padding: 15px 16px;
   border: 1px solid rgba(17, 17, 17, 0.08);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.86);
   color: #4b5563;
   font-size: 1rem;
   line-height: 1.75;
@@ -774,7 +858,6 @@ h3 {
 .tinyllm-loading {
   display: inline-flex;
   gap: 8px;
-  margin-top: 10px;
 }
 
 .tinyllm-slow-note {
@@ -792,30 +875,6 @@ h3 {
   border-right-color: transparent;
   border-radius: 50%;
   animation: tinyllm-spin 760ms linear infinite;
-}
-
-.demo-error {
-  display: grid;
-  gap: 6px;
-  margin-top: 12px;
-  padding: 12px;
-  border: 1px solid rgba(17, 17, 17, 0.24);
-  border-radius: 8px;
-  background: rgba(17, 17, 17, 0.045);
-  color: var(--ink);
-}
-
-.demo-error span {
-  font-size: 0.78rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.demo-error p {
-  margin: 0;
-  color: var(--ink);
-  font-weight: 800;
 }
 
 .tinyllm-note {
@@ -854,6 +913,29 @@ h3 {
 .tinyllm-link-row a:focus-visible {
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+.tinyllm-copy-inline {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tinyllm-copy-inline:hover,
+.tinyllm-copy-inline:focus-visible {
+  color: var(--ink);
+  outline: none;
+}
+
+.tinyllm-copy-inline:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 .blueprint-card {
@@ -1702,6 +1784,18 @@ h3 {
     text-align: left;
   }
 
+  .tinyllm-composer-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .tinyllm-composer-actions {
+    justify-content: stretch;
+  }
+
+  .tinyllm-composer-actions .button {
+    flex: 1 1 150px;
+  }
+
   .blueprint-title-row {
     display: grid;
   }
@@ -1783,7 +1877,16 @@ h3 {
   }
 
   .tinyllm-chat-card textarea {
-    min-height: 128px;
+    min-height: 58px;
+  }
+
+  .tinyllm-output {
+    min-height: 360px;
+    max-height: 520px;
+  }
+
+  .tinyllm-chat-message {
+    max-width: 100%;
   }
 
   .inline-contact-button {

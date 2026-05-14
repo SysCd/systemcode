@@ -85,8 +85,12 @@ test("renders Erik's portfolio page", () => {
     screen.getByRole("button", { name: /clear/i })
   ).toBeInTheDocument();
   expect(
-    screen.getByRole("button", { name: /copy response/i })
-  ).toBeDisabled();
+    screen.queryByRole("button", { name: /copy response/i })
+  ).not.toBeInTheDocument();
+  expect(screen.getByText(/conversation/i)).toBeInTheDocument();
+  expect(
+    screen.getByText(/ready for a technical prompt/i)
+  ).toBeInTheDocument();
   expect(
     screen.getAllByText((_, element) =>
       Boolean(element?.textContent?.match(/https api/i))
