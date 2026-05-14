@@ -877,7 +877,7 @@ h3 {
   color: #1f2937;
 }
 
-.tinyllm-status-message span {
+.tinyllm-status-message > span {
   color: #687384;
   font-size: 0.68rem;
   font-weight: 900;
