@@ -17,6 +17,9 @@ const siteUrl = "https://systemcode.net";
 const githubUrl = "https://github.com/SysCd";
 const principlesOfNatureAppStoreUrl =
   "https://apps.apple.com/us/app/principles-of-nature/id6767882826";
+const tinyLlmEndpoint = "http://51.140.231.73/v1/chat/completions";
+const tinyLlmSystemPrompt =
+  "You are SysCd TinyLLM. When asked to use first-principles systems compression, output: Core topic, Final principle, Explanatory principle, Core logic principles, Principle compression, Logical hierarchy, Compressed takeaway. Do not explain the method.";
 
 const logoSrc = "/system-code-lockup.png";
 const emblemSrc = "/system-code-emblem.png";
@@ -113,6 +116,22 @@ const openSourceContributions = [
     description:
       "Added a practical Qwen3 QLoRA example for Apple Silicon users, showing how to fine-tune Qwen/Qwen3-8B-MLX-4bit with mlx_lm.lora, structure train/valid/test JSONL datasets, generate with adapters, and disable Qwen3 thinking mode for shorter direct responses.",
   },
+];
+
+const tinyLlmHighlights = [
+  "Fine-tuned Qwen2.5-1.5B with PEFT LoRA",
+  "Custom first-principles systems reasoning style",
+  "Converted merged model to GGUF for efficient CPU inference",
+  "Deployed on Azure VM with Terraform-managed infrastructure",
+  "Served through llama-server and Nginx reverse proxy",
+  "Frontend calls the Azure-hosted chat completion API",
+];
+
+const tinyLlmArchitecture = [
+  "Frontend",
+  "Nginx",
+  "llama-server",
+  "Fine-tuned Qwen2.5-1.5B GGUF",
 ];
 
 const pageMeta = {
@@ -381,6 +400,7 @@ function Header({ page }) {
     ? [
         { href: "/", label: "System Code" },
         { href: "#projects", label: "Projects" },
+        { href: "#tinyllm", label: "TinyLLM" },
         { href: "#open-source", label: "Open Source" },
         { href: "#experience", label: "Experience" },
         { href: "#skills", label: "Skills" },
@@ -569,6 +589,143 @@ function ContactPathCards() {
         </a>
       ))}
     </div>
+  );
+}
+
+function TinyLlmSection() {
+  const [prompt, setPrompt] = useState(
+    "Use first-principles systems compression to explain why local AI infrastructure matters."
+  );
+  const [output, setOutput] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleAskTinyLlm = async (event) => {
+    event.preventDefault();
+    const userPrompt = prompt.trim();
+
+    if (!userPrompt) {
+      setError("Enter a prompt before asking TinyLLM.");
+      setOutput("");
+      return;
+    }
+
+    setIsLoading(true);
+    setError("");
+    setOutput("");
+
+    try {
+      const response = await fetch(tinyLlmEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "syscd-tinyllm",
+          messages: [
+            {
+              role: "system",
+              content: tinyLlmSystemPrompt,
+            },
+            {
+              role: "user",
+              content: userPrompt,
+            },
+          ],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`TinyLLM returned HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+      const message = data?.choices?.[0]?.message?.content;
+
+      if (!message) {
+        throw new Error("TinyLLM returned an unexpected response format.");
+      }
+
+      setOutput(message);
+    } catch (requestError) {
+      setError(
+        `${requestError.message}. If you are viewing the HTTPS site, the browser may block this HTTP demo endpoint.`
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <section className="section-block tinyllm-section" id="tinyllm">
+      <div className="section-heading">
+        <p className="eyebrow">Self-hosted AI demo</p>
+        <h2>SysCd TinyLLM</h2>
+        <p>
+          Self-hosted fine-tuned AI assistant running on Azure infrastructure.
+        </p>
+      </div>
+      <div className="tinyllm-layout">
+        <article className="tinyllm-card">
+          <div>
+            <span className="project-label">Experimental self-hosted AI demo</span>
+            <p>
+              SysCd TinyLLM is a lightweight AI chatbot project built around
+              Qwen2.5-1.5B. It was fine-tuned with PEFT LoRA, merged and
+              converted to GGUF, then deployed on an Azure Ubuntu VM using
+              llama.cpp/llama-server behind Nginx.
+            </p>
+            <ul className="software-features tinyllm-highlights">
+              {tinyLlmHighlights.map((highlight) => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="architecture-strip" aria-label="TinyLLM architecture">
+            {tinyLlmArchitecture.map((item, index) => (
+              <span className="architecture-node" key={item}>
+                {item}
+                {index < tinyLlmArchitecture.length - 1 ? (
+                  <span className="architecture-arrow" aria-hidden="true">
+                    -&gt;
+                  </span>
+                ) : null}
+              </span>
+            ))}
+          </div>
+        </article>
+
+        <article className="tinyllm-card tinyllm-demo-card">
+          <form onSubmit={handleAskTinyLlm}>
+            <label className="demo-label" htmlFor="tinyllm-prompt">
+              Prompt
+            </label>
+            <textarea
+              id="tinyllm-prompt"
+              value={prompt}
+              onChange={(event) => setPrompt(event.target.value)}
+              rows="6"
+            />
+            <button
+              className="button primary tinyllm-submit"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? "Asking TinyLLM..." : "Ask TinyLLM"}
+            </button>
+          </form>
+          <div className="tinyllm-output" aria-live="polite">
+            <p className="demo-label">Output</p>
+            {isLoading ? <p>Waiting for TinyLLM...</p> : null}
+            {error ? <p className="demo-error">{error}</p> : null}
+            {output ? <pre>{output}</pre> : null}
+            {!isLoading && !error && !output ? (
+              <p>Response will appear here after the demo returns.</p>
+            ) : null}
+          </div>
+        </article>
+      </div>
+    </section>
   );
 }
 
@@ -960,6 +1117,8 @@ function PortfolioPage() {
           ))}
         </div>
       </section>
+
+      <TinyLlmSection />
 
       <section className="section-block open-source-section" id="open-source">
         <div className="section-heading">

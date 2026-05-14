@@ -351,6 +351,7 @@ h3 {
   .project-card:hover,
   .software-card:hover,
   .open-source-card:hover,
+  .tinyllm-card:hover,
   .thinking-card:hover,
   .working-card:hover,
   .specialty-card:hover,
@@ -364,6 +365,7 @@ h3 {
 .project-card,
 .software-card,
 .open-source-card,
+.tinyllm-card,
 .thinking-card,
 .working-card,
 .specialty-card,
@@ -383,6 +385,7 @@ h3 {
 .project-card:hover,
 .software-card:hover,
 .open-source-card:hover,
+.tinyllm-card:hover,
 .thinking-card:hover,
 .working-card:hover,
 .specialty-card:hover,
@@ -435,7 +438,8 @@ h3 {
 
 .project-card,
 .software-card,
-.open-source-card {
+.open-source-card,
+.tinyllm-card {
   display: flex;
   scroll-margin-top: 96px;
   min-height: 360px;
@@ -448,6 +452,143 @@ h3 {
 .open-source-card {
   min-height: 0;
   border-color: var(--accent-border);
+}
+
+.tinyllm-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+  gap: var(--grid-gap);
+  align-items: stretch;
+}
+
+.tinyllm-card {
+  min-height: 0;
+  border-color: var(--accent-border);
+  background:
+    linear-gradient(135deg, rgba(17, 17, 17, 0.04), transparent 46%),
+    var(--panel);
+}
+
+.tinyllm-demo-card {
+  gap: 18px;
+}
+
+.tinyllm-demo-card form {
+  display: grid;
+  gap: 12px;
+}
+
+.tinyllm-highlights {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 28px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.tinyllm-highlights li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.tinyllm-highlights li::before {
+  position: absolute;
+  top: 0.74em;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ink);
+  content: "";
+}
+
+.architecture-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.architecture-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--accent-text);
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.architecture-arrow {
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.demo-label {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tinyllm-demo-card textarea {
+  width: 100%;
+  min-height: 150px;
+  resize: vertical;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.55;
+}
+
+.tinyllm-demo-card textarea:focus-visible {
+  border-color: rgba(17, 17, 17, 0.46);
+  outline: 2px solid rgba(17, 17, 17, 0.12);
+  outline-offset: 2px;
+}
+
+.tinyllm-submit {
+  justify-self: flex-start;
+}
+
+.tinyllm-submit:disabled {
+  cursor: progress;
+  opacity: 0.72;
+}
+
+.tinyllm-output {
+  min-height: 176px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.tinyllm-output p:last-child {
+  margin-bottom: 0;
+}
+
+.tinyllm-output pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  margin: 10px 0 0;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.demo-error {
+  color: var(--ink);
+  font-weight: 800;
 }
 
 .software-card {
@@ -649,6 +790,7 @@ h3 {
 
 .project-card p:not(.eyebrow),
 .open-source-card p:not(.eyebrow),
+.tinyllm-card p:not(.eyebrow),
 .software-card p:not(.eyebrow),
 .software-features li,
 .thinking-card p:not(.eyebrow),
@@ -1004,6 +1146,7 @@ h3 {
 
   .project-grid,
   .open-source-grid,
+  .tinyllm-layout,
   .software-grid,
   .thinking-grid,
   .working-grid,
@@ -1013,6 +1156,10 @@ h3 {
 
   .project-card {
     min-height: 0;
+  }
+
+  .tinyllm-highlights {
+    grid-template-columns: 1fr;
   }
 
   .sticky-heading {
@@ -1069,6 +1216,10 @@ h3 {
     width: 100%;
   }
 
+  .tinyllm-submit {
+    justify-self: stretch;
+  }
+
   .inline-contact-button {
     width: fit-content;
   }
@@ -1108,6 +1259,7 @@ h3 {
   .project-card:hover,
   .software-card:hover,
   .open-source-card:hover,
+  .tinyllm-card:hover,
   .thinking-card:hover,
   .working-card:hover,
   .specialty-card:hover,

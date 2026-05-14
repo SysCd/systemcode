@@ -45,6 +45,24 @@ test("renders Erik's portfolio page", () => {
     screen.getByRole("heading", { name: /technical projects/i })
   ).toBeInTheDocument();
   expect(
+    screen.getByRole("heading", { name: /syscd tinyllm/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText(
+      /self-hosted fine-tuned ai assistant running on azure infrastructure/i
+    )
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText(/fine-tuned qwen2\.5-1\.5b with peft lora/i)
+  ).toBeInTheDocument();
+  expect(screen.getByLabelText(/prompt/i)).toBeInTheDocument();
+  expect(
+    screen.getByRole("button", { name: /ask tinyllm/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("link", { name: /tinyllm/i })
+  ).toHaveAttribute("href", "#tinyllm");
+  expect(
     screen.getByRole("heading", { name: /open source contributions/i })
   ).toBeInTheDocument();
   expect(
