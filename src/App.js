@@ -777,13 +777,13 @@ function TinyLlmSection() {
     setCopyStatus("");
   };
 
-  const handleCopyTinyLlmResponse = async () => {
-    if (!output || isLoading) {
+  const handleCopyTinyLlmResponse = async (content = output) => {
+    if (!content || isLoading) {
       return;
     }
 
     try {
-      await navigator.clipboard.writeText(output);
+      await navigator.clipboard.writeText(content);
       setCopyStatus("Copied");
     } catch (copyError) {
       console.error("TinyLLM copy failed", copyError);
@@ -957,11 +957,17 @@ function TinyLlmSection() {
                 "Live chat interface connected to the self-hosted Azure model."
               )}
             </p>
+            <div className="tinyllm-chat-badges" aria-label="TinyLLM demo status">
+              {tinyLlmStatusBadges.map((badge) => (
+                <span key={badge}>{renderTinyLlmText(badge)}</span>
+              ))}
+            </div>
           </div>
           <div className="tinyllm-chat-shell">
             <div className="tinyllm-prompt-chips" aria-label="Example prompts">
               {tinyLlmPromptChips.map((examplePrompt) => (
                 <button
+                  className={prompt === examplePrompt ? "is-selected" : ""}
                   type="button"
                   key={examplePrompt}
                   onClick={() => handlePromptChipClick(examplePrompt)}
@@ -976,11 +982,7 @@ function TinyLlmSection() {
               <p className="demo-label">Conversation</p>
               {messages.length === 0 ? (
                 <div className="tinyllm-empty-state">
-                  <strong>Ready for a technical prompt.</strong>
-                  <p>
-                    Try a chip above, or ask TinyLLM for a short systems
-                    explanation.
-                  </p>
+                  <p>Ask TinyLLM a question to test the self-hosted model.</p>
                 </div>
               ) : null}
               {messages.map((message, index) => (
@@ -998,8 +1000,8 @@ function TinyLlmSection() {
                       <button
                         className="tinyllm-copy-inline"
                         type="button"
-                        onClick={handleCopyTinyLlmResponse}
-                        disabled={isLoading || !output}
+                        onClick={() => handleCopyTinyLlmResponse(message.content)}
+                        disabled={isLoading || !message.content}
                       >
                         {copyStatus || "Copy response"}
                       </button>
@@ -1021,7 +1023,7 @@ function TinyLlmSection() {
                   </div>
                   <p className="tinyllm-loading">
                     <span className="tinyllm-spinner" aria-hidden="true" />
-                    Waiting for TinyLLM...
+                    Thinking...
                   </p>
                 </div>
               ) : null}
@@ -1071,6 +1073,8 @@ function TinyLlmSection() {
               </div>
             </form>
           </div>
+        </article>
+        <div className="tinyllm-chat-footer">
           <p className="tinyllm-note">
             {renderTinyLlmText(
               "Runs on a CPU-only Azure VM, so responses may take a few seconds."
@@ -1088,7 +1092,7 @@ function TinyLlmSection() {
               </a>
             ))}
           </div>
-        </article>
+        </div>
       </div>
     </section>
   );

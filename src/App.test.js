@@ -89,7 +89,7 @@ test("renders Erik's portfolio page", () => {
   ).not.toBeInTheDocument();
   expect(screen.getByText(/conversation/i)).toBeInTheDocument();
   expect(
-    screen.getByText(/ready for a technical prompt/i)
+    screen.getByText(/ask tinyllm a question to test the self-hosted model/i)
   ).toBeInTheDocument();
   expect(
     screen.getAllByText((_, element) =>

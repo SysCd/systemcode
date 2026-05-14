@@ -523,18 +523,24 @@ h3 {
 }
 
 .tinyllm-chat-card {
-  width: min(100%, 1080px);
-  gap: 14px;
+  width: min(100%, 1020px);
+  gap: 12px;
   justify-self: center;
-  padding: clamp(16px, 2.3vw, 24px);
+  padding: clamp(14px, 2vw, 20px);
+  border-color: rgba(17, 17, 17, 0.1);
+  border-radius: 10px;
+  background:
+    linear-gradient(rgba(17, 17, 17, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 17, 17, 0.018) 1px, transparent 1px),
+    rgba(255, 255, 255, 0.82);
+  background-size: 28px 28px;
+  box-shadow: 0 20px 70px rgba(17, 17, 17, 0.07);
 }
 
 .tinyllm-chat-heading {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px 20px;
-  padding-bottom: 10px;
+  display: grid;
+  gap: 8px;
+  padding: 4px 4px 12px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -544,33 +550,50 @@ h3 {
 }
 
 .tinyllm-chat-heading p {
-  max-width: 420px;
+  max-width: 620px;
   margin-bottom: 0;
   color: var(--muted);
-  text-align: right;
+  text-align: left;
+}
+
+.tinyllm-chat-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tinyllm-chat-badges span {
+  padding: 5px 8px;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.64);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
 }
 
 .tinyllm-chat-shell {
   display: grid;
-  gap: 12px;
+  gap: 9px;
 }
 
 .tinyllm-prompt-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
+  padding: 0 4px;
 }
 
 .tinyllm-prompt-chips button {
-  min-height: 34px;
-  padding: 7px 10px;
-  border: 1px solid var(--line);
+  min-height: 30px;
+  padding: 6px 9px;
+  border: 1px solid rgba(17, 17, 17, 0.09);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.52);
   color: var(--muted);
   cursor: pointer;
   font: inherit;
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   font-weight: 800;
   transition:
     border-color 160ms ease,
@@ -579,11 +602,13 @@ h3 {
 }
 
 .tinyllm-prompt-chips button:hover,
-.tinyllm-prompt-chips button:focus-visible {
+.tinyllm-prompt-chips button:focus-visible,
+.tinyllm-prompt-chips button.is-selected {
   border-color: rgba(17, 17, 17, 0.32);
+  background: rgba(255, 255, 255, 0.86);
   color: var(--ink);
   outline: none;
-  transform: translateY(-1px);
+  transform: translateY(-0.5px);
 }
 
 .tinyllm-prompt-chips button:disabled {
@@ -661,8 +686,8 @@ h3 {
 
 .tinyllm-chat-card textarea {
   width: 100%;
-  min-height: 54px;
-  max-height: 138px;
+  min-height: 52px;
+  max-height: 96px;
   resize: vertical;
   padding: 11px 12px;
   border: 0;
@@ -680,22 +705,21 @@ h3 {
 
 .tinyllm-composer {
   display: grid;
-  gap: 8px;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.84);
-  box-shadow: 0 18px 50px rgba(17, 17, 17, 0.06);
+  gap: 7px;
+  padding: 10px;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .tinyllm-composer-bar {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 10px;
+  gap: 8px;
   align-items: end;
-  border: 1px solid rgba(17, 17, 17, 0.12);
+  border: 1px solid rgba(17, 17, 17, 0.11);
   border-radius: 8px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.92);
 }
 
 .tinyllm-composer-bar:focus-within {
@@ -708,7 +732,7 @@ h3 {
   flex-wrap: wrap;
   gap: 6px;
   justify-content: flex-end;
-  padding: 8px;
+  padding: 7px;
 }
 
 .tinyllm-submit {
@@ -728,34 +752,26 @@ h3 {
 
 .tinyllm-output {
   display: grid;
-  gap: 12px;
-  min-height: clamp(310px, 34vw, 430px);
-  max-height: 560px;
+  align-content: start;
+  gap: 10px;
+  min-height: clamp(320px, 30vw, 420px);
+  max-height: 460px;
   overflow: auto;
-  padding: clamp(14px, 2vw, 20px);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background:
-    linear-gradient(rgba(17, 17, 17, 0.024) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17, 17, 17, 0.024) 1px, transparent 1px),
-    rgba(255, 255, 255, 0.7);
-  background-size: 28px 28px;
+  padding: clamp(12px, 1.8vw, 18px);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 9px 9px 7px 7px;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .tinyllm-empty-state {
-  max-width: 520px;
-  padding: 16px;
+  place-self: center;
+  max-width: 420px;
+  padding: 10px 12px;
   border: 1px solid rgba(17, 17, 17, 0.08);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.76);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.66);
   color: var(--muted);
-}
-
-.tinyllm-empty-state strong {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--ink);
-  font-size: 1rem;
+  text-align: center;
 }
 
 .tinyllm-empty-state p {
@@ -764,12 +780,13 @@ h3 {
 
 .tinyllm-chat-message {
   display: grid;
-  gap: 7px;
-  max-width: min(760px, 92%);
+  gap: 6px;
+  max-width: min(760px, 85%);
 }
 
 .tinyllm-chat-message-user {
   justify-self: end;
+  max-width: min(620px, 70%);
 }
 
 .tinyllm-chat-message-assistant {
@@ -790,10 +807,10 @@ h3 {
 
 .tinyllm-chat-message > p {
   margin: 0;
-  padding: 12px 14px;
+  padding: 11px 13px;
   border: 1px solid rgba(17, 17, 17, 0.1);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.84);
+  background: rgba(255, 255, 255, 0.82);
   color: #4b5563;
   line-height: 1.62;
 }
@@ -801,6 +818,7 @@ h3 {
 .tinyllm-chat-message-user > p {
   background: #111111;
   color: #ffffff;
+  border-color: #111111;
 }
 
 .tinyllm-chat-message-error > p {
@@ -812,11 +830,11 @@ h3 {
 
 .tinyllm-response-message {
   display: grid;
-  gap: 14px;
-  padding: 15px 16px;
-  border: 1px solid rgba(17, 17, 17, 0.08);
+  gap: 12px;
+  padding: 14px 15px;
+  border: 1px solid rgba(17, 17, 17, 0.09);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.88);
   color: #4b5563;
   font-size: 1rem;
   line-height: 1.75;
@@ -857,6 +875,7 @@ h3 {
 
 .tinyllm-loading {
   display: inline-flex;
+  align-items: center;
   gap: 8px;
 }
 
@@ -880,7 +899,7 @@ h3 {
 .tinyllm-note {
   margin: 0;
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.84rem;
 }
 
 .tech-nowrap {
@@ -891,11 +910,19 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 18px;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   font-weight: 900;
+}
+
+.tinyllm-chat-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 18px;
+  width: min(100%, 1020px);
+  justify-self: center;
+  padding: 0 4px;
 }
 
 .tinyllm-link-row a {
@@ -1881,12 +1908,20 @@ h3 {
   }
 
   .tinyllm-output {
-    min-height: 360px;
-    max-height: 520px;
+    min-height: 320px;
+    max-height: 460px;
   }
 
   .tinyllm-chat-message {
     max-width: 100%;
+  }
+
+  .tinyllm-chat-message-user {
+    max-width: 100%;
+  }
+
+  .tinyllm-chat-footer {
+    display: grid;
   }
 
   .inline-contact-button {
