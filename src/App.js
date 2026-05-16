@@ -172,9 +172,9 @@ const tinyLlmNoWrapTerms = [
 const tinyLlmMaxPromptLength = 1000;
 const tinyLlmOfflineStatuses = new Set([502, 503, 504]);
 const tinyLlmOfflineMessage =
-  "TinyLLM is currently offline to reduce Azure costs. The demo runs during scheduled working hours, or when the Azure VM is manually started.";
+  "TinyLLM is currently offline to reduce Azure costs. The demo is normally online Monday–Friday, 12:00–12:48 UK time, or when the Azure VM is manually started.";
 const tinyLlmOfflineNote =
-  "This project uses automated Azure VM start/stop scheduling for cost control, reducing compute runtime by roughly 70% compared with running 24/7.";
+  "Automated VM start/stop scheduling reduces compute runtime from 168 hours/week to 4 hours/week — about a 97.6% reduction compared with running 24/7.";
 const tinyLlmLinks = [
   {
     label: "GitHub repo",
